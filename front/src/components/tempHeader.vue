@@ -8,16 +8,15 @@ const { VITE_VUE_API_URL } = import.meta.env;
 const ModalLoginisOpen = ref(false);
 const ModalSignUpisOpen = ref(false);
 
-const LoginUser = ref({
-  loginId: "",
-  pw: "",
-});
-
 const SignUpUser = ref({
   loginId: "",
   pw: "",
   name: "",
   tel: "",
+});
+const LoginUser = ref({
+  loginId: "",
+  pw: "",
 });
 const loginForm = () => {
   console.log("로그인폼들어왓다.");
@@ -74,20 +73,6 @@ const signupForm = () => {
 </script>
 
 <template>
-  <nav class="navbar static-top">
-    <div class="container">
-      <a class="navbar-brand fs-2" href="/">CAMPING</a>
-      <span>
-        <a
-          class="btn btn-secondary"
-          @click="ModalLoginisOpen = true"
-          data-bs-toggle="modal"
-          data-bs-target="#login"
-          >로그인 / 회원가입</a
-        >
-      </span>
-    </div>
-  </nav>
   <!-- Modal -->
   <div
     class="modal fade"

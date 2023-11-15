@@ -1,0 +1,65 @@
+<script setup>
+import { ref } from "vue";
+import LoginModalVue from "./LoginModal.vue";
+const loginOpen = ref(false);
+
+const changeloginOpen = () => {
+  loginOpen.value = true;
+};
+</script>
+
+<template>
+  <nav class="navbar static-top">
+    <div class="container">
+      <a class="navbar-brand fs-2" href="/">CAMPING</a>
+
+      <!-- 여기부터 로그인/회원가입 드롭다운  -->
+      <div class="btn-group">
+        <button
+          type="button"
+          class="btn btn-secondary rounded-5"
+          data-bs-toggle="dropdown"
+          data-bs-display="static"
+          aria-expanded="false"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 32 32"
+            aria-hidden="true"
+            role="presentation"
+            focusable="false"
+            style="
+              display: inline;
+              fill: none;
+              height: 16px;
+              width: 16px;
+              stroke: currentcolor;
+              stroke-width: 3;
+              overflow: visible;
+            "
+          >
+            <path d="M2 16h28M2 24h28M2 8h28"></path>
+          </svg>
+          <span> &nbsp <img src="@/assets/img/user.png" style="width: 33px; height: 33px" /></span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-lg-end">
+          <li><a class="dropdown-item">이벤트 정보</a></li>
+          <li><hr class="dropdown-divider" /></li>
+          <li><a class="dropdown-item">회원가입</a></li>
+          <li><a class="dropdown-item" @click="changeloginOpen">로그인</a></li>
+          <li><hr class="dropdown-divider" /></li>
+          <li><a class="dropdown-item">Menu item</a></li>
+          <li><a class="dropdown-item">Menu item</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <LoginModalVue :data="loginOpen" />
+</template>
+
+<style scoped>
+.dropdown-menu {
+  width: 230px;
+  height: auto;
+}
+</style>
