@@ -73,86 +73,14 @@ const signupForm = () => {
 </script>
 
 <template>
-  <!-- Modal -->
   <div
     class="modal fade"
-    id="login"
-    tabindex="-1"
-    aria-labelledby="loginModalLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modal-body">
-          <form class="form-box py-2" @submit.prevent="loginForm">
-            <h1 class="h3 mb-3 fw-normal">로그인</h1>
-            <div class="form-floating">
-              <input
-                type="text"
-                class="form-control mb-3"
-                id="floatingInput"
-                name="loginId"
-                placeholder="ID"
-                v-model="LoginUser.loginId"
-              />
-              <label for="floatingInput">ID</label>
-            </div>
-            <div class="form-floating">
-              <input
-                type="password"
-                class="form-control mb-3"
-                id="floatingPassword"
-                name="pw"
-                placeholder="Password"
-                v-model="LoginUser.pw"
-              />
-              <label for="floatingPassword">Password</label>
-            </div>
-
-            <div class="form-check text-start my-3 w-75">
-              <input
-                class="form-check-input mb-3"
-                type="checkbox"
-                value="remember-me"
-                id="flexCheckDefault"
-              />
-              <label class="form-check-label" for="flexCheckDefault"> 아이디 기억하기 </label>
-            </div>
-            <button class="btn btn-primary w-75 py-2" type="submit">Sign in</button>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#signupModal"
-            @click="ModalSignUpisOpen = false"
-          >
-            회원가입
-          </button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div
-    class="modal fade"
-    id="signupModal"
+    id="signup"
     tabindex="-1"
     aria-labelledby="signupModalLabel"
-    aria-hidden="{{ ModalSignUpisOpen }}"
+    aria-hidden="true"
   >
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <button

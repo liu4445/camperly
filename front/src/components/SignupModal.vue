@@ -2,56 +2,59 @@
 import axios from "axios";
 import "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js";
 import { ref, defineProps, defineEmits, onUpdated } from "vue";
-import vClickOutside from "v-click-outside";
+
 const { VITE_VUE_API_URL } = import.meta.env;
 
-// const onClickOutSide = () => {
-//   console.log("밖클릭");
-//   $("#login").modal("hide");
-//   emit("loginClose");
-// };
 const props = defineProps({
   data: Boolean,
 });
-const emit = defineEmits(["loginClose"]);
+const emit = defineEmits(["signupClose"]);
 
-const LoginUser = ref({
+const SignUpUser = ref({
   loginId: "",
   pw: "",
+  name: "",
+  tel: "",
 });
 const clickClose = () => {
   console.log("hi");
-  $("#login").modal("hide");
-  emit("loginClose");
+  $("#signup").modal("hide");
+  emit("signupClose");
 };
 
 onUpdated(() => {
   console.log(props.data);
   console.log("온업데이트");
-  if (props.data == true) $("#login").modal("show");
-  else $("#login").modal("hide");
+  if (props.data == true) $("#signup").modal("show");
+  else $("#signup").modal("hide");
 });
-const loginForm = () => {
-  console.log("로그인폼들어왓다.");
+
+const signupForm = () => {
+  console.log("회원가입폼들어왓다.");
   axios({
     method: "post",
-    url: VITE_VUE_API_URL + "user/login",
+    url: VITE_VUE_API_URL + "user/signup",
     data: {
-      loginId: LoginUser.value.loginId,
-      pw: LoginUser.value.pw,
+      loginId: SignUpUser.value.loginId,
+      pw: SignUpUser.value.pw,
+      name: SignUpUser.value.name,
+      tel: SignUpUser.value.tel,
     },
   })
     .then((res) => {
       console.log(res);
       console.log("성공");
-      if (res.data == "") {
-        alert("아이디와 비밀번호를 확인해 주세요.");
-      } else {
+      if (res.data == "success") {
+        alert("회원가입에 성공하였습니다.");
       }
+      //메세지에 따라서 나오는 알림 다르게.
     })
     .catch((error) => {
-      console.log(LoginUser.value);
+      console.log(SignUpUser.value);
       console.log(error);
+    })
+    .finally(() => {
+      $("#signupModal").modal("hide");
     });
 };
 </script>
@@ -59,14 +62,12 @@ const loginForm = () => {
 <template>
   <div
     class="modal fade"
-    id="login"
+    id="signup"
     tabindex="-1"
-    aria-labelledby="loginModalLabel"
+    aria-labelledby="signupModalLabel"
     aria-hidden="true"
-    data-bs-dismiss="model"
   >
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-outside" @click="clickClose"></div>
       <div class="modal-content">
         <div class="modal-header">
           <button
@@ -78,8 +79,8 @@ const loginForm = () => {
           ></button>
         </div>
         <div class="modal-body">
-          <form class="form-box py-2" @submit.prevent="loginForm">
-            <h1 class="h3 mb-3 fw-normal">로그인</h1>
+          <form class="form-box py-2" @submit.prevent="signupForm">
+            <h1 class="h3 mb-3 fw-normal">회원가입</h1>
             <div class="form-floating">
               <input
                 type="text"
@@ -87,7 +88,7 @@ const loginForm = () => {
                 id="floatingInput"
                 name="loginId"
                 placeholder="ID"
-                v-model="LoginUser.loginId"
+                v-model="SignUpUser.loginId"
               />
               <label for="floatingInput">ID</label>
             </div>
@@ -98,25 +99,45 @@ const loginForm = () => {
                 id="floatingPassword"
                 name="pw"
                 placeholder="Password"
-                v-model="LoginUser.pw"
+                v-model="SignUpUser.pw"
               />
-              <label for="floatingPassword">Password</label>
+              <label for="floatingPassword mb-3">Password</label>
+            </div>
+            <div class="form-floating">
+              <input
+                type="text"
+                class="form-control mb-3"
+                id="floatingInput"
+                name="loginName"
+                placeholder="Name"
+                v-model="SignUpUser.name"
+              />
+              <label for="floatingInput">Name</label>
+            </div>
+            <div class="form-floating">
+              <input
+                type="number"
+                class="form-control mb-3"
+                id="floatingTel"
+                name="pw"
+                placeholder="Tel"
+                v-model="SignUpUser.tel"
+              />
+              <label class="w-75" for="floatingInput">Tel</label>
             </div>
 
-            <div class="form-check text-start my-3 w-75">
-              <input
-                class="form-check-input mb-3"
-                type="checkbox"
-                value="remember-me"
-                id="flexCheckDefault"
-              />
-              <label class="form-check-label" for="flexCheckDefault"> 아이디 기억하기 </label>
-            </div>
-            <button class="btn btn-primary w-75 py-2" type="submit">Sign in</button>
+            <button class="btn btn-primary w-75 py-2" type="submit">회원 가입</button>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" @click="clickClose">Close</button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+            @click="clickClose"
+          >
+            Close
+          </button>
         </div>
       </div>
     </div>
@@ -124,13 +145,6 @@ const loginForm = () => {
 </template>
 
 <style scoped>
-.modal-outside {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-}
 .modal-body {
   text-align: center;
 }
@@ -148,6 +162,7 @@ const loginForm = () => {
   margin-left: auto;
   margin-right: auto;
 }
+
 .navbar {
   min-height: 10%;
 }

@@ -1,10 +1,23 @@
 <script setup>
 import { ref } from "vue";
-import LoginModalVue from "./LoginModal.vue";
+import LoginModal from "./LoginModal.vue";
+import SignupModal from "./SignupModal.vue";
 const loginOpen = ref(false);
 
 const changeloginOpen = () => {
-  loginOpen.value = true;
+  if (loginOpen.value == true) loginOpen.value = false;
+  else {
+    loginOpen.value = true;
+  }
+};
+
+const signupOpen = ref(false);
+
+const changesignupOpen = () => {
+  if (signupOpen.value == true) signupOpen.value = false;
+  else {
+    signupOpen.value = true;
+  }
 };
 </script>
 
@@ -33,7 +46,7 @@ const changeloginOpen = () => {
               fill: none;
               height: 16px;
               width: 16px;
-              stroke: currentcolor;
+              stroke: black;
               stroke-width: 3;
               overflow: visible;
             "
@@ -45,7 +58,7 @@ const changeloginOpen = () => {
         <ul class="dropdown-menu dropdown-menu-lg-end">
           <li><a class="dropdown-item">이벤트 정보</a></li>
           <li><hr class="dropdown-divider" /></li>
-          <li><a class="dropdown-item">회원가입</a></li>
+          <li><a class="dropdown-item" @click="changesignupOpen">회원가입</a></li>
           <li><a class="dropdown-item" @click="changeloginOpen">로그인</a></li>
           <li><hr class="dropdown-divider" /></li>
           <li><a class="dropdown-item">Menu item</a></li>
@@ -54,12 +67,16 @@ const changeloginOpen = () => {
       </div>
     </div>
   </nav>
-  <LoginModalVue :data="loginOpen" />
+  <LoginModal :data="loginOpen" @login-close="changeloginOpen" />
+  <SignupModal :data="signupOpen" @signup-close="changesignupOpen" />
 </template>
 
 <style scoped>
 .dropdown-menu {
   width: 230px;
   height: auto;
+}
+.dropdown-item {
+  cursor: pointer;
 }
 </style>
