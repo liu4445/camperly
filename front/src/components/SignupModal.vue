@@ -1,7 +1,7 @@
 <script setup>
 import axios from "axios";
 import "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js";
-import { ref, defineProps, defineEmits, onUpdated } from "vue";
+import { ref, defineProps, defineEmits, onUpdated, onMounted } from "vue";
 
 const { VITE_VUE_API_URL } = import.meta.env;
 
@@ -16,12 +16,13 @@ const SignUpUser = ref({
   name: "",
   tel: "",
 });
-const clickClose = () => {
-  console.log("hi");
-  $("#signup").modal("hide");
-  emit("signupClose");
-};
-
+onMounted(() => {
+  $("#signup").on("hidden.bs.modal", () => {
+    console.log("click outer");
+    $("#signup").modal("hide");
+    emit("signupClose");
+  });
+});
 onUpdated(() => {
   console.log(props.data);
   console.log("온업데이트");
@@ -75,7 +76,6 @@ const signupForm = () => {
             class="btn-close"
             data-bs-dismiss="modal"
             aria-label="Close"
-            @click="clickClose"
           ></button>
         </div>
         <div class="modal-body">
@@ -85,9 +85,8 @@ const signupForm = () => {
               <input
                 type="text"
                 class="form-control mb-3"
-                id="floatingInput"
+                id="floatingId"
                 name="loginId"
-                placeholder="ID"
                 v-model="SignUpUser.loginId"
               />
               <label for="floatingInput">ID</label>
@@ -98,7 +97,6 @@ const signupForm = () => {
                 class="form-control mb-3"
                 id="floatingPassword"
                 name="pw"
-                placeholder="Password"
                 v-model="SignUpUser.pw"
               />
               <label for="floatingPassword mb-3">Password</label>
@@ -107,9 +105,8 @@ const signupForm = () => {
               <input
                 type="text"
                 class="form-control mb-3"
-                id="floatingInput"
+                id="floatingName"
                 name="loginName"
-                placeholder="Name"
                 v-model="SignUpUser.name"
               />
               <label for="floatingInput">Name</label>
@@ -120,7 +117,6 @@ const signupForm = () => {
                 class="form-control mb-3"
                 id="floatingTel"
                 name="pw"
-                placeholder="Tel"
                 v-model="SignUpUser.tel"
               />
               <label class="w-75" for="floatingInput">Tel</label>
@@ -130,14 +126,7 @@ const signupForm = () => {
           </form>
         </div>
         <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-            @click="clickClose"
-          >
-            Close
-          </button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

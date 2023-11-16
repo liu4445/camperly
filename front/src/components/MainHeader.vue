@@ -2,8 +2,10 @@
 import { ref } from "vue";
 import LoginModal from "./LoginModal.vue";
 import SignupModal from "./SignupModal.vue";
-const loginOpen = ref(false);
 
+const loginStatus = ref(false);
+
+const loginOpen = ref(false);
 const changeloginOpen = () => {
   if (loginOpen.value == true) loginOpen.value = false;
   else {
@@ -58,10 +60,22 @@ const changesignupOpen = () => {
         <ul class="dropdown-menu dropdown-menu-lg-end">
           <li><a class="dropdown-item">이벤트 정보</a></li>
           <li><hr class="dropdown-divider" /></li>
-          <li><a class="dropdown-item" @click="changesignupOpen">회원가입</a></li>
-          <li><a class="dropdown-item" @click="changeloginOpen">로그인</a></li>
+          <li v-if="loginStatus == false">
+            <a class="dropdown-item" @click="changesignupOpen">회원가입</a>
+          </li>
+          <li v-else>
+            <a class="dropdown-item">마이페이지</a>
+          </li>
+          <li v-if="loginStatus == false">
+            <a class="dropdown-item" @click="changeloginOpen">로그인</a>
+          </li>
+          <li v-else>
+            <a class="dropdown-item">로그아웃</a>
+          </li>
           <li><hr class="dropdown-divider" /></li>
-          <li><a class="dropdown-item">Menu item</a></li>
+          <li v-if="loginStatus == true">
+            <a class="dropdown-item">찜목록</a>
+          </li>
           <li><a class="dropdown-item">Menu item</a></li>
         </ul>
       </div>
@@ -69,6 +83,7 @@ const changesignupOpen = () => {
   </nav>
   <LoginModal :data="loginOpen" @login-close="changeloginOpen" />
   <SignupModal :data="signupOpen" @signup-close="changesignupOpen" />
+  <hr />
 </template>
 
 <style scoped>

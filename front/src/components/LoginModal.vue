@@ -1,8 +1,7 @@
 <script setup>
 import axios from "axios";
 import "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js";
-import { ref, defineProps, defineEmits, onUpdated } from "vue";
-import vClickOutside from "v-click-outside";
+import { ref, defineProps, defineEmits, onUpdated, onMounted } from "vue";
 const { VITE_VUE_API_URL } = import.meta.env;
 
 // const onClickOutSide = () => {
@@ -15,15 +14,18 @@ const props = defineProps({
 });
 const emit = defineEmits(["loginClose"]);
 
+onMounted(() => {
+  $("#login").on("hidden.bs.modal", () => {
+    console.log("click outer");
+    $("#login").modal("hide");
+    emit("loginClose");
+  });
+});
+
 const LoginUser = ref({
   loginId: "",
   pw: "",
 });
-const clickClose = () => {
-  console.log("hi");
-  $("#login").modal("hide");
-  emit("loginClose");
-};
 
 onUpdated(() => {
   console.log(props.data);
@@ -66,7 +68,6 @@ const loginForm = () => {
     data-bs-dismiss="model"
   >
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-outside" @click="clickClose"></div>
       <div class="modal-content">
         <div class="modal-header">
           <button
@@ -74,7 +75,7 @@ const loginForm = () => {
             class="btn-close"
             data-bs-dismiss="modal"
             aria-label="Close"
-            @click="clickClose"
+            @close="clickClose"
           ></button>
         </div>
         <div class="modal-body">
@@ -84,23 +85,21 @@ const loginForm = () => {
               <input
                 type="text"
                 class="form-control mb-3"
-                id="floatingInput"
+                id="floatingLoginId"
                 name="loginId"
-                placeholder="ID"
                 v-model="LoginUser.loginId"
               />
-              <label for="floatingInput">ID</label>
+              <label for="floatingLoginId">ID</label>
             </div>
             <div class="form-floating">
               <input
                 type="password"
                 class="form-control mb-3"
-                id="floatingPassword"
+                id="floatingLoginPassword"
                 name="pw"
-                placeholder="Password"
                 v-model="LoginUser.pw"
               />
-              <label for="floatingPassword">Password</label>
+              <label for="floatingLogin Password">Password</label>
             </div>
 
             <div class="form-check text-start my-3 w-75">
@@ -116,7 +115,7 @@ const loginForm = () => {
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" @click="clickClose">Close</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
