@@ -32,7 +32,7 @@ const changesignupOpen = () => {
       <div class="btn-group">
         <button
           type="button"
-          class="btn btn-secondary rounded-5"
+          class="btn rounded-5"
           data-bs-toggle="dropdown"
           data-bs-display="static"
           aria-expanded="false"
