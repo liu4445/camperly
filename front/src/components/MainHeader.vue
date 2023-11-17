@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import LoginModal from "./LoginModal.vue";
 import SignupModal from "./SignupModal.vue";
+import SearchHeader from "@/components/SearchHeader.vue";
 
 const loginStatus = ref(false);
 
@@ -27,6 +28,9 @@ const changesignupOpen = () => {
   <nav class="navbar static-top">
     <div class="container">
       <a class="navbar-brand fs-2" href="/">CAMPING</a>
+
+      <!-- 가운데 검색 헤더     -->
+      <SearchHeader/>
 
       <!-- 여기부터 로그인/회원가입 드롭다운  -->
       <div class="btn-group">
