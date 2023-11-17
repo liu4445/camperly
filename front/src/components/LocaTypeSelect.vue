@@ -11,87 +11,87 @@ const RiverBtnColor = ref("transparent");
 const LakeBtnColor = ref("transparent");
 const CityBtnColor = ref("transparent");
 
+const BeachisClick = ref(false);
+const IslandisClick = ref(false);
+const MoutainisClick = ref(false);
+const ForestisClick = ref(false);
+const ValleyisClick = ref(false);
+const RiverisClick = ref(false);
+const LakeisClick = ref(false);
+const CityisClick = ref(false);
+
 const clickBeachBtn = () => {
-  BeachBtnColor.value = "rgba(0, 0, 0, 0.05)";
-  IslandBtnColor.value = "transparent";
-  MoutainBtnColor.value = "transparent";
-  ForestBtnColor.value = "transparent";
-  ValleyBtnColor.value = "transparent";
-  RiverBtnColor.value = "transparent";
-  LakeBtnColor.value = "transparent";
-  CityBtnColor.value = "transparent";
+  if (!BeachisClick.value) {
+    BeachisClick.value = true;
+    BeachBtnColor.value = "rgba(0, 0, 0, 0.05)";
+  } else {
+    BeachisClick.value = false;
+    BeachBtnColor.value = "transparent";
+  }
 };
 const clickIslandBtn = () => {
-  BeachBtnColor.value = "transparent";
-  IslandBtnColor.value = "rgba(0, 0, 0, 0.05)";
-  MoutainBtnColor.value = "transparent";
-  ForestBtnColor.value = "transparent";
-  ValleyBtnColor.value = "transparent";
-  RiverBtnColor.value = "transparent";
-  LakeBtnColor.value = "transparent";
-  CityBtnColor.value = "transparent";
+  if (!IslandisClick.value) {
+    IslandisClick.value = true;
+    IslandBtnColor.value = "rgba(0, 0, 0, 0.05)";
+  } else {
+    IslandisClick.value = false;
+    IslandBtnColor.value = "transparent";
+  }
 };
 const clickMoutainBtn = () => {
-  BeachBtnColor.value = "transparent";
-  IslandBtnColor.value = "transparent";
-  MoutainBtnColor.value = "rgba(0, 0, 0, 0.05)";
-  ForestBtnColor.value = "transparent";
-  ValleyBtnColor.value = "transparent";
-  RiverBtnColor.value = "transparent";
-  LakeBtnColor.value = "transparent";
-  CityBtnColor.value = "transparent";
+  if (!MoutainisClick.value) {
+    MoutainisClick.value = true;
+    MoutainBtnColor.value = "rgba(0, 0, 0, 0.05)";
+  } else {
+    MoutainisClick.value = false;
+    MoutainBtnColor.value = "transparent";
+  }
 };
 const clickForestBtn = () => {
-  BeachBtnColor.value = "transparent";
-  IslandBtnColor.value = "transparent";
-  MoutainBtnColor.value = "transparent";
-  ForestBtnColor.value = "rgba(0, 0, 0, 0.05)";
-  ValleyBtnColor.value = "transparent";
-  RiverBtnColor.value = "transparent";
-  LakeBtnColor.value = "transparent";
-  CityBtnColor.value = "transparent";
+  if (!ForestisClick.value) {
+    ForestisClick.value = true;
+    ForestBtnColor.value = "rgba(0, 0, 0, 0.05)";
+  } else {
+    ForestisClick.value = false;
+    ForestBtnColor.value = "transparent";
+  }
 };
 const clickValleyBtn = () => {
-  BeachBtnColor.value = "transparent";
-  IslandBtnColor.value = "transparent";
-  MoutainBtnColor.value = "transparent";
-  ForestBtnColor.value = "transparent";
-  ValleyBtnColor.value = "rgba(0, 0, 0, 0.05)";
-  RiverBtnColor.value = "transparent";
-  LakeBtnColor.value = "transparent";
-  CityBtnColor.value = "transparent";
+  if (!ValleyisClick.value) {
+    ValleyisClick.value = true;
+    ValleyBtnColor.value = "rgba(0, 0, 0, 0.05)";
+  } else {
+    ValleyisClick.value = false;
+    ValleyBtnColor.value = "transparent";
+  }
 };
 const clickRiverBtn = () => {
-  BeachBtnColor.value = "transparent";
-  IslandBtnColor.value = "transparent";
-  MoutainBtnColor.value = "transparent";
-  ForestBtnColor.value = "transparent";
-  ValleyBtnColor.value = "transparent";
-  RiverBtnColor.value = "rgba(0, 0, 0, 0.05)";
-  LakeBtnColor.value = "transparent";
-  CityBtnColor.value = "transparent";
+  if (!RiverisClick.value) {
+    RiverisClick.value = true;
+    RiverBtnColor.value = "rgba(0, 0, 0, 0.05)";
+  } else {
+    RiverisClick.value = false;
+    RiverBtnColor.value = "transparent";
+  }
 };
 const clickLakeBtn = () => {
-  BeachBtnColor.value = "transparent";
-  IslandBtnColor.value = "transparent";
-  MoutainBtnColor.value = "transparent";
-  ForestBtnColor.value = "transparent";
-  ValleyBtnColor.value = "transparent";
-  RiverBtnColor.value = "transparent";
-  LakeBtnColor.value = "rgba(0, 0, 0, 0.05)";
-  CityBtnColor.value = "transparent";
+  if (!LakeisClick.value) {
+    LakeisClick.value = true;
+    LakeBtnColor.value = "rgba(0, 0, 0, 0.05)";
+  } else {
+    LakeisClick.value = false;
+    LakeBtnColor.value = "transparent";
+  }
 };
 const clickCityBtn = () => {
-  BeachBtnColor.value = "transparent";
-  IslandBtnColor.value = "transparent";
-  MoutainBtnColor.value = "transparent";
-  ForestBtnColor.value = "transparent";
-  ValleyBtnColor.value = "transparent";
-  RiverBtnColor.value = "transparent";
-  LakeBtnColor.value = "transparent";
-  CityBtnColor.value = "rgba(0, 0, 0, 0.05)";
+  if (!CityisClick.value) {
+    CityisClick.value = true;
+    CityBtnColor.value = "rgba(0, 0, 0, 0.05)";
+  } else {
+    CityisClick.value = false;
+    CityBtnColor.value = "transparent";
+  }
 };
-
 const MoreSelectOpen = ref(false);
 const changeMoreSelect = () => {
   console.log(MoreSelectOpen.value);
@@ -104,22 +104,21 @@ const changeMoreSelect = () => {
   <div class="selectArea">
     <ul>
       <li class="type">
-        <input
-          type="checkBox"
+        <button
+          type="button"
           id="beach"
-          class="btn btn-1 rounded-circle w-100 h-100"
+          class="type-btn btn-1 rounded-circle w-100 h-100"
           :style="{ backgroundColor: BeachBtnColor }"
           @click="clickBeachBtn()"
-        />
-        <label class="btn" for="beach"
-          ><img
+        >
+          <img
             src="@/assets/img/pictogram/free-icon-sunbed-7759411.png"
             alt
             width="40"
             height="40"
           />
-          <div>해변</div></label
-        >
+          <div>해변</div>
+        </button>
       </li>
       <li>
         <button
@@ -289,14 +288,14 @@ a {
   text-decoration: none;
   color: black;
 }
-.btn-check {
+.type-btn {
   border: none;
 }
 
-.btn-check:hover {
+.type-btn:hover {
   box-shadow: 200px 0 0 0 rgba(0, 0, 0, 0.05) inset, -200px 0 0 0 rgba(0, 0, 0, 0.05) inset;
 }
-.btn-check:active {
+.type-btn:active {
   box-shadow: 200px 0 0 0 rgba(0, 0, 0, 0.05) inset, -200px 0 0 0 rgba(0, 0, 0, 0.05) inset;
 }
 .more-select-btn {
