@@ -7,7 +7,16 @@ const operType = ref("");
 const mainfacility = ref([]);
 const thema = ref([]);
 const subfacility = ref([]);
-
+let json = "";
+const toJson = () => {
+  json = JSON.stringify({
+    locationType: props.LocationType,
+    operType: operType.value,
+    mainfacility: mainfacility.value,
+    thema: thema.value,
+    subfacility: subfacility.value,
+  });
+};
 onMounted(() => {
   $("#moreSelect").on("hidden.bs.modal", () => {
     $("#moreSelect").modal("hide");
@@ -22,16 +31,12 @@ onUpdated(() => {
 });
 const props = defineProps({
   data: Boolean,
+  locationType: String,
 });
 
 const moreSelectForm = () => {
   console.log("상세폼들어왓다.");
-  const json = JSON.stringify({
-    operType: operType.value,
-    mainfacility: mainfacility.value,
-    thema: thema.value,
-    subfacility: subfacility.value,
-  });
+  toJson();
   console.log(json);
   axios({
     method: "post",
