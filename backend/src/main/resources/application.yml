@@ -4,3 +4,8 @@ spring:
     url: jdbc:mysql://${DATASOURCE_HOST:localhost}:${DATASOURCE_PORT:3306}/workshop?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
     username: ${DATASOURCE_USERNAME:root}
     password: ${DATASOURCE_PASSWORD:}
+
+
+jwt:
+  secretKey: ${SECRET_KEY:camperly}
+  accessTokenTimeOut: ${ACCESS_TOKEN_TIME_OUT:60}
