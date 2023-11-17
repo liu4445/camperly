@@ -104,21 +104,22 @@ const changeMoreSelect = () => {
   <div class="selectArea">
     <ul>
       <li class="type">
-        <button
-          type="button"
+        <input
+          type="checkBox"
           id="beach"
-          class="type-btn btn-1 rounded-circle w-100 h-100"
+          class="btn btn-1 rounded-circle w-100 h-100"
           :style="{ backgroundColor: BeachBtnColor }"
           @click="clickBeachBtn()"
-        >
-          <img
+        />
+        <label class="btn" for="beach"
+          ><img
             src="@/assets/img/pictogram/free-icon-sunbed-7759411.png"
             alt
             width="40"
             height="40"
           />
-          <div>해변</div>
-        </button>
+          <div>해변</div></label
+        >
       </li>
       <li>
         <button
@@ -222,7 +223,7 @@ const changeMoreSelect = () => {
           <div>도심</div>
         </button>
       </li>
-      <li></li>
+
       <li>
         <button type="button" class="more-select-btn btn rounded-5" @click="changeMoreSelect">
           <svg
@@ -288,14 +289,14 @@ a {
   text-decoration: none;
   color: black;
 }
-.type-btn {
+.btn-check {
   border: none;
 }
 
-.type-btn:hover {
+.btn-check:hover {
   box-shadow: 200px 0 0 0 rgba(0, 0, 0, 0.05) inset, -200px 0 0 0 rgba(0, 0, 0, 0.05) inset;
 }
-.type-btn:active {
+.btn-check:active {
   box-shadow: 200px 0 0 0 rgba(0, 0, 0, 0.05) inset, -200px 0 0 0 rgba(0, 0, 0, 0.05) inset;
 }
 .more-select-btn {
