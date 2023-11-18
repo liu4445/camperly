@@ -7,10 +7,12 @@ const operType = ref("");
 const mainfacility = ref([]);
 const thema = ref([]);
 const subfacility = ref([]);
+const newLocationType = ref([]);
 let json = "";
 const toJson = () => {
+  newLocationType.value = props.locationType;
   json = JSON.stringify({
-    locationType: props.LocationType,
+    locationType: newLocationType.value,
     operType: operType.value,
     mainfacility: mainfacility.value,
     thema: thema.value,
