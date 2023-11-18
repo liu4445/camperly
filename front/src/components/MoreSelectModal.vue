@@ -33,7 +33,7 @@ onUpdated(() => {
 });
 const props = defineProps({
   data: Boolean,
-  locationType: String,
+  locationType: Object,
 });
 
 const moreSelectForm = () => {
@@ -57,7 +57,6 @@ const moreSelectForm = () => {
       }
     })
     .catch((error) => {
-      console.log(data);
       console.log(error);
     });
 };
@@ -144,7 +143,7 @@ const moreSelectForm = () => {
                     type="radio"
                     name="operType"
                     v-model="operType"
-                    value="상관없음"
+                    value=""
                     checked
                   />
                   <label for="radio-6">상관없음</label>

@@ -191,7 +191,6 @@ const changeMoreSelect = () => {
   <MoreSelectModal
     :data="MoreSelectOpen"
     :location-type="LocationData"
-    @click="makeLocationType"
     @more-select="changeMoreSelect"
   />
 </template>
