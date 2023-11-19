@@ -16,4 +16,9 @@
         from trip.USER
         where LOGIN_ID = #{loginId} and OAUTH_LOGIN_TYPE = #{oauthLoginType}
     </select>
+
+    <insert id="save" parameterType="org.project.backend.user.dto.UserDto" useGeneratedKeys="true" keyProperty="userId">
+        insert into trip.user(LOGIN_ID, oauth_login_type, NAME)
+        values (#{loginId}, #{oauthLoginType}, #{name})
+    </insert>
 </mapper>

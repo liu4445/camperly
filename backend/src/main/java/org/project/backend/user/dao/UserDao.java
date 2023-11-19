@@ -14,9 +14,7 @@ public interface UserDao {
 			@Param("oauthLoginType") OauthLoginType oauthLoginType
 	) throws SQLException;
 
-	void save(
-			@Param("loginId") Long loginId,
-			@Param("oauthLoginType") OauthLoginType oauthLoginType,
-			@Param("name") String name
+	long save(
+			UserDto userDto
 	) throws SQLException;
 }
