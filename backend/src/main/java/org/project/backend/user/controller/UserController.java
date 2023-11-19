@@ -1,10 +1,13 @@
 package org.project.backend.user.controller;
 
+import java.sql.SQLException;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.project.backend.user.dto.LoginRequest;
+
 import org.project.backend.user.dto.OauthLoginRequest;
-import org.project.backend.user.dto.RegisterRequest;
+import org.project.backend.user.dto.OauthLoginResponse;
+import org.project.backend.user.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,24 +22,11 @@ import javax.validation.Valid;
 @Slf4j
 public class UserController {
 
-    @PostMapping("/login")
-    public ResponseEntity login(@RequestBody @Valid LoginRequest loginRequest) {
-        log.info("login 요청: {}", loginRequest);
-
-        return ResponseEntity.ok().build();
-    }
-
-    @PostMapping
-    public ResponseEntity register(@RequestBody @Valid RegisterRequest registerRequest) {
-        log.info("회원가입 요청: {}", registerRequest);
-
-        return ResponseEntity.ok().build();
-    }
+    private final UserService userService;
 
     @PostMapping("/oauth/login")
-    public ResponseEntity oauthLogin(@RequestBody @Valid OauthLoginRequest oauthLoginRequest) {
+    public ResponseEntity oauthLogin(@RequestBody @Valid OauthLoginRequest oauthLoginRequest) throws SQLException {
         log.info("OAuth 요청: {}", oauthLoginRequest);
-
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body(userService.oauthLogin(oauthLoginRequest));
     }
 }
