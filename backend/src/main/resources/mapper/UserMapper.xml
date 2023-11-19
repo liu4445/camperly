@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.project.backend.user.dao.UserDao">
+    <resultMap id="user" type="org.project.backend.user.dto.UserDto">
+        <result column="USER_ID" property="userId"/>
+        <result column="LOGIN_ID" property="loginId"/>
+        <result column="OAUTH_LOGIN_TYPE" property="oauthLoginType"/>
+        <result column="NAME" property="name"/>
+    </resultMap>
+
+
+    <select id="findByLoginIdAndOauthLoginType" parameterType="map" resultMap="user">
+        select user_id, login_id, oauth_login_type, name
+        from trip.USER
+        where LOGIN_ID = #{loginId} and OAUTH_LOGIN_TYPE = #{oauthLoginType}
+    </select>
+</mapper>
