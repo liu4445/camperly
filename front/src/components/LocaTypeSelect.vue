@@ -2,97 +2,9 @@
 import "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js";
 import { ref } from "vue";
 import MoreSelectModal from "@/components/MoreSelectModal.vue";
-const BeachBtnColor = ref("transparent");
-const IslandBtnColor = ref("transparent");
-const MoutainBtnColor = ref("transparent");
-const ForestBtnColor = ref("transparent");
-const ValleyBtnColor = ref("transparent");
-const RiverBtnColor = ref("transparent");
-const LakeBtnColor = ref("transparent");
-const CityBtnColor = ref("transparent");
-
-const clickBeachBtn = () => {
-  BeachBtnColor.value = "rgba(0, 0, 0, 0.05)";
-  IslandBtnColor.value = "transparent";
-  MoutainBtnColor.value = "transparent";
-  ForestBtnColor.value = "transparent";
-  ValleyBtnColor.value = "transparent";
-  RiverBtnColor.value = "transparent";
-  LakeBtnColor.value = "transparent";
-  CityBtnColor.value = "transparent";
-};
-const clickIslandBtn = () => {
-  BeachBtnColor.value = "transparent";
-  IslandBtnColor.value = "rgba(0, 0, 0, 0.05)";
-  MoutainBtnColor.value = "transparent";
-  ForestBtnColor.value = "transparent";
-  ValleyBtnColor.value = "transparent";
-  RiverBtnColor.value = "transparent";
-  LakeBtnColor.value = "transparent";
-  CityBtnColor.value = "transparent";
-};
-const clickMoutainBtn = () => {
-  BeachBtnColor.value = "transparent";
-  IslandBtnColor.value = "transparent";
-  MoutainBtnColor.value = "rgba(0, 0, 0, 0.05)";
-  ForestBtnColor.value = "transparent";
-  ValleyBtnColor.value = "transparent";
-  RiverBtnColor.value = "transparent";
-  LakeBtnColor.value = "transparent";
-  CityBtnColor.value = "transparent";
-};
-const clickForestBtn = () => {
-  BeachBtnColor.value = "transparent";
-  IslandBtnColor.value = "transparent";
-  MoutainBtnColor.value = "transparent";
-  ForestBtnColor.value = "rgba(0, 0, 0, 0.05)";
-  ValleyBtnColor.value = "transparent";
-  RiverBtnColor.value = "transparent";
-  LakeBtnColor.value = "transparent";
-  CityBtnColor.value = "transparent";
-};
-const clickValleyBtn = () => {
-  BeachBtnColor.value = "transparent";
-  IslandBtnColor.value = "transparent";
-  MoutainBtnColor.value = "transparent";
-  ForestBtnColor.value = "transparent";
-  ValleyBtnColor.value = "rgba(0, 0, 0, 0.05)";
-  RiverBtnColor.value = "transparent";
-  LakeBtnColor.value = "transparent";
-  CityBtnColor.value = "transparent";
-};
-const clickRiverBtn = () => {
-  BeachBtnColor.value = "transparent";
-  IslandBtnColor.value = "transparent";
-  MoutainBtnColor.value = "transparent";
-  ForestBtnColor.value = "transparent";
-  ValleyBtnColor.value = "transparent";
-  RiverBtnColor.value = "rgba(0, 0, 0, 0.05)";
-  LakeBtnColor.value = "transparent";
-  CityBtnColor.value = "transparent";
-};
-const clickLakeBtn = () => {
-  BeachBtnColor.value = "transparent";
-  IslandBtnColor.value = "transparent";
-  MoutainBtnColor.value = "transparent";
-  ForestBtnColor.value = "transparent";
-  ValleyBtnColor.value = "transparent";
-  RiverBtnColor.value = "transparent";
-  LakeBtnColor.value = "rgba(0, 0, 0, 0.05)";
-  CityBtnColor.value = "transparent";
-};
-const clickCityBtn = () => {
-  BeachBtnColor.value = "transparent";
-  IslandBtnColor.value = "transparent";
-  MoutainBtnColor.value = "transparent";
-  ForestBtnColor.value = "transparent";
-  ValleyBtnColor.value = "transparent";
-  RiverBtnColor.value = "transparent";
-  LakeBtnColor.value = "transparent";
-  CityBtnColor.value = "rgba(0, 0, 0, 0.05)";
-};
 
 const MoreSelectOpen = ref(false);
+const LocationData = ref([]);
 const changeMoreSelect = () => {
   console.log(MoreSelectOpen.value);
   if (MoreSelectOpen.value) MoreSelectOpen.value = false;
@@ -105,30 +17,33 @@ const changeMoreSelect = () => {
     <ul>
       <li class="type">
         <input
-          type="checkBox"
+          type="checkbox"
           id="beach"
-          class="btn btn-1 rounded-circle w-100 h-100"
-          :style="{ backgroundColor: BeachBtnColor }"
-          @click="clickBeachBtn()"
+          name="locationType"
+          value="해변"
+          class="rounded-circle w-100 h-100"
+          v-model="LocationData"
         />
-        <label class="btn" for="beach"
-          ><img
+        <label for="beach" class="rounded-circle">
+          <img
             src="@/assets/img/pictogram/free-icon-sunbed-7759411.png"
             alt
             width="40"
             height="40"
           />
-          <div>해변</div></label
-        >
+          <div>해변</div>
+        </label>
       </li>
       <li>
-        <button
-          type="button"
+        <input
+          type="checkbox"
           id="island"
-          class="type-btn btn-1 rounded-circle w-100 h-100"
-          :style="{ backgroundColor: IslandBtnColor }"
-          @click="clickIslandBtn()"
-        >
+          name="locationType"
+          value="섬"
+          class="rounded-circle w-100 h-100"
+          v-model="LocationData"
+        />
+        <label for="island" class="rounded-circle">
           <img
             src="@/assets/img/pictogram/free-icon-island-11076490.png"
             alt
@@ -136,15 +51,18 @@ const changeMoreSelect = () => {
             height="40"
           />
           <div>섬</div>
-        </button>
+        </label>
       </li>
       <li>
-        <button
-          type="button"
-          class="type-btn rounded-circle border-2 w-100 h-100"
-          :style="{ backgroundColor: MoutainBtnColor }"
-          @click="clickMoutainBtn()"
-        >
+        <input
+          type="checkbox"
+          id="moutain"
+          name="locationType"
+          value="산"
+          class="rounded-circle w-100 h-100"
+          v-model="LocationData"
+        />
+        <label for="moutain" class="rounded-circle">
           <img
             src="@/assets/img/pictogram/free-icon-mountain-7894097.png"
             alt
@@ -152,15 +70,18 @@ const changeMoreSelect = () => {
             height="40"
           />
           <div>산</div>
-        </button>
+        </label>
       </li>
       <li>
-        <button
-          type="button"
-          class="type-btn rounded-circle border-2 w-100 h-100"
-          :style="{ backgroundColor: ForestBtnColor }"
-          @click="clickForestBtn()"
-        >
+        <input
+          type="checkbox"
+          id="forest"
+          name="locationType"
+          value="숲"
+          class="rounded-circle w-100 h-100"
+          v-model="LocationData"
+        />
+        <label for="forest" class="rounded-circle">
           <img
             src="@/assets/img/pictogram/free-icon-pine-tree-10415456.png"
             alt
@@ -168,52 +89,64 @@ const changeMoreSelect = () => {
             height="40"
           />
           <div>숲</div>
-        </button>
+        </label>
       </li>
       <li>
-        <button
-          type="button"
-          class="type-btn rounded-circle border-2 w-100 h-100"
-          :style="{ backgroundColor: ValleyBtnColor }"
-          @click="clickValleyBtn()"
-        >
+        <input
+          type="checkbox"
+          id="valley"
+          name="locationType"
+          value="계곡"
+          class="rounded-circle w-100 h-100"
+          v-model="LocationData"
+        />
+        <label for="valley" class="rounded-circle">
           <img
             src="@/assets/img/pictogram/free-icon-waterfall-7441627.png"
             width="40"
             height="40"
           />
           <div>계곡</div>
-        </button>
+        </label>
       </li>
       <li>
-        <button
-          type="button"
-          class="type-btn rounded-circle border-2 w-100 h-100"
-          :style="{ backgroundColor: RiverBtnColor }"
-          @click="clickRiverBtn()"
-        >
+        <input
+          type="checkbox"
+          id="river"
+          name="locationType"
+          value="강"
+          class="rounded-circle w-100 h-100"
+          v-model="LocationData"
+        />
+        <label for="river" class="rounded-circle">
           <img src="@/assets/img/pictogram/free-icon-river-9997808.png" width="40" height="40" />
           <div>강</div>
-        </button>
+        </label>
       </li>
       <li>
-        <button
-          type="button"
-          class="type-btn rounded-circle border-2 w-100 h-100"
-          :style="{ backgroundColor: LakeBtnColor }"
-          @click="clickLakeBtn()"
-        >
+        <input
+          type="checkbox"
+          id="lake"
+          name="locationType"
+          value="호수"
+          class="rounded-circle w-100 h-100"
+          v-model="LocationData"
+        />
+        <label for="lake" class="rounded-circle">
           <img src="@/assets/img/pictogram/free-icon-lake-3105252.png" width="40" height="40" />
           <div>호수</div>
-        </button>
+        </label>
       </li>
       <li>
-        <button
-          type="button"
-          class="type-btn rounded-circle border-2 w-100 h-100"
-          :style="{ backgroundColor: CityBtnColor }"
-          @click="clickCityBtn()"
-        >
+        <input
+          type="checkbox"
+          id="city"
+          name="locationType"
+          value="도심"
+          class="rounded-circle w-100 h-100"
+          v-model="LocationData"
+        />
+        <label for="city" class="rounded-circle">
           <img
             src="@/assets/img/pictogram/free-icon-cityscape-618859.png"
             alt
@@ -221,11 +154,15 @@ const changeMoreSelect = () => {
             height="40"
           />
           <div>도심</div>
-        </button>
+        </label>
       </li>
 
       <li>
-        <button type="button" class="more-select-btn btn rounded-5" @click="changeMoreSelect">
+        <button
+          type="button"
+          class="more-select-btn btn rounded-5 border-1"
+          @click="changeMoreSelect"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 32 32"
@@ -251,7 +188,11 @@ const changeMoreSelect = () => {
       </li>
     </ul>
   </div>
-  <MoreSelectModal :data="MoreSelectOpen" @more-select="changeMoreSelect" />
+  <MoreSelectModal
+    :data="MoreSelectOpen"
+    :location-type="LocationData"
+    @more-select="changeMoreSelect"
+  />
 </template>
 
 <style scoped>
@@ -289,18 +230,14 @@ a {
   text-decoration: none;
   color: black;
 }
-.btn-check {
-  border: none;
-}
-
-.btn-check:hover {
-  box-shadow: 200px 0 0 0 rgba(0, 0, 0, 0.05) inset, -200px 0 0 0 rgba(0, 0, 0, 0.05) inset;
-}
-.btn-check:active {
-  box-shadow: 200px 0 0 0 rgba(0, 0, 0, 0.05) inset, -200px 0 0 0 rgba(0, 0, 0, 0.05) inset;
-}
 .more-select-btn {
-  background-color: rgba(135, 206, 235, 0.35);
+  border: 1px solid;
+}
+input[type="checkbox"]:hover {
+  box-shadow: 200px 0 0 0 rgba(0, 0, 0, 0.05) inset, -200px 0 0 0 rgba(0, 0, 0, 0.05) inset;
+}
+input[type="checkbox"] {
+  background-color: rgba(70, 84, 90, 0.35);
 
   width: 60px;
   margin-top: 15px;
@@ -310,8 +247,18 @@ a {
   font-size: smaller;
   font-weight: bold;
 }
-.more-select-btn:hover {
+input[type="checkbox"]:hover + label {
+  width: 70px;
+  height: 70px;
   box-shadow: 200px 0 0 0 rgba(135, 206, 235, 0.15) inset,
     -200px 0 0 0 rgba(135, 206, 235, 0.15) inset;
+}
+input[type="checkbox"] {
+  display: none;
+}
+input[type="checkbox"]:checked + label {
+  background: rgba(163, 179, 185, 0.15);
+  width: 70px;
+  height: 70px;
 }
 </style>
