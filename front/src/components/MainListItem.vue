@@ -9,8 +9,8 @@ Id.value = props.data.place.contentId;
 <template>
   <li>
     <div class="place-card">
-      <div class="place-img" style="width: 300px">
-        <img :src="data.place.firstImageUrl" class="card-img-top" style="height: 250px" />
+      <div class="place-img" style="width: 310px">
+        <img :src="data.place.firstImageUrl" class="card-img-top" style="height: 285px" />
       </div>
       <div class="place-body">
         <h5 class="place-title">
@@ -79,18 +79,20 @@ Id.value = props.data.place.contentId;
 li {
   display: inline-block;
   list-style: none;
-  margin-right: 34px;
-  margin-bottom: 48px;
+
+  margin-right: 8px;
+  margin-left: 8px;
+  margin-bottom: 30px;
 }
 
 .place-card {
   position: relative;
-  widows: 300px;
+  widows: 310px;
   height: 400px;
 }
 .place-body {
   position: relative;
-  width: 300px;
+  width: 310px;
   height: 150px;
 }
 .place-img img {

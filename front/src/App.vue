@@ -10,4 +10,8 @@ import MainList from "./components/MainList.vue";
   <MainList />
 </template>
 
-<style scoped></style>
+<style scoped>
+body {
+  width: 90%;
+}
+</style>

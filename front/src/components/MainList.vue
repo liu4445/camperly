@@ -46,29 +46,38 @@ onMounted(() => {
 </script>
 
 <template>
-  <ul>
-    <MainListItem
-      v-for="place in visiblePlaces"
-      :data="{ place }"
-      v-model="curNum"
-      :key="place.contentId"
-    >
-    </MainListItem>
-    <div class="more">
-      <button class="btn mb-3" v-if="offset < places.length" @click="readMore()">더 보기</button>
-    </div>
-  </ul>
+  <div class="mainList">
+    <ul>
+      <MainListItem
+        v-for="place in visiblePlaces"
+        :data="{ place }"
+        v-model="curNum"
+        :key="place.contentId"
+      >
+      </MainListItem>
+    </ul>
+  </div>
+  <div class="more">
+    <button class="btn mb-3" v-if="offset < places.length" @click="readMore()">더 보기</button>
+  </div>
 </template>
 
 <style scoped>
+.mainList {
+  padding-left: 5%;
+  padding-right: 5%;
+}
 ul {
-  width: 90%;
-  margin-top: 5%;
-  margin-left: 5%;
-  margin-right: 5%;
+  padding: 0px;
+  width: 100%;
+  margin-top: 2%;
   text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 .more {
+  display: block;
   text-align: center;
 }
 .more .btn {
