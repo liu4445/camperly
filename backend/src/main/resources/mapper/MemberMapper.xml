@@ -13,12 +13,12 @@
 
     <select id="findByLoginIdAndOauthLoginType" parameterType="map" resultMap="member">
         select MEMBER_ID, login_id, oauth_login_type, name
-        from trip.member
+        from member
         where LOGIN_ID = #{loginId} and OAUTH_LOGIN_TYPE = #{oauthLoginType}
     </select>
 
     <insert id="save" parameterType="org.project.backend.member.dto.MemberDto" useGeneratedKeys="true" keyProperty="memberId">
-        insert into trip.member(LOGIN_ID, oauth_login_type, NAME)
+        insert into member(LOGIN_ID, oauth_login_type, NAME)
         values (#{loginId}, #{oauthLoginType}, #{name})
     </insert>
 </mapper>
