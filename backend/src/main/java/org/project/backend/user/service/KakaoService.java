@@ -55,7 +55,7 @@ public class KakaoService implements OauthService {
 
 		return JsonParser.parseString(exchange.getBody())
 				.getAsJsonObject()
-				.get("accessToken")
+				.get("access_token")
 				.getAsString();
 	}
 

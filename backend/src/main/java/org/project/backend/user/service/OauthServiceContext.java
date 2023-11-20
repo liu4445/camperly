@@ -16,7 +16,7 @@ public class OauthServiceContext {
 
 	public Long getUserInfoByOauthToken(OauthLoginRequest oauthLoginRequest) {
 		OauthService findService = oauthServices.stream()
-				.filter(oauthService -> oauthService.getOauthLoginType().equals(oauthService.getOauthLoginType()))
+				.filter(oauthService -> oauthService.getOauthLoginType().equals(oauthLoginRequest.getOauthLoginType()))
 				.findFirst()
 				.orElseThrow(() -> new IllegalArgumentException());
 		return findService.getUserInfoByOauthToken(oauthLoginRequest.getOauthToken());
