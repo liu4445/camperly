@@ -49,7 +49,7 @@ form {
   border-right: 1px solid;
 }
 
-.btn:first-of- type {
+.btn:first-of-type {
   margin-left: 10px;
 }
 
@@ -69,5 +69,6 @@ form {
   min-width: 25px;
   min-height: 25px;
   margin: 0px 15px 0px 2px;
+  cursor: pointer;
 }
 </style>

@@ -79,7 +79,7 @@ const loginForm = () => {
           ></button>
         </div>
         <div class="modal-body">
-          <form class="form-box py-2" @submit.prevent="loginForm">
+          <!-- <form class="form-box py-2" @submit.prevent="loginForm">
             <h1 class="h3 mb-3 fw-normal">로그인</h1>
             <div class="form-floating">
               <input
@@ -112,7 +112,7 @@ const loginForm = () => {
               <label class="form-check-label" for="flexCheckDefault"> 아이디 기억하기 </label>
             </div>
             <button class="btn btn-primary w-75 py-2" type="submit">Sign in</button>
-          </form>
+          </form> -->
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
