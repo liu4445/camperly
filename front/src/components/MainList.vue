@@ -2,43 +2,57 @@
 import axios from "axios";
 import { ref, onMounted } from "vue";
 import MainListItem from "./MainListItem.vue";
-// import TempListFile from "./TempListFile.vue";
+import { useCounterStore } from "@/stores/counter";
+import { storeToRefs } from "pinia";
 
-const places = ref([]);
+// import TempListFile from "./TempListFile.vue";
+const store = useCounterStore();
+const { getList } = store;
+const { placeList } = storeToRefs(store);
+
 const visiblePlaces = ref([]);
 const limit = 20;
 const offset = ref(0);
 const curNum = ref(0);
-
 const readMore = () => {
   const startIdx = visiblePlaces.value.length;
   const endIdx = startIdx + limit;
-  visiblePlaces.value = visiblePlaces.value.concat(places.value.slice(startIdx, endIdx));
+  visiblePlaces.value = visiblePlaces.value.concat(placeList.value.slice(startIdx, endIdx));
   offset.value = endIdx;
 };
 
-const getPlaceList = () => {
-  console.log("캠핑장리스트 얻기");
-
-  axios({
-    method: "get",
-    url: "http://localhost:8080/" + "trip/place/list",
-  })
-    .then((res) => {
-      console.log(res.data);
-      console.log("받아오기성공");
-      places.value = res.data;
-      console.log(places.value);
-      visiblePlaces.value = places.value.slice(0, limit);
-      offset.value = limit;
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+const getPlaceList = async () => {
+  await getList();
+  console.log("getPlaceList");
+  console.log("result");
+  visiblePlaces.value = placeList.value.slice(0, limit);
+  offset.value = limit;
 };
 onMounted(() => {
+  console.log("mounted");
   getPlaceList();
 });
+// const getPlaceList = () => {
+//   console.log("캠핑장리스트 얻기");
+
+//   axios({
+//     method: "get",
+//     url: "http://localhost:8080/" + "trip/place/list",
+//   })
+//     .then((res) => {
+//       console.log(res.data);
+//       console.log("받아오기성공");
+//       places.value = res.data;
+//       console.log(places.value);
+//
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//     });
+// };
+// onMounted(() => {
+//   getPlaceList();
+// });
 </script>
 
 <template>
@@ -54,7 +68,7 @@ onMounted(() => {
     </ul>
   </div>
   <div class="more">
-    <button class="btn mb-3" v-if="offset < places.length" @click="readMore()">더 보기</button>
+    <button class="btn mb-3" v-if="offset < placeList.length" @click="readMore()">더 보기</button>
   </div>
 </template>
 

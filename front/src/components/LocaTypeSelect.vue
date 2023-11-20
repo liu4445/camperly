@@ -1,11 +1,13 @@
 <script setup>
 import "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js";
 import { ref, onUpdated } from "vue";
-import axios from "axios";
 
 import MoreSelectModal from "@/components/MoreSelectModal.vue";
-import { RouterLink, useRouter } from "vue-router";
-const router = useRouter();
+import { useCounterStore } from "@/stores/counter.js";
+import { storeToRefs } from "pinia";
+const store = useCounterStore();
+const { json } = storeToRefs(store);
+
 const MoreSelectOpen = ref(false);
 const LocationData = ref([]);
 const changeMoreSelect = () => {
@@ -15,28 +17,8 @@ const changeMoreSelect = () => {
 };
 
 onUpdated(() => {
-  console.log(JSON.stringify(LocationData.value));
-  // updateList();
+  json.value.locationType = LocationData.value;
 });
-
-const updateList = () => {
-  JSON.stringify(LocationData.value);
-  axios({
-    method: "post",
-    url: "http://localhost:8080/" + "trip/place/list",
-    data: JSON.stringify(LocationData.value),
-    headers: { "Content-Type": `application/json` },
-  })
-    .then((res) => {
-      console.log(res);
-      console.log("성공");
-      if (res.data == "") {
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-};
 </script>
 
 <template>

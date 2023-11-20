@@ -1,26 +1,22 @@
 <script setup>
-import axios from "axios";
 import { ref, defineProps, onUpdated, onMounted } from "vue";
-import { useRouter } from "vue-router";
+import { useCounterStore } from "@/stores/counter.js";
+import { storeToRefs } from "pinia";
+const store = useCounterStore();
+const { json } = storeToRefs(store);
 const { VITE_VUE_API_URL } = import.meta.env;
-const router = useRouter();
 const emit = defineEmits(["moreSelect"]);
+const props = defineProps({
+  data: Boolean,
+  locationType: Object,
+});
+
 const operType = ref("");
 const mainfacility = ref([]);
 const thema = ref([]);
 const subfacility = ref([]);
-const newLocationType = ref([]);
-let json = "";
-const toJson = () => {
-  newLocationType.value = props.locationType;
-  json = {
-    locationType: newLocationType.value,
-    operType: operType.value,
-    mainfacility: mainfacility.value,
-    thema: thema.value,
-    subfacility: subfacility.value,
-  };
-};
+const locationType = ref([]);
+locationType.value = props.locationType;
 onMounted(() => {
   $("#moreSelect").on("hidden.bs.modal", () => {
     $("#moreSelect").modal("hide");
@@ -33,42 +29,12 @@ onUpdated(() => {
   if (props.data == true) $("#moreSelect").modal("show");
   else $("#moreSelect").modal("hide");
 });
-const props = defineProps({
-  data: Boolean,
-  locationType: Object,
-});
-
-const convertToQueryParameter = (json) => {
-  let res = "";
-  Object.keys(json).forEach((key) => {
-    if (Array.isArray(json[key])) {
-      json[key].forEach((value) => {
-        res += `${key}=${value}&`;
-      });
-    } else {
-      res += `${key}=${json[key]}&`;
-    }
-  });
-  return res.substring(0, res.length - 1);
-};
-const moreSelectForm = () => {
-  console.log("상세폼들어왓다.");
-  toJson();
-  console.log(json);
-  const params = convertToQueryParameter(json);
-  console.log(convertToQueryParameter(json));
-  axios({
-    method: "get",
-    url: "http://localhost:8080/" + "trip/place/list?" + params,
-  })
-    .then((res) => {
-      console.log(res);
-      router.push("/", res);
-      console.log("성공");
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+const sendData = () => {
+  json.value.operType = operType.value;
+  json.value.mainfacility = mainfacility.value;
+  json.value.thema = thema.value;
+  json.value.subfacility = subfacility.value;
+  json.value.locationType = locationType.value;
 };
 </script>
 
@@ -454,7 +420,13 @@ const moreSelectForm = () => {
             </div>
           </div>
           <div class="modal-footer">
-            <input type="submit" class="btn btn-primary" data-bs-dismiss="modal" value="확인" />
+            <input
+              type="submit"
+              class="btn"
+              @click="sendData"
+              data-bs-dismiss="modal"
+              value="확인"
+            />
           </div>
         </form>
       </div>
