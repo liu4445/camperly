@@ -4,22 +4,20 @@ import { ref, defineProps, onMounted } from "vue";
 const props = defineProps({ data: Object });
 const Id = ref(0);
 Id.value = props.data.place.contentId;
-const curNum = ref(0);
-curNum.value = props.data.curNum;
-onMounted(() => {
-  console.log(curNum.value);
-});
 </script>
 
 <template>
   <li>
     <div class="card" style="width: 300px">
-      <img :src="data.place.firstImageUrl" class="card-img-top" style="height: 200px" />
+      <img :src="data.place.firstImageUrl" class="card-img-top" style="height: 250px" />
       <div class="card-body">
-        <h5 class="card-title">{{ data.place.campsiteName }}</h5>
+        <h5 class="card-title">
+          {{ data.place.campsiteName }}
+        </h5>
         <p class="card-text">
           {{ data.place.lineIntro }}
         </p>
+        <div class="like">♥ {{ data.place.like }}</div>
 
         <div class="likebtn">
           <input type="checkbox" :id="`checkbox${Id}`" />
@@ -89,13 +87,32 @@ li {
 .card {
   height: 400px;
 }
-
+.card-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.card-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.like {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  color: red;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
 /* 좋아요 버튼 */
 .likebtn {
   display: inline-block;
   position: absolute;
   top: 0;
-  right: 0;
+  right: 0px;
 }
 svg {
   cursor: pointer;
