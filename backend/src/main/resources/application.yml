@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${DATASOURCE_HOST:localhost}:${DATASOURCE_PORT:3306}/trip?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    username: ${DATASOURCE_USERNAME:root}
+    password: ${DATASOURCE_PASSWORD:}
+
+mybatis:
+  mapper-locations:
+    classpath:mapper/*.xml
+jwt:
+  secretKey: ${SECRET_KEY:camperly}
+  accessTokenTimeOut: ${ACCESS_TOKEN_TIME_OUT:60}
+
+oauth:
+  kakao:
+    client-id: ${OAUTH_KAKAO_CLIENT_ID:}
+    client-secret: ${OAUTH_KAKAO_CLIENT_SECRET:}
+    redirect-url: ${OAUTH_KAKAO_REDIRECT_URL:}
+    token-request-url: https://kauth.kakao.com/oauth/token
+    user-info-request-url: https://kapi.kakao.com/v2/user/me
+  google:
+    client-id: ${OAUTH_GOOGLE_CLIENT_ID:}
+    client-secret: ${OAUTH_GOOGLE_CLIENT_SECRET:}
+    redirect-url: ${OAUTH_GOOGLE_REDIRECT_URL:}
+    token-request-url: https://oauth2.googleapis.com/token
+    user-info-request-url: https://oauth2.googleapis.com/tokeninfo
