@@ -2,7 +2,8 @@
 import axios from "axios";
 import { ref, onMounted } from "vue";
 import MainListItem from "./MainListItem.vue";
-import TempListFile from "./TempListFile.vue";
+// import TempListFile from "./TempListFile.vue";
+
 const places = ref([]);
 const visiblePlaces = ref([]);
 const limit = 20;
@@ -24,24 +25,19 @@ const getPlaceList = () => {
     url: "http://localhost:8080/" + "trip/place/list",
   })
     .then((res) => {
-      console.log(res);
+      console.log(res.data);
       console.log("받아오기성공");
       places.value = res.data;
+      console.log(places.value);
+      visiblePlaces.value = places.value.slice(0, limit);
+      offset.value = limit;
     })
     .catch((error) => {
       console.log(error);
     });
 };
-
-const tempPlaceList = () => {
-  places.value = TempListFile;
-};
-
 onMounted(() => {
-  // getPlaceList();
-  tempPlaceList();
-  visiblePlaces.value = places.value.slice(0, limit);
-  offset.value = limit;
+  getPlaceList();
 });
 </script>
 
