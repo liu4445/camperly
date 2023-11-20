@@ -16,8 +16,7 @@ public class MemberDto {
 	private String name;
 
 	@Builder
-	public MemberDto(Long memberId, String loginId, OauthLoginType oauthLoginType, String name) {
-		this.memberId = memberId;
+	public MemberDto(String loginId, OauthLoginType oauthLoginType, String name) {
 		this.loginId = loginId;
 		this.oauthLoginType = oauthLoginType;
 		this.name = name;

@@ -3,6 +3,7 @@ package org.project.backend.member.dao;
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
@@ -36,5 +37,22 @@ class MemberDaoTest {
 
 		// then
 		assertThat(findMember).isNotNull();
+	}
+
+	@Test
+	@DisplayName("사용자 저장을 테스트한다")
+	public void 사용자_저장을_테스트한다() throws Exception {
+		// given
+		MemberDto member = MemberDto.builder()
+				.loginId("test")
+				.oauthLoginType(OauthLoginType.KAKAO)
+				.name("test")
+				.build();
+
+		// when
+		long id = memberDao.save(member);
+
+		// then
+		assertThat(id).isNotNull();
 	}
 }
