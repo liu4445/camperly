@@ -71,10 +71,9 @@ ul {
   padding: 0px;
   width: 100%;
   margin-top: 2%;
+
   text-align: center;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  align-items: center;
 }
 .more {
   display: block;

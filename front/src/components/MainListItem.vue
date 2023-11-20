@@ -17,9 +17,10 @@ Id.value = props.data.place.contentId;
           {{ data.place.campsiteName }}
         </h5>
         <div class="like">♥ {{ data.place.like }}</div>
-        <p class="place-text">
-          {{ data.place.lineIntro }}
-        </p>
+        <div>
+          <p class="place-text">{{ data.place.lineIntro }}</p>
+          <p class="place-address">{{ data.place.doName }} {{ data.place.sigunguName }}</p>
+        </div>
       </div>
       <div class="likebtn">
         <input type="checkbox" :id="`checkbox${Id}`" />
@@ -89,7 +90,11 @@ li {
   position: relative;
   widows: 310px;
   height: 400px;
+  margin-bottom: 30px;
+  margin-right: 8.2px;
+  margin-left: 8.2px;
 }
+
 .place-body {
   position: relative;
   width: 310px;
@@ -107,6 +112,15 @@ li {
   width: 250px;
 }
 .place-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  height: 50px;
+  text-align: left;
+  margin-bottom: 0px;
+}
+.place-address {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;

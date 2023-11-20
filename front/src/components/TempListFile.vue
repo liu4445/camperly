@@ -8,8 +8,9 @@ export default [
     lineIntro:
       "별보기 좋은 카라반 캠핑장, 별보기 좋은 카라반 캠핑장 별보기 좋은 카라반 캠핑장별보기 좋은 카라반 캠핑장별보기 좋은 카라반 캠핑장",
     locationType: ["섬", "산", "숲"],
-
     like: 88,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 2,
@@ -20,6 +21,8 @@ export default [
     locationtype: ["호수", "숲"],
 
     like: 62,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 3,
@@ -30,6 +33,8 @@ export default [
     locationtype: ["호수", "숲"],
 
     like: 51,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 4,
@@ -40,6 +45,8 @@ export default [
     locationtype: ["호수", "숲"],
 
     like: 51,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 5,
@@ -50,6 +57,8 @@ export default [
     locationtype: ["호수", "숲"],
 
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 6,
@@ -60,6 +69,8 @@ export default [
     locationtype: ["호수", "숲"],
 
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 7,
@@ -70,6 +81,8 @@ export default [
     locationtype: ["도심", "숲"],
 
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 8,
@@ -80,6 +93,8 @@ export default [
     locationtype: ["도심", "숲"],
 
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 9,
@@ -90,6 +105,8 @@ export default [
     locationtype: ["도심", "숲"],
 
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 10,
@@ -100,6 +117,8 @@ export default [
     locationtype: ["도심", "숲"],
 
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 11,
@@ -110,6 +129,8 @@ export default [
     locationtype: ["도심", "숲"],
 
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 12,
@@ -120,6 +141,8 @@ export default [
     locationtype: ["도심", "해변"],
 
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 13,
@@ -130,6 +153,8 @@ export default [
     locationtype: ["도심", "해변"],
 
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 14,
@@ -140,6 +165,8 @@ export default [
     locationtype: ["도심", "해변"],
 
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 15,
@@ -150,6 +177,8 @@ export default [
     locationtype: ["도심", "해변"],
 
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 16,
@@ -160,6 +189,8 @@ export default [
     locationtype: ["도심", "산"],
 
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 17,
@@ -170,6 +201,8 @@ export default [
     locationtype: ["도심", "산"],
 
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 18,
@@ -180,6 +213,8 @@ export default [
     locationtype: ["도심", "산"],
 
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 19,
@@ -190,6 +225,8 @@ export default [
     locationtype: ["도심", "산"],
 
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 20,
@@ -200,6 +237,8 @@ export default [
     locationtype: ["호수", "산"],
 
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 21,
@@ -210,6 +249,8 @@ export default [
     locationtype: ["호수", "산"],
 
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 22,
@@ -220,6 +261,8 @@ export default [
     locationtype: ["호수", "산"],
 
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 23,
@@ -230,6 +273,8 @@ export default [
     locationtype: ["호수", "산"],
 
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 24,
@@ -240,6 +285,8 @@ export default [
     locationtype: ["호수", "산"],
 
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 25,
@@ -250,6 +297,8 @@ export default [
     locationtype: ["호수", "강"],
 
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 26,
@@ -260,6 +309,8 @@ export default [
     locationtype: ["호수", "강"],
 
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 27,
@@ -270,6 +321,8 @@ export default [
     locationtype: ["호수", "강"],
 
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 28,
@@ -280,6 +333,8 @@ export default [
     locationtype: ["호수", "강"],
 
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 29,
@@ -290,6 +345,8 @@ export default [
     locationtype: ["호수", "강"],
 
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 30,
@@ -300,6 +357,8 @@ export default [
     locationtype: ["호수", "강"],
 
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 31,
@@ -310,6 +369,8 @@ export default [
     locationtype: ["호수", "강"],
 
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 32,
@@ -319,6 +380,8 @@ export default [
     lineIntro: "별보기 좋은 카라반 캠핑장",
     locationtype: ["해변", "강"],
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 33,
@@ -328,6 +391,8 @@ export default [
     lineIntro: "별보기 좋은 카라반 캠핑장",
     locationtype: ["해변", "강"],
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 34,
@@ -337,6 +402,8 @@ export default [
     lineIntro: "별보기 좋은 카라반 캠핑장",
     locationtype: ["해변", "강"],
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 35,
@@ -346,6 +413,8 @@ export default [
     lineIntro: "별보기 좋은 카라반 캠핑장",
     locationtype: ["해변", "강"],
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 36,
@@ -355,6 +424,8 @@ export default [
     lineIntro: "별보기 좋은 카라반 캠핑장",
     locationtype: ["해변", "강"],
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 37,
@@ -364,6 +435,8 @@ export default [
     lineIntro: "별보기 좋은 카라반 캠핑장",
     locationtype: ["해변", "강"],
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 38,
@@ -373,6 +446,8 @@ export default [
     lineIntro: "별보기 좋은 카라반 캠핑장",
     locationtype: ["해변", "강"],
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 39,
@@ -382,6 +457,8 @@ export default [
     lineIntro: "별보기 좋은 카라반 캠핑장",
     locationtype: ["해변", "강"],
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 40,
@@ -391,6 +468,8 @@ export default [
     lineIntro: "별보기 좋은 카라반 캠핑장",
     locationtype: ["해변", "강"],
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 41,
@@ -400,6 +479,8 @@ export default [
     lineIntro: "별보기 좋은 카라반 캠핑장",
     locationtype: ["해변", "강"],
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
   {
     contentId: 42,
@@ -409,6 +490,8 @@ export default [
     lineIntro: "별보기 좋은 카라반 캠핑장",
     locationtype: ["해변", "강"],
     like: 50,
+    doName: "경기도",
+    sigunguName: "평택시",
   },
 ];
 </script>
