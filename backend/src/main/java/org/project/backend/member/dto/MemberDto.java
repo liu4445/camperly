@@ -1,4 +1,4 @@
-package org.project.backend.user.dto;
+package org.project.backend.member.dto;
 
 import org.project.backend.constant.OauthLoginType;
 
@@ -8,16 +8,16 @@ import lombok.ToString;
 
 @Getter
 @ToString
-public class UserDto {
+public class MemberDto {
 
-	private Long userId;
+	private Long memberId;
 	private String loginId;
 	private OauthLoginType oauthLoginType;
 	private String name;
 
 	@Builder
-	public UserDto(Long userId, String loginId, OauthLoginType oauthLoginType, String name) {
-		this.userId = userId;
+	public MemberDto(Long memberId, String loginId, OauthLoginType oauthLoginType, String name) {
+		this.memberId = memberId;
 		this.loginId = loginId;
 		this.oauthLoginType = oauthLoginType;
 		this.name = name;

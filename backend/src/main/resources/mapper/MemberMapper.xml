@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.project.backend.member.dao.MemberDao">
+    <resultMap id="member" type="org.project.backend.member.dto.MemberDto">
+        <result column="MEMBER_ID" property="memberId"/>
+        <result column="LOGIN_ID" property="loginId"/>
+        <result column="OAUTH_LOGIN_TYPE" property="oauthLoginType"/>
+        <result column="NAME" property="name"/>
+    </resultMap>
+
+
+    <select id="findByLoginIdAndOauthLoginType" parameterType="map" resultMap="member">
+        select MEMBER_ID, login_id, oauth_login_type, name
+        from trip.member
+        where LOGIN_ID = #{loginId} and OAUTH_LOGIN_TYPE = #{oauthLoginType}
+    </select>
+
+    <insert id="save" parameterType="org.project.backend.member.dto.MemberDto" useGeneratedKeys="true" keyProperty="memberId">
+        insert into trip.member(LOGIN_ID, oauth_login_type, NAME)
+        values (#{loginId}, #{oauthLoginType}, #{name})
+    </insert>
+</mapper>

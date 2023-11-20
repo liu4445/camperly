@@ -1,9 +1,8 @@
-package org.project.backend.user.service;
+package org.project.backend.member.service;
 
 import java.util.List;
 
-import org.project.backend.constant.OauthLoginType;
-import org.project.backend.user.dto.OauthLoginRequest;
+import org.project.backend.member.dto.OauthLoginRequest;
 import org.springframework.stereotype.Component;
 
 import lombok.RequiredArgsConstructor;

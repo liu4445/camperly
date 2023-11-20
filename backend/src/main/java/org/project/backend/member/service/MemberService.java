@@ -1,12 +1,12 @@
-package org.project.backend.user.service;
+package org.project.backend.member.service;
 
 import java.sql.SQLException;
 import java.util.UUID;
 
-import org.project.backend.user.dao.UserDao;
-import org.project.backend.user.dto.OauthLoginRequest;
-import org.project.backend.user.dto.OauthLoginResponse;
-import org.project.backend.user.dto.UserDto;
+import org.project.backend.member.dao.MemberDao;
+import org.project.backend.member.dto.MemberDto;
+import org.project.backend.member.dto.OauthLoginRequest;
+import org.project.backend.member.dto.OauthLoginResponse;
 import org.project.backend.util.JwtUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,23 +15,23 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class UserService {
+public class MemberService {
 
 	private final OauthServiceContext oauthServiceContext;
 	private final JwtUtil jwtUtil;
-	private final UserDao userDao;
+	private final MemberDao memberDao;
 
 	@Transactional
 	public OauthLoginResponse oauthLogin(OauthLoginRequest oauthLoginRequest) throws SQLException {
 		// 로그인 요청
 		String loginId = oauthServiceContext.getUserInfoByOauthToken(oauthLoginRequest);
-		UserDto userDto = userDao.findByLoginIdAndOauthLoginType(loginId, oauthLoginRequest.getOauthLoginType());
+		MemberDto memberDto = memberDao.findByLoginIdAndOauthLoginType(loginId, oauthLoginRequest.getOauthLoginType());
 		long userId;
 
 		// 회원가입 되어 있지 않으면 회원가입
-		if (userDto == null) {
+		if (memberDto == null) {
 			userId = register(
-					UserDto.builder()
+					MemberDto.builder()
 							.loginId(loginId)
 							.oauthLoginType(oauthLoginRequest.getOauthLoginType())
 							.name(UUID.randomUUID().toString())
@@ -39,7 +39,7 @@ public class UserService {
 
 			);
 		} else {
-			userId = userDto.getUserId();
+			userId = memberDto.getMemberId();
 		}
 
 		// 토큰 반환
@@ -47,7 +47,7 @@ public class UserService {
 	}
 
 	@Transactional
-	public long register(UserDto userDto) throws SQLException {
-		return userDao.save(userDto);
+	public long register(MemberDto memberDto) throws SQLException {
+		return memberDao.save(memberDto);
 	}
 }

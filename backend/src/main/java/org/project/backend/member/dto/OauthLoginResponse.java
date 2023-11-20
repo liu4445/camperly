@@ -1,4 +1,4 @@
-package org.project.backend.user.dto;
+package org.project.backend.member.dto;
 
 import javax.validation.constraints.NotNull;
 

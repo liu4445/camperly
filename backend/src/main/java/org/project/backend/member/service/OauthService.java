@@ -1,4 +1,4 @@
-package org.project.backend.user.service;
+package org.project.backend.member.service;
 
 import org.project.backend.constant.OauthLoginType;
 
