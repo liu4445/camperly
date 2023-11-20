@@ -1,14 +1,41 @@
 <script setup>
 import "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js";
-import { ref } from "vue";
-import MoreSelectModal from "@/components/MoreSelectModal.vue";
+import { ref, onUpdated } from "vue";
+import axios from "axios";
 
+import MoreSelectModal from "@/components/MoreSelectModal.vue";
+import { RouterLink, useRouter } from "vue-router";
+const router = useRouter();
 const MoreSelectOpen = ref(false);
 const LocationData = ref([]);
 const changeMoreSelect = () => {
   console.log(MoreSelectOpen.value);
   if (MoreSelectOpen.value) MoreSelectOpen.value = false;
   else MoreSelectOpen.value = true;
+};
+
+onUpdated(() => {
+  console.log(JSON.stringify(LocationData.value));
+  // updateList();
+});
+
+const updateList = () => {
+  JSON.stringify(LocationData.value);
+  axios({
+    method: "post",
+    url: "http://localhost:8080/" + "trip/place/list",
+    data: JSON.stringify(LocationData.value),
+    headers: { "Content-Type": `application/json` },
+  })
+    .then((res) => {
+      console.log(res);
+      console.log("성공");
+      if (res.data == "") {
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 };
 </script>
 
@@ -250,6 +277,7 @@ input[type="checkbox"] {
   justify-content: center;
   font-size: smaller;
   font-weight: bold;
+  cursor: pointer;
 }
 input[type="checkbox"]:hover + label {
   width: 70px;
@@ -259,6 +287,10 @@ input[type="checkbox"]:hover + label {
 }
 input[type="checkbox"] {
   display: none;
+  cursor: pointer;
+}
+input[type="checkbox"] + label {
+  cursor: pointer;
 }
 input[type="checkbox"]:checked + label {
   background: rgba(163, 179, 185, 0.15);
