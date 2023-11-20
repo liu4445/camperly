@@ -7,6 +7,8 @@ export default [
     campsiteName: "파크킹파크킹파크킹파크킹파크킹파크킹파크킹파크킹파크킹",
     lineIntro:
       "별보기 좋은 카라반 캠핑장, 별보기 좋은 카라반 캠핑장 별보기 좋은 카라반 캠핑장별보기 좋은 카라반 캠핑장별보기 좋은 카라반 캠핑장",
+    locationType: ["섬", "산", "숲"],
+
     like: 88,
   },
   {
@@ -15,6 +17,8 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["호수", "숲"],
+
     like: 62,
   },
   {
@@ -23,6 +27,8 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["호수", "숲"],
+
     like: 51,
   },
   {
@@ -31,6 +37,8 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["호수", "숲"],
+
     like: 51,
   },
   {
@@ -39,6 +47,8 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["호수", "숲"],
+
     like: 50,
   },
   {
@@ -47,6 +57,8 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["호수", "숲"],
+
     like: 50,
   },
   {
@@ -55,6 +67,8 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["도심", "숲"],
+
     like: 50,
   },
   {
@@ -63,6 +77,8 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["도심", "숲"],
+
     like: 50,
   },
   {
@@ -71,6 +87,8 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["도심", "숲"],
+
     like: 50,
   },
   {
@@ -79,6 +97,8 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["도심", "숲"],
+
     like: 50,
   },
   {
@@ -87,6 +107,8 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["도심", "숲"],
+
     like: 50,
   },
   {
@@ -95,6 +117,8 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["도심", "해변"],
+
     like: 50,
   },
   {
@@ -103,6 +127,8 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["도심", "해변"],
+
     like: 50,
   },
   {
@@ -111,6 +137,8 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["도심", "해변"],
+
     like: 50,
   },
   {
@@ -119,6 +147,8 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["도심", "해변"],
+
     like: 50,
   },
   {
@@ -127,6 +157,8 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["도심", "산"],
+
     like: 50,
   },
   {
@@ -135,6 +167,8 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["도심", "산"],
+
     like: 50,
   },
   {
@@ -143,6 +177,8 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["도심", "산"],
+
     like: 50,
   },
   {
@@ -151,6 +187,8 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["도심", "산"],
+
     like: 50,
   },
   {
@@ -159,6 +197,8 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["호수", "산"],
+
     like: 50,
   },
   {
@@ -167,6 +207,8 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["호수", "산"],
+
     like: 50,
   },
   {
@@ -175,6 +217,8 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["호수", "산"],
+
     like: 50,
   },
   {
@@ -183,6 +227,8 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["호수", "산"],
+
     like: 50,
   },
   {
@@ -191,6 +237,8 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["호수", "산"],
+
     like: 50,
   },
   {
@@ -199,6 +247,8 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["호수", "강"],
+
     like: 50,
   },
   {
@@ -207,6 +257,8 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["호수", "강"],
+
     like: 50,
   },
   {
@@ -215,6 +267,8 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["호수", "강"],
+
     like: 50,
   },
   {
@@ -223,6 +277,8 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["호수", "강"],
+
     like: 50,
   },
   {
@@ -231,6 +287,8 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["호수", "강"],
+
     like: 50,
   },
   {
@@ -239,6 +297,8 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["호수", "강"],
+
     like: 50,
   },
   {
@@ -247,6 +307,8 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["호수", "강"],
+
     like: 50,
   },
   {
@@ -255,6 +317,7 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["해변", "강"],
     like: 50,
   },
   {
@@ -263,6 +326,7 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["해변", "강"],
     like: 50,
   },
   {
@@ -271,6 +335,7 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["해변", "강"],
     like: 50,
   },
   {
@@ -279,6 +344,7 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["해변", "강"],
     like: 50,
   },
   {
@@ -287,6 +353,7 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["해변", "강"],
     like: 50,
   },
   {
@@ -295,6 +362,7 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["해변", "강"],
     like: 50,
   },
   {
@@ -303,6 +371,7 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["해변", "강"],
     like: 50,
   },
   {
@@ -311,6 +380,7 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["해변", "강"],
     like: 50,
   },
   {
@@ -319,6 +389,7 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["해변", "강"],
     like: 50,
   },
   {
@@ -327,6 +398,7 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["해변", "강"],
     like: 50,
   },
   {
@@ -335,6 +407,7 @@ export default [
       "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
     campsiteName: "파크킹",
     lineIntro: "별보기 좋은 카라반 캠핑장",
+    locationtype: ["해변", "강"],
     like: 50,
   },
 ];
