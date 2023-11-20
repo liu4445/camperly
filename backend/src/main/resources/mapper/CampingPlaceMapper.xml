@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.project.backend.camping.place.dao.CampingPlaceDao">
+    <resultMap id="campingPlace" type="org.project.backend.camping.place.dto.CampingPlaceDto">
+        <result column="CONTENT_ID" property="contentId"/>
+        <result column="DO_NAME" property="doName"/>
+        <result column="SIGUNGU_NAME" property="sigunguName"/>
+        <result column="SINK_CNT" property="sinkCnt"/>
+        <result column="BRAZIER" property="brazier"/>
+        <result column="CAN_CARAVAN" property="canCaravan"/>
+        <result column="TOILET_CNT" property="toiletCnt"/>
+        <result column="SHOWERROOM_CNT" property="showerRoomCnt"/>
+        <result column="FEATURE" property="feature"/>
+        <result column="INDUTY" property="induty"/>
+        <result column="ZIPCODE" property="zipcode"/>
+        <result column="ADDRESS" property="address"/>
+        <result column="MAP_X" property="mapX"/>
+        <result column="MAP_Y" property="mapY"/>
+        <result column="TEL" property="tel"/>
+        <result column="HOMEPAGE" property="homepage"/>
+        <result column="RESERVE_URL" property="reserveUrl"/>
+        <result column="RESERVE_TYPE" property="reserveType"/>
+        <result column="MANAGE_NUM" property="manageType"/>
+        <result column="OPER_SEASON" property="oeprSeason"/>
+        <result column="OPER_DATE" property="operDate"/>
+        <result column="CAN_TRAILER" property="canTrailer"/>
+        <result column="INTRO" property="intro"/>
+        <result column="AREA" property="area"/>
+        <result column="MANAGE_STATUS" property="manageStatus"/>
+        <result column="EQUIP_LEND" property="equipLend"/>
+        <result column="ANIMAL" property="animal"/>
+        <result column="FIRST_IMAGE_URL" property="firstImageUrl"/>
+        <result column="CAMPSITE_NAME" property="campsiteName"/>
+        <result column="LINE_INTRO" property="lineIntro"/>
+        <result column="FACLT_DIV_NAME" property="facltDivName"/>
+        <result column="LOCATION_TYPE" property="locationType"/>
+        <result column="SITE_TYPE_GRASS" property="siteTypeGrass"/>
+        <result column="SITE_TYPE_CRUSHED" property="siteTypeCrushed"/>
+        <result column="SITE_TYPE_TECH" property="siteTypeTech"/>
+        <result column="SITE_TYPE_PEBBLE" property="siteTypePebble"/>
+        <result column="SITE_TYPE_SOIL" property="siteTypeSoil"/>
+        <result column="GENERAL_SITE_CNT" property="generalSiteCnt"/>
+        <result column="AUTO_SITE_CNT" property="autoSiteCnt"/>
+        <result column="GLAMP_SITE_CNT" property="glampSiteCnt"/>
+        <result column="CARAVAN_SITE_CNT" property="caravanSiteCnt"/>
+        <result column="USER_CARAVAN_SITE_CNT" property="userCaravanSiteCnt"/>
+        <result column="ETC_FACILITIES" property="etcFacilities"/>
+        <result column="ETC_CARAVAN_FACILITIES" property="etcCaravanFacilities"/>
+        <result column="ETC_GLAMPING_FACILITIES" property="etcGlampingFacilities"/>
+        <result column="EXPERIENCE" property="experience"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="campingPlace">
+        select *
+        from CAMPING_PLACE_LOCATION_TYPE
+    </select>
+
+    <select id="existsByCampingPlaceAndLocationType" parameterType="map" resultType="boolean">
+        select exists(
+                       select 1
+                       from CAMPING_PLACE_LOCATION_TYPE c
+                       where c.CONTENT_ID = #{campingPlace.contentId}
+                         and c.LOCATION_TYPE_ID = (select l.LOCATION_TYPE_ID
+                                                   from LOCATION_TYPE l
+                                                   where l.NAME = #{locationType})
+                   )
+    </select>
+
+    <select id="existsByCampingPlaceAndOperationType" parameterType="map" resultType="boolean">
+        select exists(
+                       select 1
+                       from CAMPING_PLACE_OPERATION_TYPE c
+                       where c.CONTENT_ID = #{campingPlace.contentId}
+                         and c.OPERATION_TYPE_ID = (select o.OPERATION_TYPE_ID
+                                                   from OPERATION_TYPE o
+                                                   where o.NAME = #{operationType})
+                   )
+    </select>
+
+    <select id="existsByCampingPlaceAndMainFacilities" parameterType="map" resultType="boolean">
+        select exists(
+                       select 1
+                       from CAMPING_PLACE_MAIN_FACILITIES c
+                       where c.CONTENT_ID = #{campingPlace.contentId}
+                         and c.MAIN_FACILITIES_ID = (select m.MAIN_FACILITIES_ID
+                                                   from MAIN_FACILITIES m
+                                                   where m.NAME = #{mainFacilities})
+                   )
+    </select>
+
+    <select id="existsByCampingPlaceAndTheme" parameterType="map" resultType="boolean">
+        select exists(
+                       select 1
+                       from CAMPING_PLACE_THEME c
+                       where c.CONTENT_ID = #{campingPlace.contentId}
+                         and c.THEME_ID = (select t.THEME_ID
+                                                   from THEME t
+                                                   where t.NAME = #{theme})
+                   )
+    </select>
+
+    <select id="existsByCampingPlaceAndSubFacilities" parameterType="map" resultType="boolean">
+        select exists(
+                       select 1
+                       from CAMPING_PLACE_SUB_FACILITIES c
+                       where c.CONTENT_ID = #{campingPlace.contentId}
+                         and c.SUB_FACILITIES_ID = (select s.SUB_FACILITIES_ID
+                                                   from SUB_FACILITIES s
+                                                   where s.NAME = #{subFacilities})
+                   )
+    </select>
+</mapper>
