@@ -160,7 +160,7 @@ const changeMoreSelect = () => {
       <li>
         <button
           type="button"
-          class="more-select-btn btn rounded-5 border-1"
+          class="btn more-select-btn rounded-5 border-1"
           @click="changeMoreSelect"
         >
           <svg
@@ -197,7 +197,7 @@ const changeMoreSelect = () => {
 
 <style scoped>
 .selectArea {
-  margin-top: 10px;
+  margin-top: 50px;
   list-style: none;
   text-align: center;
   margin-left: auto;
@@ -211,19 +211,23 @@ ul {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+  padding: 0px;
+  vertical-align: middle;
 }
 li {
   display: inline-block;
-  margin-top: 20px;
-  margin-bottom: 10px;
-  margin-left: 11px;
-  margin-right: 18px;
+
+  margin-left: 14.5px;
+  margin-right: 14.5px;
   vertical-align: middle;
   text-align: center;
   width: 70px;
   height: 70px;
 }
-img {
+li .btn {
+  margin-top: 16px;
+}
+li img {
   margin-bottom: 5px;
 }
 a {
