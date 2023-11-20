@@ -26,11 +26,11 @@ const changesignupOpen = () => {
 
 <template>
   <nav class="navbar static-top">
-    <div class="container">
+    <div class="header">
       <a class="navbar-brand fs-2" href="/">CAMPING</a>
 
       <!-- 가운데 검색 헤더     -->
-      <SearchHeader/>
+      <SearchHeader />
 
       <!-- 여기부터 로그인/회원가입 드롭다운  -->
       <div class="btn-group">
@@ -91,6 +91,20 @@ const changesignupOpen = () => {
 </template>
 
 <style scoped>
+.navbar {
+  width: 100%;
+}
+.header {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+* {
+  padding: 0px;
+}
 .dropdown-menu {
   width: 230px;
   height: auto;
