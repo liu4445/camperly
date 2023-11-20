@@ -1,7 +1,9 @@
 <script setup>
 import axios from "axios";
 import { ref, defineProps, onUpdated, onMounted } from "vue";
+import { useRouter } from "vue-router";
 const { VITE_VUE_API_URL } = import.meta.env;
+const router = useRouter();
 const emit = defineEmits(["moreSelect"]);
 const operType = ref("");
 const mainfacility = ref([]);
@@ -11,13 +13,13 @@ const newLocationType = ref([]);
 let json = "";
 const toJson = () => {
   newLocationType.value = props.locationType;
-  json = JSON.stringify({
+  json = {
     locationType: newLocationType.value,
     operType: operType.value,
     mainfacility: mainfacility.value,
     thema: thema.value,
     subfacility: subfacility.value,
-  });
+  };
 };
 onMounted(() => {
   $("#moreSelect").on("hidden.bs.modal", () => {
@@ -36,25 +38,33 @@ const props = defineProps({
   locationType: Object,
 });
 
+const convertToQueryParameter = (json) => {
+  let res = "";
+  Object.keys(json).forEach((key) => {
+    if (Array.isArray(json[key])) {
+      json[key].forEach((value) => {
+        res += `${key}=${value}&`;
+      });
+    } else {
+      res += `${key}=${json[key]}&`;
+    }
+  });
+  return res.substring(0, res.length - 1);
+};
 const moreSelectForm = () => {
   console.log("상세폼들어왓다.");
   toJson();
   console.log(json);
+  const params = convertToQueryParameter(json);
+  console.log(convertToQueryParameter(json));
   axios({
-    method: "post",
-    url: "http://localhost:8080/" + "trip/place/list",
-    data: json,
-    headers: { "Content-Type": `application/json` },
+    method: "get",
+    url: "http://localhost:8080/" + "trip/place/list?" + params,
   })
     .then((res) => {
       console.log(res);
+      router.push("/", res);
       console.log("성공");
-      if (res.data == "") {
-        alert("아이디와 비밀번호를 확인해 주세요.");
-        console.log(JSON.stringify(operType.value));
-        console.log(JSON.stringify(mainfacility.value));
-      } else {
-      }
     })
     .catch((error) => {
       console.log(error);
