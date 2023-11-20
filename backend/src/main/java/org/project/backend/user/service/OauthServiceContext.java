@@ -14,7 +14,7 @@ public class OauthServiceContext {
 
 	private final List<OauthService> oauthServices;
 
-	public Long getUserInfoByOauthToken(OauthLoginRequest oauthLoginRequest) {
+	public String getUserInfoByOauthToken(OauthLoginRequest oauthLoginRequest) {
 		OauthService findService = oauthServices.stream()
 				.filter(oauthService -> oauthService.getOauthLoginType().equals(oauthLoginRequest.getOauthLoginType()))
 				.findFirst()

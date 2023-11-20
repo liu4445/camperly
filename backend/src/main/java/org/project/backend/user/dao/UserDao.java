@@ -10,7 +10,7 @@ import org.project.backend.user.dto.UserDto;
 @Mapper
 public interface UserDao {
 	UserDto findByLoginIdAndOauthLoginType(
-			@Param("loginId") Long loginId,
+			@Param("loginId") String loginId,
 			@Param("oauthLoginType") OauthLoginType oauthLoginType
 	) throws SQLException;
 

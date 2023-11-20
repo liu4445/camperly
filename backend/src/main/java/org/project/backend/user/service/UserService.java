@@ -24,7 +24,7 @@ public class UserService {
 	@Transactional
 	public OauthLoginResponse oauthLogin(OauthLoginRequest oauthLoginRequest) throws SQLException {
 		// 로그인 요청
-		Long loginId = oauthServiceContext.getUserInfoByOauthToken(oauthLoginRequest);
+		String loginId = oauthServiceContext.getUserInfoByOauthToken(oauthLoginRequest);
 		UserDto userDto = userDao.findByLoginIdAndOauthLoginType(loginId, oauthLoginRequest.getOauthLoginType());
 		long userId;
 

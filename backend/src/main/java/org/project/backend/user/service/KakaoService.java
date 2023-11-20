@@ -30,7 +30,7 @@ public class KakaoService implements OauthService {
 	}
 
 	@Override
-	public Long getUserInfoByOauthToken(String oauthToken) {
+	public String getUserInfoByOauthToken(String oauthToken) {
 		String kakaoAccessToken = requestAccessToken(oauthToken);
 		return requestUserInfo(kakaoAccessToken);
 	}
@@ -59,7 +59,7 @@ public class KakaoService implements OauthService {
 				.getAsString();
 	}
 
-	private Long requestUserInfo(String token) {
+	private String requestUserInfo(String token) {
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.add(AUTHORIZATION.key, getFixPrefixJwt() + token);
 		log.info("카카오 Oauth UserInfo 요청 : {}", httpHeaders);
@@ -75,6 +75,6 @@ public class KakaoService implements OauthService {
 		return JsonParser.parseString(exchange.getBody())
 				.getAsJsonObject()
 				.get("id")
-				.getAsLong();
+				.getAsString();
 	}
 }

@@ -30,7 +30,7 @@ public class GoogleService implements OauthService {
 	}
 
 	@Override
-	public Long getUserInfoByOauthToken(String oauthToken) {
+	public String getUserInfoByOauthToken(String oauthToken) {
 		String kakaoAccessToken = requestAccessToken(oauthToken);
 		return requestUserInfo(kakaoAccessToken);
 	}
@@ -43,7 +43,7 @@ public class GoogleService implements OauthService {
 				.queryParam(REDIRECT_URI.key, googleOauthProperties.getRedirectUrl())
 				.queryParam(GRANT_TYPE.key, getFixGrantType())
 				.toUriString();
-		log.info("카카오 Oauth AccessToken 요청 : {}", params);
+		log.info("구글 Oauth AccessToken 요청 : {}", params);
 
 		ResponseEntity<String> exchange = new RestTemplate().exchange(
 				params,
@@ -51,18 +51,18 @@ public class GoogleService implements OauthService {
 				null,
 				String.class
 		);
-		log.info("카카오 Oauth AccessToken 응답 : {}", exchange);
+		log.info("구글 Oauth AccessToken 응답 : {}", exchange);
 
 		return JsonParser.parseString(exchange.getBody())
 				.getAsJsonObject()
-				.get("accessToken")
+				.get("access_token")
 				.getAsString();
 	}
 
-	private Long requestUserInfo(String token) {
+	private String requestUserInfo(String token) {
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.add(AUTHORIZATION.key, getFixPrefixJwt() + token);
-		log.info("카카오 Oauth UserInfo 요청 : {}", httpHeaders);
+		log.info("구글 Oauth UserInfo 요청 : {}", httpHeaders);
 
 		ResponseEntity<String> exchange = new RestTemplate().exchange(
 				googleOauthProperties.getUserInfoRequestUrl(),
@@ -70,11 +70,11 @@ public class GoogleService implements OauthService {
 				new HttpEntity(httpHeaders),
 				String.class
 		);
-		log.info("카카오 Oauth UserInfo 응답 : {}", exchange);
+		log.info("구글 Oauth UserInfo 응답 : {}", exchange);
 
 		return JsonParser.parseString(exchange.getBody())
 				.getAsJsonObject()
 				.get("sub")
-				.getAsLong();
+				.getAsString();
 	}
 }
