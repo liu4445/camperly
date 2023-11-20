@@ -321,6 +321,22 @@ export default [
     lineIntro: "별보기 좋은 카라반 캠핑장",
     like: 50,
   },
+  {
+    contentId: 41,
+    firstImageUrl:
+      "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
+    campsiteName: "파크킹",
+    lineIntro: "별보기 좋은 카라반 캠핑장",
+    like: 50,
+  },
+  {
+    contentId: 42,
+    firstImageUrl:
+      "https://gocamping.or.kr/upload/camp/100000/thumb/thumb_720_8961mOX5pkL8PIG296E1RU3S.jpg",
+    campsiteName: "파크킹",
+    lineIntro: "별보기 좋은 카라반 캠핑장",
+    like: 50,
+  },
 ];
 </script>
 

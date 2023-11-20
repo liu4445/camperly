@@ -8,67 +8,68 @@ Id.value = props.data.place.contentId;
 
 <template>
   <li>
-    <div class="card" style="width: 300px">
-      <img :src="data.place.firstImageUrl" class="card-img-top" style="height: 250px" />
-      <div class="card-body">
-        <h5 class="card-title">
+    <div class="place-card">
+      <div class="place-img" style="width: 300px">
+        <img :src="data.place.firstImageUrl" class="card-img-top" style="height: 250px" />
+      </div>
+      <div class="place-body">
+        <h5 class="place-title">
           {{ data.place.campsiteName }}
         </h5>
-        <p class="card-text">
+        <div class="like">♥ {{ data.place.like }}</div>
+        <p class="place-text">
           {{ data.place.lineIntro }}
         </p>
-        <div class="like">♥ {{ data.place.like }}</div>
+      </div>
+      <div class="likebtn">
+        <input type="checkbox" :id="`checkbox${Id}`" />
+        <label :for="`checkbox${Id}`">
+          <svg id="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
+            <g id="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">
+              <path
+                d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z"
+                id="heart"
+                fill="#AAB8C2"
+              />
+              <circle id="main-circ" fill="#E2264D" opacity="0" cx="29.5" cy="29.5" r="1.5" />
 
-        <div class="likebtn">
-          <input type="checkbox" :id="`checkbox${Id}`" />
-          <label :for="`checkbox${Id}`">
-            <svg id="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
-              <g id="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">
-                <path
-                  d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z"
-                  id="heart"
-                  fill="#AAB8C2"
-                />
-                <circle id="main-circ" fill="#E2264D" opacity="0" cx="29.5" cy="29.5" r="1.5" />
-
-                <g id="grp7" opacity="0" transform="translate(7 6)">
-                  <circle id="oval1" fill="#9CD8C3" cx="2" cy="6" r="2" />
-                  <circle id="oval2" fill="#8CE8C3" cx="5" cy="2" r="2" />
-                </g>
-
-                <g id="grp6" opacity="0" transform="translate(0 28)">
-                  <circle id="oval1" fill="#CC8EF5" cx="2" cy="7" r="2" />
-                  <circle id="oval2" fill="#91D2FA" cx="3" cy="2" r="2" />
-                </g>
-
-                <g id="grp3" opacity="0" transform="translate(52 28)">
-                  <circle id="oval2" fill="#9CD8C3" cx="2" cy="7" r="2" />
-                  <circle id="oval1" fill="#8CE8C3" cx="4" cy="2" r="2" />
-                </g>
-
-                <g id="grp2" opacity="0" transform="translate(44 6)">
-                  <circle id="oval2" fill="#CC8EF5" cx="5" cy="6" r="2" />
-                  <circle id="oval1" fill="#CC8EF5" cx="2" cy="2" r="2" />
-                </g>
-
-                <g id="grp5" opacity="0" transform="translate(14 50)">
-                  <circle id="oval1" fill="#91D2FA" cx="6" cy="5" r="2" />
-                  <circle id="oval2" fill="#91D2FA" cx="2" cy="2" r="2" />
-                </g>
-
-                <g id="grp4" opacity="0" transform="translate(35 50)">
-                  <circle id="oval1" fill="#F48EA7" cx="6" cy="5" r="2" />
-                  <circle id="oval2" fill="#F48EA7" cx="2" cy="2" r="2" />
-                </g>
-
-                <g id="grp1" opacity="0" transform="translate(24)">
-                  <circle id="oval1" fill="#9FC7FA" cx="2.5" cy="3" r="2" />
-                  <circle id="oval2" fill="#9FC7FA" cx="7.5" cy="2" r="2" />
-                </g>
+              <g id="grp7" opacity="0" transform="translate(7 6)">
+                <circle id="oval1" fill="#9CD8C3" cx="2" cy="6" r="2" />
+                <circle id="oval2" fill="#8CE8C3" cx="5" cy="2" r="2" />
               </g>
-            </svg>
-          </label>
-        </div>
+
+              <g id="grp6" opacity="0" transform="translate(0 28)">
+                <circle id="oval1" fill="#CC8EF5" cx="2" cy="7" r="2" />
+                <circle id="oval2" fill="#91D2FA" cx="3" cy="2" r="2" />
+              </g>
+
+              <g id="grp3" opacity="0" transform="translate(52 28)">
+                <circle id="oval2" fill="#9CD8C3" cx="2" cy="7" r="2" />
+                <circle id="oval1" fill="#8CE8C3" cx="4" cy="2" r="2" />
+              </g>
+
+              <g id="grp2" opacity="0" transform="translate(44 6)">
+                <circle id="oval2" fill="#CC8EF5" cx="5" cy="6" r="2" />
+                <circle id="oval1" fill="#CC8EF5" cx="2" cy="2" r="2" />
+              </g>
+
+              <g id="grp5" opacity="0" transform="translate(14 50)">
+                <circle id="oval1" fill="#91D2FA" cx="6" cy="5" r="2" />
+                <circle id="oval2" fill="#91D2FA" cx="2" cy="2" r="2" />
+              </g>
+
+              <g id="grp4" opacity="0" transform="translate(35 50)">
+                <circle id="oval1" fill="#F48EA7" cx="6" cy="5" r="2" />
+                <circle id="oval2" fill="#F48EA7" cx="2" cy="2" r="2" />
+              </g>
+
+              <g id="grp1" opacity="0" transform="translate(24)">
+                <circle id="oval1" fill="#9FC7FA" cx="2.5" cy="3" r="2" />
+                <circle id="oval2" fill="#9FC7FA" cx="7.5" cy="2" r="2" />
+              </g>
+            </g>
+          </svg>
+        </label>
       </div>
     </div>
   </li>
@@ -81,31 +82,44 @@ li {
   margin-right: 34px;
   margin-bottom: 48px;
 }
-.btn {
-  background-color: red;
-}
-.card {
+
+.place-card {
+  position: relative;
+  widows: 300px;
   height: 400px;
 }
-.card-title {
+.place-body {
+  position: relative;
+  width: 300px;
+  height: 150px;
+}
+.place-img img {
+  border-radius: 10px;
+}
+.place-title {
+  margin-top: 10px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  text-align: left;
+  width: 250px;
 }
-.card-text {
+.place-text {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
+  height: 50px;
+  text-align: left;
 }
 .like {
   display: inline-block;
   position: absolute;
-  right: 0;
-  bottom: 0;
   color: red;
   margin-right: 5px;
   margin-bottom: 5px;
+  right: 0;
+  top: 0;
 }
 /* 좋아요 버튼 */
 .likebtn {
