@@ -5,7 +5,8 @@ const { VITE_VUE_API_URL } = import.meta.env;
 export const usePlaceStore = defineStore("place", () => {
   //받은 캠핑장소들
   const placeList = ref([]);
-
+  const isLocationSelect = ref(false);
+  const isMoreSelect = ref(false);
   const json = ref({
     locationTypes: [],
     operationType: "",
@@ -39,7 +40,7 @@ export const usePlaceStore = defineStore("place", () => {
       url: VITE_VUE_API_URL + "camping/place?" + params,
     })
       .then((res) => {
-        console.log(res);
+        console.log("피니아에서 응답받음" + res.data.campingPlaceDtos);
         placeList.value = res.data.campingPlaceDtos;
         console.log("성공");
       })
@@ -48,5 +49,5 @@ export const usePlaceStore = defineStore("place", () => {
       });
   }
 
-  return { placeList, json, getList, load };
+  return { placeList, json, getList, load, isLocationSelect, isMoreSelect };
 });

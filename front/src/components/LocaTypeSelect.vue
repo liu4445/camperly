@@ -5,8 +5,9 @@ import { ref, onUpdated } from "vue";
 import MoreSelectModal from "@/components/MoreSelectModal.vue";
 import { usePlaceStore } from "@/stores/places.js";
 import { storeToRefs } from "pinia";
+import MainList from "./MainList.vue";
 const store = usePlaceStore();
-const { json } = storeToRefs(store);
+const { json, isLocationSelect } = storeToRefs(store);
 
 const MoreSelectOpen = ref(false);
 const LocationData = ref([]);
@@ -16,9 +17,13 @@ const changeMoreSelect = () => {
   else MoreSelectOpen.value = true;
 };
 
-onUpdated(() => {
+const clickLocation = () => {
   json.value.locationTypes = LocationData.value;
-});
+  if (isLocationSelect.value == true) isLocationSelect.value = false;
+  else {
+    isLocationSelect.value = true;
+  }
+};
 </script>
 
 <template>
@@ -32,6 +37,7 @@ onUpdated(() => {
           value="해변"
           class="rounded-circle w-100 h-100"
           v-model="LocationData"
+          @click="clickLocation"
         />
         <label for="beach" class="rounded-circle">
           <img
@@ -51,6 +57,7 @@ onUpdated(() => {
           value="섬"
           class="rounded-circle w-100 h-100"
           v-model="LocationData"
+          @click="clickLocation"
         />
         <label for="island" class="rounded-circle">
           <img
@@ -70,6 +77,7 @@ onUpdated(() => {
           value="산"
           class="rounded-circle w-100 h-100"
           v-model="LocationData"
+          @click="clickLocation"
         />
         <label for="moutain" class="rounded-circle">
           <img
@@ -89,6 +97,7 @@ onUpdated(() => {
           value="숲"
           class="rounded-circle w-100 h-100"
           v-model="LocationData"
+          @click="clickLocation"
         />
         <label for="forest" class="rounded-circle">
           <img
@@ -108,6 +117,7 @@ onUpdated(() => {
           value="계곡"
           class="rounded-circle w-100 h-100"
           v-model="LocationData"
+          @click="clickLocation"
         />
         <label for="valley" class="rounded-circle">
           <img
@@ -126,6 +136,7 @@ onUpdated(() => {
           value="강"
           class="rounded-circle w-100 h-100"
           v-model="LocationData"
+          @click="clickLocation"
         />
         <label for="river" class="rounded-circle">
           <img src="@/assets/img/pictogram/free-icon-river-9997808.png" width="40" height="40" />
@@ -140,6 +151,7 @@ onUpdated(() => {
           value="호수"
           class="rounded-circle w-100 h-100"
           v-model="LocationData"
+          @click="clickLocation"
         />
         <label for="lake" class="rounded-circle">
           <img src="@/assets/img/pictogram/free-icon-lake-3105252.png" width="40" height="40" />
@@ -154,6 +166,7 @@ onUpdated(() => {
           value="도심"
           class="rounded-circle w-100 h-100"
           v-model="LocationData"
+          @click="clickLocation"
         />
         <label for="city" class="rounded-circle">
           <img
