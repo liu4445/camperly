@@ -1,6 +1,6 @@
 <script setup>
 import { ref, defineProps, onUpdated, onMounted } from "vue";
-import { usePlaceStore } from "@/stores/place.js";
+import { usePlaceStore } from "@/stores/places.js";
 import { storeToRefs } from "pinia";
 const store = usePlaceStore();
 const { json } = storeToRefs(store);
@@ -8,15 +8,15 @@ const { json } = storeToRefs(store);
 const emit = defineEmits(["moreSelect"]);
 const props = defineProps({
   data: Boolean,
-  locationType: Object,
+  locationTypes: Object,
 });
 
-const operType = ref("");
-const mainfacility = ref([]);
-const thema = ref([]);
-const subfacility = ref([]);
-const locationType = ref([]);
-locationType.value = props.locationType;
+const operationType = ref("");
+const mainFacilities = ref([]);
+const themes = ref([]);
+const subFacilities = ref([]);
+const locationTypes = ref([]);
+locationTypes.value = props.locationTypes;
 onMounted(() => {
   $("#moreSelect").on("hidden.bs.modal", () => {
     $("#moreSelect").modal("hide");
@@ -30,11 +30,11 @@ onUpdated(() => {
   else $("#moreSelect").modal("hide");
 });
 const sendData = () => {
-  json.value.operType = operType.value;
-  json.value.mainfacility = mainfacility.value;
-  json.value.thema = thema.value;
-  json.value.subfacility = subfacility.value;
-  json.value.locationType = locationType.value;
+  json.value.operationType = operationType.value;
+  json.value.mainFacilities = mainFacilities.value;
+  json.value.themes = themes.value;
+  json.value.subFacilities = subFacilities.value;
+  json.value.locationTypes = locationTypes.value;
 };
 </script>
 
@@ -66,8 +66,8 @@ const sendData = () => {
                   <input
                     id="radio-1"
                     type="radio"
-                    v-model="operType"
-                    name="operType"
+                    v-model="operationType"
+                    name="operationType"
                     value="지자체"
                   />
                   <label for="radio-1">지자체</label>
@@ -77,8 +77,8 @@ const sendData = () => {
                   <input
                     id="radio-2"
                     type="radio"
-                    v-model="operType"
-                    name="operType"
+                    v-model="operationType"
+                    name="operationType"
                     value="국립공원"
                   />
                   <label for="radio-2">국립공원</label>
@@ -87,8 +87,8 @@ const sendData = () => {
                   <input
                     id="radio-3"
                     type="radio"
-                    v-model="operType"
-                    name="operType"
+                    v-model="operationType"
+                    name="operationType"
                     value="자연휴양림"
                   />
                   <label for="radio-3">자연휴양림</label>
@@ -97,8 +97,8 @@ const sendData = () => {
                   <input
                     id="radio-4"
                     type="radio"
-                    v-model="operType"
-                    name="operType"
+                    v-model="operationType"
+                    name="operationType"
                     value="국민여가"
                   />
                   <label for="radio-4">국민여가</label>
@@ -107,8 +107,8 @@ const sendData = () => {
                   <input
                     id="radio-5"
                     type="radio"
-                    v-model="operType"
-                    name="operType"
+                    v-model="operationType"
+                    name="operationType"
                     value="민간"
                   />
                   <label for="radio-5">민간</label>
@@ -117,8 +117,8 @@ const sendData = () => {
                   <input
                     id="radio-6"
                     type="radio"
-                    name="operType"
-                    v-model="operType"
+                    name="operationType"
+                    v-model="operationType"
                     value=""
                     checked
                   />
@@ -135,8 +135,8 @@ const sendData = () => {
                   <input
                     id="checkbox-mf-1"
                     type="checkbox"
-                    v-model="mainfacility"
-                    name="operType"
+                    v-model="mainFacilities"
+                    name="operationType"
                     value="일반야영장"
                   />
                   <label for="checkbox-mf-1">일반야영장</label>
@@ -146,8 +146,8 @@ const sendData = () => {
                   <input
                     id="checkbox-mf-2"
                     type="checkbox"
-                    v-model="mainfacility"
-                    name="operType"
+                    v-model="mainFacilities"
+                    name="operationType"
                     value="자동차야영장"
                   />
                   <label for="checkbox-mf-2">자동차야영장</label>
@@ -156,8 +156,8 @@ const sendData = () => {
                   <input
                     id="checkbox-mf-3"
                     type="checkbox"
-                    v-model="mainfacility"
-                    name="operType"
+                    v-model="mainFacilities"
+                    name="operationType"
                     value="카라반"
                   />
                   <label for="checkbox-mf-3">카라반</label>
@@ -166,8 +166,8 @@ const sendData = () => {
                   <input
                     id="checkbox-mf-4"
                     type="checkbox"
-                    v-model="mainfacility"
-                    name="operType"
+                    v-model="mainFacilities"
+                    name="operationType"
                     value="글램핑"
                   />
                   <label for="checkbox-mf-4">글램핑</label>
@@ -180,124 +180,124 @@ const sendData = () => {
               <div class="form_toggle">
                 <div class="form_radio_btn">
                   <input
-                    id="checkbox-thema-1"
+                    id="checkbox-themes-1"
                     type="checkbox"
-                    v-model="thema"
-                    name="thema"
+                    v-model="themes"
+                    name="themes"
                     value="일출명소"
                   />
-                  <label for="checkbox-thema-1">일출명소</label>
+                  <label for="checkbox-themes-1">일출명소</label>
                 </div>
 
                 <div class="form_radio_btn">
                   <input
-                    id="checkbox-thema-2"
+                    id="checkbox-themes-2"
                     type="checkbox"
-                    v-model="thema"
-                    name="thema"
+                    v-model="themes"
+                    name="themes"
                     value="일몰명소"
                   />
-                  <label for="checkbox-thema-2">일몰명소</label>
+                  <label for="checkbox-themes-2">일몰명소</label>
                 </div>
                 <div class="form_radio_btn">
                   <input
-                    id="checkbox-thema-3"
+                    id="checkbox-themes-3"
                     type="checkbox"
-                    v-model="thema"
-                    name="thema"
+                    v-model="themes"
+                    name="themes"
                     value="수상레저"
                   />
-                  <label for="checkbox-thema-3">수상레저</label>
+                  <label for="checkbox-themes-3">수상레저</label>
                 </div>
                 <div class="form_radio_btn">
                   <input
-                    id="checkbox-thema-4"
+                    id="checkbox-themes-4"
                     type="checkbox"
-                    v-model="thema"
-                    name="thema"
+                    v-model="themes"
+                    name="themes"
                     value="항공레저"
                   />
-                  <label for="checkbox-thema-4">항공레저</label>
+                  <label for="checkbox-themes-4">항공레저</label>
                 </div>
                 <div class="form_radio_btn">
                   <input
-                    id="checkbox-thema-5"
+                    id="checkbox-themes-5"
                     type="checkbox"
-                    v-model="thema"
-                    name="thema"
+                    v-model="themes"
+                    name="themes"
                     value="스키"
                   />
-                  <label for="checkbox-thema-5">스키</label>
+                  <label for="checkbox-themes-5">스키</label>
                 </div>
                 <div class="form_radio_btn">
                   <input
-                    id="checkbox-thema-6"
+                    id="checkbox-themes-6"
                     type="checkbox"
-                    v-model="thema"
-                    name="thema"
+                    v-model="themes"
+                    name="themes"
                     value="낚시"
                   />
-                  <label for="checkbox-thema-6">낚시</label>
+                  <label for="checkbox-themes-6">낚시</label>
                 </div>
                 <div class="form_radio_btn">
                   <input
-                    id="checkbox-thema-7"
+                    id="checkbox-themes-7"
                     type="checkbox"
-                    v-model="thema"
-                    name="thema"
+                    v-model="themes"
+                    name="themes"
                     value="액티비티"
                   />
-                  <label for="checkbox-thema-7">액티비티</label>
+                  <label for="checkbox-themes-7">액티비티</label>
                 </div>
                 <div class="form_radio_btn">
                   <input
-                    id="checkbox-thema-8"
+                    id="checkbox-themes-8"
                     type="checkbox"
-                    v-model="thema"
-                    name="thema"
+                    v-model="themes"
+                    name="themes"
                     value="봄꽃여행"
                   />
-                  <label for="checkbox-thema-8">봄꽃여행</label>
+                  <label for="checkbox-themes-8">봄꽃여행</label>
                 </div>
                 <div class="form_radio_btn">
                   <input
-                    id="checkbox-thema-9"
+                    id="checkbox-themes-9"
                     type="checkbox"
-                    v-model="thema"
-                    name="thema"
+                    v-model="themes"
+                    name="themes"
                     value="여름물놀이"
                   />
-                  <label for="checkbox-thema-9">여름물놀이</label>
+                  <label for="checkbox-themes-9">여름물놀이</label>
                 </div>
                 <div class="form_radio_btn">
                   <input
-                    id="checkbox-thema-10"
+                    id="checkbox-themes-10"
                     type="checkbox"
-                    v-model="thema"
-                    name="thema"
+                    v-model="themes"
+                    name="themes"
                     value="가을단풍명소"
                   />
-                  <label for="checkbox-thema-10">가을단풍명소</label>
+                  <label for="checkbox-themes-10">가을단풍명소</label>
                 </div>
                 <div class="form_radio_btn">
                   <input
-                    id="checkbox-thema-11"
+                    id="checkbox-themes-11"
                     type="checkbox"
-                    v-model="thema"
-                    name="thema"
+                    v-model="themes"
+                    name="themes"
                     value="겨울눈꽃명소"
                   />
-                  <label for="checkbox-thema-11">겨울눈꽃명소</label>
+                  <label for="checkbox-themes-11">겨울눈꽃명소</label>
                 </div>
                 <div class="form_radio_btn">
                   <input
-                    id="checkbox-thema-12"
+                    id="checkbox-themes-12"
                     type="checkbox"
-                    v-model="thema"
-                    name="thema"
+                    v-model="themes"
+                    name="themes"
                     value="걷기길"
                   />
-                  <label for="checkbox-thema-12">걷기길</label>
+                  <label for="checkbox-themes-12">걷기길</label>
                 </div>
               </div>
             </div>
@@ -309,8 +309,8 @@ const sendData = () => {
                   <input
                     id="checkbox-sub-1"
                     type="checkbox"
-                    v-model="subfacility"
-                    name="subfacility"
+                    v-model="subFacilities"
+                    name="subFacilities"
                     value="전기"
                   />
                   <label for="checkbox-sub-1">전기</label>
@@ -320,8 +320,8 @@ const sendData = () => {
                   <input
                     id="checkbox-sub-2"
                     type="checkbox"
-                    v-model="subfacility"
-                    name="subfacility"
+                    v-model="subFacilities"
+                    name="subFacilities"
                     value="무선인터넷"
                   />
                   <label for="checkbox-sub-2">무선인터넷</label>
@@ -330,8 +330,8 @@ const sendData = () => {
                   <input
                     id="checkbox-sub-3"
                     type="checkbox"
-                    v-model="subfacility"
-                    name="subfacility"
+                    v-model="subFacilities"
+                    name="subFacilities"
                     value="장작판매"
                   />
                   <label for="checkbox-sub-3">장작판매</label>
@@ -340,8 +340,8 @@ const sendData = () => {
                   <input
                     id="checkbox-sub-4"
                     type="checkbox"
-                    v-model="subfacility"
-                    name="subfacility"
+                    v-model="subFacilities"
+                    name="subFacilities"
                     value="온수"
                   />
                   <label for="checkbox-sub-4">온수</label>
@@ -350,8 +350,8 @@ const sendData = () => {
                   <input
                     id="checkbox-sub-5"
                     type="checkbox"
-                    v-model="subfacility"
-                    name="subfacility"
+                    v-model="subFacilities"
+                    name="subFacilities"
                     value="트렘폴린"
                   />
                   <label for="checkbox-sub-5">트렘폴린</label>
@@ -360,8 +360,8 @@ const sendData = () => {
                   <input
                     id="checkbox-sub-6"
                     type="checkbox"
-                    v-model="subfacility"
-                    name="subfacility"
+                    v-model="subFacilities"
+                    name="subFacilities"
                     value="물놀이장"
                   />
                   <label for="checkbox-sub-6">물놀이장</label>
@@ -370,8 +370,8 @@ const sendData = () => {
                   <input
                     id="checkbox-sub-7"
                     type="checkbox"
-                    v-model="subfacility"
-                    name="subfacility"
+                    v-model="subFacilities"
+                    name="subFacilities"
                     value="놀이터"
                   />
                   <label for="checkbox-sub-7">놀이터</label>
@@ -380,8 +380,8 @@ const sendData = () => {
                   <input
                     id="checkbox-sub-8"
                     type="checkbox"
-                    v-model="subfacility"
-                    name="subfacility"
+                    v-model="subFacilities"
+                    name="subFacilities"
                     value="산책로"
                   />
                   <label for="checkbox-sub-8">산책로</label>
@@ -390,8 +390,8 @@ const sendData = () => {
                   <input
                     id="checkbox-sub-9"
                     type="checkbox"
-                    v-model="subfacility"
-                    name="subfacility"
+                    v-model="subFacilities"
+                    name="subFacilities"
                     value="운동장"
                   />
                   <label for="checkbox-sub-9">운동장</label>
@@ -400,8 +400,8 @@ const sendData = () => {
                   <input
                     id="checkbox-sub-10"
                     type="checkbox"
-                    v-model="subfacility"
-                    name="subfacility"
+                    v-model="subFacilities"
+                    name="subFacilities"
                     value="운동시설"
                   />
                   <label for="checkbox-sub-10">운동시설</label>
@@ -410,8 +410,8 @@ const sendData = () => {
                   <input
                     id="checkbox-sub-11"
                     type="checkbox"
-                    v-model="subfacility"
-                    name="subfacility"
+                    v-model="subFacilities"
+                    name="subFacilities"
                     value="마트_편의점"
                   />
                   <label for="checkbox-sub-11">마트/편의점</label>

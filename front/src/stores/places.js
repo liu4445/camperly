@@ -7,11 +7,11 @@ export const usePlaceStore = defineStore("place", () => {
   const placeList = ref([]);
 
   const json = ref({
-    locationType: [],
-    operType: "",
-    mainfacility: [],
-    thema: [],
-    subfacility: [],
+    locationTypes: [],
+    operationType: "",
+    mainFacilities: [],
+    themes: [],
+    subFacilities: [],
   });
   const load = computed(() => {
     getList();
@@ -36,7 +36,7 @@ export const usePlaceStore = defineStore("place", () => {
     console.log(convertToQueryParameter(json.value));
     await axios({
       method: "get",
-      url: VITE_VUE_API_URL + "trip/place/list?" + params,
+      url: VITE_VUE_API_URL + "camping/place?" + params,
     })
       .then((res) => {
         console.log(res);

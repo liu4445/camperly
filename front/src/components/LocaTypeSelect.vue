@@ -3,7 +3,7 @@ import "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js";
 import { ref, onUpdated } from "vue";
 
 import MoreSelectModal from "@/components/MoreSelectModal.vue";
-import { usePlaceStore } from "@/stores/place.js";
+import { usePlaceStore } from "@/stores/places.js";
 import { storeToRefs } from "pinia";
 const store = usePlaceStore();
 const { json } = storeToRefs(store);
@@ -17,7 +17,7 @@ const changeMoreSelect = () => {
 };
 
 onUpdated(() => {
-  json.value.locationType = LocationData.value;
+  json.value.locationTypes = LocationData.value;
 });
 </script>
 
@@ -28,7 +28,7 @@ onUpdated(() => {
         <input
           type="checkbox"
           id="beach"
-          name="locationType"
+          name="locationTypes"
           value="해변"
           class="rounded-circle w-100 h-100"
           v-model="LocationData"
@@ -47,7 +47,7 @@ onUpdated(() => {
         <input
           type="checkbox"
           id="island"
-          name="locationType"
+          name="locationTypes"
           value="섬"
           class="rounded-circle w-100 h-100"
           v-model="LocationData"
@@ -66,7 +66,7 @@ onUpdated(() => {
         <input
           type="checkbox"
           id="moutain"
-          name="locationType"
+          name="locationTypes"
           value="산"
           class="rounded-circle w-100 h-100"
           v-model="LocationData"
@@ -85,7 +85,7 @@ onUpdated(() => {
         <input
           type="checkbox"
           id="forest"
-          name="locationType"
+          name="locationTypes"
           value="숲"
           class="rounded-circle w-100 h-100"
           v-model="LocationData"
@@ -104,7 +104,7 @@ onUpdated(() => {
         <input
           type="checkbox"
           id="valley"
-          name="locationType"
+          name="locationTypes"
           value="계곡"
           class="rounded-circle w-100 h-100"
           v-model="LocationData"
@@ -122,7 +122,7 @@ onUpdated(() => {
         <input
           type="checkbox"
           id="river"
-          name="locationType"
+          name="locationTypes"
           value="강"
           class="rounded-circle w-100 h-100"
           v-model="LocationData"
@@ -136,7 +136,7 @@ onUpdated(() => {
         <input
           type="checkbox"
           id="lake"
-          name="locationType"
+          name="locationTypes"
           value="호수"
           class="rounded-circle w-100 h-100"
           v-model="LocationData"
@@ -150,7 +150,7 @@ onUpdated(() => {
         <input
           type="checkbox"
           id="city"
-          name="locationType"
+          name="locationTypes"
           value="도심"
           class="rounded-circle w-100 h-100"
           v-model="LocationData"

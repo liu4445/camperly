@@ -2,8 +2,6 @@ package org.project.backend.camping.place.dto;
 
 import java.util.List;
 
-import javax.validation.constraints.NotNull;
-
 import org.project.backend.constant.LocationType;
 import org.project.backend.constant.MainFacilities;
 import org.project.backend.constant.OperationType;
@@ -24,9 +22,7 @@ public class SearchRequest {
 	private final List<Theme> themes;
 	private final List<SubFacilities> subFacilities;
 
-	@NotNull
-	private final boolean isLike;
+	private boolean isLike = false;
 
-	@NotNull
-	private final int page;
+	private final int page = 1;
 }

@@ -2,7 +2,7 @@
 import axios from "axios";
 import { ref, onMounted } from "vue";
 import MainListItem from "./MainListItem.vue";
-import { usePlaceStore } from "@/stores/place";
+import { usePlaceStore } from "@/stores/places";
 import { storeToRefs } from "pinia";
 
 // import TempListFile from "./TempListFile.vue";
@@ -25,7 +25,7 @@ const getPlaceList = async () => {
   await getList();
   console.log("getPlaceList");
   console.log("result");
-  visiblePlaces.value = placeList.value.slice(0, limit);
+  visiblePlaces.value = placeList.value.campingPlaceDtos.slice(0, limit);
   offset.value = limit;
 };
 onMounted(() => {

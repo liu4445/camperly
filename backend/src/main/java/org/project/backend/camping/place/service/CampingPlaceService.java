@@ -41,7 +41,7 @@ public class CampingPlaceService {
 		if (searchRequest.getSubFacilities() != null && !searchRequest.getSubFacilities().isEmpty()) {
 			campingPlaces = filterBySubFacilities(campingPlaces, searchRequest.getSubFacilities());
 		}
-		return new SearchResponse(campingPlaces.subList(0, 10));
+		return new SearchResponse(campingPlaces.subList(0, Math.min(10, campingPlaces.size())));
 	}
 
 	private List<CampingPlaceDto> filterByLocationType(
