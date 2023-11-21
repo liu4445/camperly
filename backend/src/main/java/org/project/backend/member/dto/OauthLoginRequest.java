@@ -18,5 +18,5 @@ public class OauthLoginRequest {
     private final OauthLoginType oauthLoginType;
 
     @NotBlank
-    private final String oauthToken;
+    private final String code;
 }

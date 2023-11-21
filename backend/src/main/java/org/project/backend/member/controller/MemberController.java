@@ -32,7 +32,7 @@ public class MemberController {
             log.warn(
                     "Oauth 로그인 중 에러 발생: 소셜 타입 = {}, 요청 토큰 = {}",
                     oauthLoginRequest.getOauthLoginType(),
-                    oauthLoginRequest.getOauthToken()
+                    oauthLoginRequest.getCode()
             );
         }
         return ResponseEntity.badRequest().build();

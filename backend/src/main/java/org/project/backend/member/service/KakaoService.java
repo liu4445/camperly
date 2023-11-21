@@ -30,8 +30,8 @@ public class KakaoService implements OauthService {
 	}
 
 	@Override
-	public String getUserInfoByOauthToken(String oauthToken) {
-		String kakaoAccessToken = requestAccessToken(oauthToken);
+	public String getUserInfoByOauthToken(String code) {
+		String kakaoAccessToken = requestAccessToken(code);
 		return requestUserInfo(kakaoAccessToken);
 	}
 

@@ -18,6 +18,6 @@ public class OauthServiceContext {
 				.filter(oauthService -> oauthService.getOauthLoginType().equals(oauthLoginRequest.getOauthLoginType()))
 				.findFirst()
 				.orElseThrow(() -> new IllegalArgumentException());
-		return findService.getUserInfoByOauthToken(oauthLoginRequest.getOauthToken());
+		return findService.getUserInfoByOauthToken(oauthLoginRequest.getCode());
 	}
 }
