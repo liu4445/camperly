@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.project.backend.weather.dao.WeatherDao">
+    <resultMap id="weatherDto" type="org.project.backend.weather.dto.WeatherDto">
+        <result column="CITY_NAME" property="cityName"></result>
+        <result column="WEATHER_MONTH" property="month"></result>
+        <result column="AVG_TEMPERATURE" property="avgTemperature"></result>
+        <result column="MIN_TEMPERATURE" property="minTemperature"></result>
+        <result column="MAX_TEMPERATURE" property="maxTemperature"></result>
+    </resultMap>
+
+    <select id="findByCity" parameterType="map" resultMap="weatherDto">
+        select *
+        from weather
+        where city_name = #{cityName}
+    </select>
+
+    <select id="findByCityLike" parameterType="map" resultMap="weatherDto">
+        select *
+        from weather
+        where city_name like #{cityName}
+    </select>
+
+</mapper>
