@@ -9,7 +9,8 @@ import { storeToRefs } from "pinia";
 const store = usePlaceStore();
 const { getList } = store;
 const { placeList } = storeToRefs(store);
-
+const places = ref([]);
+places.value = placeList.value;
 const visiblePlaces = ref([]);
 const limit = 20;
 const offset = ref(0);
@@ -17,7 +18,7 @@ const curNum = ref(0);
 const readMore = () => {
   const startIdx = visiblePlaces.value.length;
   const endIdx = startIdx + limit;
-  visiblePlaces.value = visiblePlaces.value.concat(placeList.value.slice(startIdx, endIdx));
+  visiblePlaces.value = visiblePlaces.value.concat(places.value.slice(startIdx, endIdx));
   offset.value = endIdx;
 };
 
@@ -25,7 +26,7 @@ const getPlaceList = async () => {
   await getList();
   console.log("getPlaceList");
   console.log("result");
-  visiblePlaces.value = placeList.value.campingPlaceDtos.slice(0, limit);
+  visiblePlaces.value = places.value.slice(0, limit);
   offset.value = limit;
 };
 onMounted(() => {
@@ -68,7 +69,7 @@ onMounted(() => {
     </ul>
   </div>
   <div class="more">
-    <button class="btn mb-3" v-if="offset < placeList.length" @click="readMore()">더 보기</button>
+    <button class="btn mb-3" v-if="offset < places.length" @click="readMore()">더 보기</button>
   </div>
 </template>
 

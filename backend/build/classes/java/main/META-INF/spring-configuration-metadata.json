@@ -1,0 +1,16 @@
+{
+  "groups": [
+    {
+      "name": "oauth.google",
+      "type": "org.project.backend.environment.GoogleOauthProperties",
+      "sourceType": "org.project.backend.environment.GoogleOauthProperties"
+    },
+    {
+      "name": "oauth.kakao",
+      "type": "org.project.backend.environment.KakaoOauthProperties",
+      "sourceType": "org.project.backend.environment.KakaoOauthProperties"
+    }
+  ],
+  "properties": [],
+  "hints": []
+}

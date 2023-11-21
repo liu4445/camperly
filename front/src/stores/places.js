@@ -40,7 +40,7 @@ export const usePlaceStore = defineStore("place", () => {
     })
       .then((res) => {
         console.log(res);
-        placeList.value = res.data;
+        placeList.value = res.data.campingPlaceDtos;
         console.log("성공");
       })
       .catch((error) => {
