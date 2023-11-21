@@ -3,9 +3,9 @@ import "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js";
 import { ref, onUpdated } from "vue";
 
 import MoreSelectModal from "@/components/MoreSelectModal.vue";
-import { useCounterStore } from "@/stores/counter.js";
+import { usePlaceStore } from "@/stores/place.js";
 import { storeToRefs } from "pinia";
-const store = useCounterStore();
+const store = usePlaceStore();
 const { json } = storeToRefs(store);
 
 const MoreSelectOpen = ref(false);

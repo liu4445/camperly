@@ -1,7 +1,8 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
 import axios from "axios";
-export const useCounterStore = defineStore("counter", () => {
+const { VITE_VUE_API_URL } = import.meta.env;
+export const usePlaceStore = defineStore("place", () => {
   //받은 캠핑장소들
   const placeList = ref([]);
 
@@ -35,7 +36,7 @@ export const useCounterStore = defineStore("counter", () => {
     console.log(convertToQueryParameter(json.value));
     await axios({
       method: "get",
-      url: "http://localhost:8080/" + "trip/place/list?" + params,
+      url: VITE_VUE_API_URL + "trip/place/list?" + params,
     })
       .then((res) => {
         console.log(res);

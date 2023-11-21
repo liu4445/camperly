@@ -1,10 +1,10 @@
 <script setup>
 import { ref, defineProps, onUpdated, onMounted } from "vue";
-import { useCounterStore } from "@/stores/counter.js";
+import { usePlaceStore } from "@/stores/place.js";
 import { storeToRefs } from "pinia";
-const store = useCounterStore();
+const store = usePlaceStore();
 const { json } = storeToRefs(store);
-const { VITE_VUE_API_URL } = import.meta.env;
+
 const emit = defineEmits(["moreSelect"]);
 const props = defineProps({
   data: Boolean,

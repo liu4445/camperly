@@ -2,11 +2,11 @@
 import axios from "axios";
 import { ref, onMounted } from "vue";
 import MainListItem from "./MainListItem.vue";
-import { useCounterStore } from "@/stores/counter";
+import { usePlaceStore } from "@/stores/place";
 import { storeToRefs } from "pinia";
 
 // import TempListFile from "./TempListFile.vue";
-const store = useCounterStore();
+const store = usePlaceStore();
 const { getList } = store;
 const { placeList } = storeToRefs(store);
 
