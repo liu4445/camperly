@@ -15,6 +15,8 @@ import org.project.backend.constant.Theme;
 public interface CampingPlaceDao {
 	List<CampingPlaceDto> findAll();
 
+	CampingPlaceDto findByContentId(@Param("contentId") Long contentId);
+
 	boolean existsByCampingPlaceAndLocationType(
 			@Param("campingPlace") CampingPlaceDto campingPlace,
 			@Param("locationType") LocationType locationType

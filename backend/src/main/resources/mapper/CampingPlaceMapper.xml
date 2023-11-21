@@ -54,7 +54,13 @@
 
     <select id="findAll" resultMap="campingPlace">
         select *
-        from CAMPING_PLACE_LOCATION_TYPE
+        from CAMPING_PLACE
+    </select>
+
+    <select id="findByContentId" resultMap="campingPlace">
+        select *
+        from CAMPING_PLACE
+        where CONTENT_ID = #{contentId}
     </select>
 
     <select id="existsByCampingPlaceAndLocationType" parameterType="map" resultType="boolean">
