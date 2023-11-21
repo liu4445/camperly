@@ -1,6 +1,7 @@
 package org.project.backend.camping.place.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,6 +21,8 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class CampingPlaceService {
+
+	private final static int pageSize = 20;
 
 	private final CampingPlaceDao campingPlaceDao;
 
@@ -41,7 +44,15 @@ public class CampingPlaceService {
 		if (searchRequest.getSubFacilities() != null && !searchRequest.getSubFacilities().isEmpty()) {
 			campingPlaces = filterBySubFacilities(campingPlaces, searchRequest.getSubFacilities());
 		}
-		return new SearchResponse(campingPlaces.subList(0, Math.min(10, campingPlaces.size())));
+
+		return new SearchResponse(paging(searchRequest.getPage(), campingPlaces));
+	}
+
+	private List<CampingPlaceDto> paging(int page, List<CampingPlaceDto> campingPlaces) {
+		if (campingPlaces.size() < (page - 1) * pageSize) {
+			return Collections.emptyList();
+		}
+		return campingPlaces.subList((page - 1) * pageSize, Math.min(page * pageSize, campingPlaces.size()));
 	}
 
 	private List<CampingPlaceDto> filterByLocationType(
