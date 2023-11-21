@@ -10,7 +10,7 @@ const router = createRouter({
       component: MainView,
     },
     {
-      path: "/:{contentId}",
+      path: "/:contentId",
       name: "detail",
       component: DetailView,
     },
