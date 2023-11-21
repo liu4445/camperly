@@ -24,5 +24,5 @@ public class SearchRequest {
 
 	private boolean isLike = false;
 
-	private final int page = 1;
+	private final int page ;
 }

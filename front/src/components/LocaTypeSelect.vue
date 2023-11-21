@@ -1,11 +1,10 @@
 <script setup>
 import "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js";
-import { ref, onUpdated } from "vue";
+import { ref, onUpdated, watch } from "vue";
 
 import MoreSelectModal from "@/components/MoreSelectModal.vue";
 import { usePlaceStore } from "@/stores/places.js";
 import { storeToRefs } from "pinia";
-import MainList from "./MainList.vue";
 const store = usePlaceStore();
 const { json, isLocationSelect } = storeToRefs(store);
 
@@ -17,13 +16,15 @@ const changeMoreSelect = () => {
   else MoreSelectOpen.value = true;
 };
 
-const clickLocation = () => {
-  json.value.locationTypes = LocationData.value;
+watch(LocationData, (newLocationData, oldLocationData) => {
+  if (newLocationData != oldLocationData) {
+    json.value.locationTypes = LocationData.value;
+  }
   if (isLocationSelect.value == true) isLocationSelect.value = false;
   else {
     isLocationSelect.value = true;
   }
-};
+});
 </script>
 
 <template>
@@ -37,7 +38,6 @@ const clickLocation = () => {
           value="해변"
           class="rounded-circle w-100 h-100"
           v-model="LocationData"
-          @click="clickLocation"
         />
         <label for="beach" class="rounded-circle">
           <img
@@ -57,7 +57,6 @@ const clickLocation = () => {
           value="섬"
           class="rounded-circle w-100 h-100"
           v-model="LocationData"
-          @click="clickLocation"
         />
         <label for="island" class="rounded-circle">
           <img
@@ -77,7 +76,6 @@ const clickLocation = () => {
           value="산"
           class="rounded-circle w-100 h-100"
           v-model="LocationData"
-          @click="clickLocation"
         />
         <label for="moutain" class="rounded-circle">
           <img
@@ -97,7 +95,6 @@ const clickLocation = () => {
           value="숲"
           class="rounded-circle w-100 h-100"
           v-model="LocationData"
-          @click="clickLocation"
         />
         <label for="forest" class="rounded-circle">
           <img
@@ -117,7 +114,6 @@ const clickLocation = () => {
           value="계곡"
           class="rounded-circle w-100 h-100"
           v-model="LocationData"
-          @click="clickLocation"
         />
         <label for="valley" class="rounded-circle">
           <img
@@ -136,7 +132,6 @@ const clickLocation = () => {
           value="강"
           class="rounded-circle w-100 h-100"
           v-model="LocationData"
-          @click="clickLocation"
         />
         <label for="river" class="rounded-circle">
           <img src="@/assets/img/pictogram/free-icon-river-9997808.png" width="40" height="40" />
@@ -151,7 +146,6 @@ const clickLocation = () => {
           value="호수"
           class="rounded-circle w-100 h-100"
           v-model="LocationData"
-          @click="clickLocation"
         />
         <label for="lake" class="rounded-circle">
           <img src="@/assets/img/pictogram/free-icon-lake-3105252.png" width="40" height="40" />
@@ -166,7 +160,6 @@ const clickLocation = () => {
           value="도심"
           class="rounded-circle w-100 h-100"
           v-model="LocationData"
-          @click="clickLocation"
         />
         <label for="city" class="rounded-circle">
           <img
@@ -212,7 +205,7 @@ const clickLocation = () => {
   </div>
   <MoreSelectModal
     :data="MoreSelectOpen"
-    :location-type="LocationData"
+    :location-types="LocationData"
     @more-select="changeMoreSelect"
   />
 </template>

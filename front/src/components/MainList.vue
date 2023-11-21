@@ -7,19 +7,12 @@ import { storeToRefs } from "pinia";
 
 // import TempListFile from "./TempListFile.vue";
 const store = usePlaceStore();
-const { getList } = store;
-const { placeList, isLocationSelect } = storeToRefs(store);
+const { getList, putList } = store;
+const { placeList, isLocationSelect, isMoreSelect } = storeToRefs(store);
 const places = ref([]);
 
-const visiblePlaces = ref([]);
-const limit = 20;
-const offset = ref(0);
-const curNum = ref(0);
 const readMore = () => {
-  const startIdx = visiblePlaces.value.length;
-  const endIdx = startIdx + limit;
-  visiblePlaces.value = visiblePlaces.value.concat(places.value.slice(startIdx, endIdx));
-  offset.value = endIdx;
+  putList();
 };
 
 const getPlaceList = async () => {
@@ -27,8 +20,6 @@ const getPlaceList = async () => {
   console.log("getPlaceList");
   console.log("result");
   places.value = placeList.value;
-  visiblePlaces.value = places.value.slice(0, limit);
-  offset.value = limit;
 };
 getPlaceList();
 
@@ -37,22 +28,23 @@ watch(isLocationSelect, (newisLocationSelect, oldisLocationSelect) => {
     getPlaceList();
   }
 });
+
+watch(isMoreSelect, (newisMoreSelect, oldisMoreSelect) => {
+  if (newisMoreSelect != oldisMoreSelect) {
+    getPlaceList();
+  }
+});
 </script>
 
 <template>
   <div class="mainList">
     <ul>
-      <MainListItem
-        v-for="place in visiblePlaces"
-        :data="{ place }"
-        v-model="curNum"
-        :key="place.contentId"
-      >
+      <MainListItem v-for="place in places" :data="{ place }" :key="place.contentId">
       </MainListItem>
     </ul>
   </div>
   <div class="more">
-    <button class="btn mb-3" v-if="offset < places.length" @click="readMore()">더 보기</button>
+    <button class="btn mb-3" v-if="places.length >= 10" @click="readMore()">더 보기</button>
   </div>
 </template>
 

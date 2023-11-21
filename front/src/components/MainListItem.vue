@@ -10,7 +10,13 @@ Id.value = props.data.place.contentId;
   <li>
     <div class="place-card">
       <div class="place-img" style="width: 310px">
-        <img :src="data.place.firstImageUrl" class="card-img-top" style="height: 285px" />
+        <img
+          v-if="data.place.firstImageUrl != ''"
+          :src="data.place.firstImageUrl"
+          class="card-img-top"
+          style="height: 285px"
+        />
+        <img v-else src="@/assets/img/no-photo.jpg" class="card-img-top" style="height: 285px" />
       </div>
       <div class="place-body">
         <h5 class="place-title">
