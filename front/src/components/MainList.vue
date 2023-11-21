@@ -1,5 +1,4 @@
 <script setup>
-import axios from "axios";
 import { ref, onMounted, onUpdated, watch } from "vue";
 import MainListItem from "./MainListItem.vue";
 import { usePlaceStore } from "@/stores/places";
@@ -44,7 +43,7 @@ watch(isMoreSelect, (newisMoreSelect, oldisMoreSelect) => {
     </ul>
   </div>
   <div class="more">
-    <button class="btn mb-3" v-if="places.length >= 10" @click="readMore()">더 보기</button>
+    <button class="btn mb-3" v-if="places.length >= 20" @click="readMore()">더 보기</button>
   </div>
 </template>
 
