@@ -5,7 +5,7 @@ const { VITE_VUE_API_URL } = import.meta.env;
 import axios from "axios";
 import { useRoute } from "vue-router";
 import WeatherCharts from "./WeatherCharts.vue";
-
+import Map from "./Map.vue";
 const place = ref([]);
 const imageList = ref([]);
 const route = useRoute();
@@ -52,7 +52,9 @@ function getDetail() {
           :src="place.firstImageUrl"
           onerror="this.src='src/assets/img/no-photo.jpg'; this.style.width='80%';"
       /></span>
-      <span class="map"></span>
+      <span class="map">
+        <Map :x="place.mapX" :y="place.mapY"></Map>
+      </span>
     </div>
     <hr />
     <div class="information-intro">
@@ -163,7 +165,6 @@ a {
   display: inline-block;
   width: 59.5%;
   height: 400px;
-  border: 1px solid black;
   border-radius: 15px;
   overflow: hidden;
   text-align: center;
@@ -176,8 +177,8 @@ img {
   display: inline-block;
   width: 39.5%;
   height: 400px;
-  border: 1px solid black;
   border-radius: 15px;
+  overflow: hidden;
 }
 .information-intro {
   margin-top: 20px;
