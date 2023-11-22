@@ -23,41 +23,6 @@ const changesignupOpen = () => {
     signupOpen.value = true;
   }
 };
-
-const logout = () => {
-  localStorage.removeItem("token");
-  loginStatus.value = false;
-}
-const popUpAlert = () => {
-  alert("로그인이 필요합니다.");
-};
-
-onMounted(() => {
-  if (localStorage.getItem("token") != null) {
-    loginStatus.value = true;
-  }
-});
-
-const clickLikeList = () => {
-  const token = localStorage.getItem("token");
-  axios({
-    method: "post",
-    url: VITE_VUE_API_URL + "member/auth",
-    headers: { Authorization: `Bearer ${token}` },
-  })
-    .then((res) => {
-      console.log("logincheck", res);
-      loginStatus.value = true;
-      router.push("/likelist")
-    })
-
-    .catch((error) => {
-      popUpAlert();
-      loginStatus.value = false;
-      localStorage.removeItem("token");
-      console.log(error);
-    });
-}
 </script>
 
 <template>
