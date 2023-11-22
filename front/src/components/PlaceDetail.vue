@@ -1,6 +1,7 @@
 <script setup>
 import LikeButton from "./LikeButton.vue";
 import { ref } from "vue";
+import WeatherCharts from "./WeatherCharts.vue";
 import TempListFile from "./TempListFile.vue";
 
 const data = ref([]);
@@ -28,7 +29,7 @@ data.value = TempListFile;
         <a :href="data.homepage">홈페이지로 가기</a>
         <span style="margin-left: 10px">{{ data.resveCl }}</span>
       </div>
-
+      <div>{{ data.addr }}</div>
       <div class="like">♥ 11</div>
     </div>
     <hr />
@@ -74,7 +75,9 @@ data.value = TempListFile;
             </ul>
           </div>
         </div>
-        <div class="body-weather"></div>
+        <div class="body-weather">
+          <WeatherCharts :content-id="data.contentId" />
+        </div>
       </div>
       <hr />
       <div class="body-text">
@@ -141,7 +144,7 @@ a {
 }
 .image {
   display: inline-block;
-  width: 49.5%;
+  width: 59.5%;
   height: 400px;
   border: 1px solid black;
   border-radius: 15px;
@@ -153,7 +156,7 @@ img {
 }
 .map {
   display: inline-block;
-  width: 49.5%;
+  width: 39.5%;
   height: 400px;
   border: 1px solid black;
   border-radius: 15px;
@@ -193,6 +196,7 @@ img {
   width: 39.5%;
   height: 100%;
   border-radius: 15px;
+  border: 0.1px solid;
 }
 
 .information-body .body-data {
