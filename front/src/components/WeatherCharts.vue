@@ -5,6 +5,7 @@ import "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js";
 import { ref, defineProps, onMounted } from "vue";
 const { VITE_VUE_API_URL } = import.meta.env;
 const weather = ref([]);
+
 onMounted(() => {
   getWeather();
 });

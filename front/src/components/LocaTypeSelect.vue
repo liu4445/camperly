@@ -41,7 +41,7 @@ watch(LocationData, (newLocationData, oldLocationData) => {
         />
         <label for="beach" class="rounded-circle">
           <img
-            src="@/assets/img/pictogram/free-icon-sunbed-7759411.png"
+            src="@/assets/img/pictogram/location/free-icon-sunbed-7759411.png"
             alt
             width="40"
             height="40"
@@ -60,7 +60,7 @@ watch(LocationData, (newLocationData, oldLocationData) => {
         />
         <label for="island" class="rounded-circle">
           <img
-            src="@/assets/img/pictogram/free-icon-island-11076490.png"
+            src="@/assets/img/pictogram/location/free-icon-island-11076490.png"
             alt
             width="40"
             height="40"
@@ -79,7 +79,7 @@ watch(LocationData, (newLocationData, oldLocationData) => {
         />
         <label for="moutain" class="rounded-circle">
           <img
-            src="@/assets/img/pictogram/free-icon-mountain-7894097.png"
+            src="@/assets/img/pictogram/location/free-icon-mountain-7894097.png"
             alt
             width="40"
             height="40"
@@ -98,7 +98,7 @@ watch(LocationData, (newLocationData, oldLocationData) => {
         />
         <label for="forest" class="rounded-circle">
           <img
-            src="@/assets/img/pictogram/free-icon-pine-tree-10415456.png"
+            src="@/assets/img/pictogram/location/free-icon-pine-tree-10415456.png"
             alt
             width="40"
             height="40"
@@ -117,7 +117,7 @@ watch(LocationData, (newLocationData, oldLocationData) => {
         />
         <label for="valley" class="rounded-circle">
           <img
-            src="@/assets/img/pictogram/free-icon-waterfall-7441627.png"
+            src="@/assets/img/pictogram/location/free-icon-waterfall-7441627.png"
             width="40"
             height="40"
           />
@@ -134,7 +134,11 @@ watch(LocationData, (newLocationData, oldLocationData) => {
           v-model="LocationData"
         />
         <label for="river" class="rounded-circle">
-          <img src="@/assets/img/pictogram/free-icon-river-9997808.png" width="40" height="40" />
+          <img
+            src="@/assets/img/pictogram/location/free-icon-river-9997808.png"
+            width="40"
+            height="40"
+          />
           <div>강</div>
         </label>
       </li>
@@ -148,7 +152,11 @@ watch(LocationData, (newLocationData, oldLocationData) => {
           v-model="LocationData"
         />
         <label for="lake" class="rounded-circle">
-          <img src="@/assets/img/pictogram/free-icon-lake-3105252.png" width="40" height="40" />
+          <img
+            src="@/assets/img/pictogram/location/free-icon-lake-3105252.png"
+            width="40"
+            height="40"
+          />
           <div>호수</div>
         </label>
       </li>
@@ -163,7 +171,7 @@ watch(LocationData, (newLocationData, oldLocationData) => {
         />
         <label for="city" class="rounded-circle">
           <img
-            src="@/assets/img/pictogram/free-icon-cityscape-618859.png"
+            src="@/assets/img/pictogram/location/free-icon-cityscape-618859.png"
             alt
             width="40"
             height="40"

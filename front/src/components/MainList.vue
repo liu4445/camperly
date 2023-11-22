@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, onUpdated, watch } from "vue";
-import MainListItem from "./MainListItem.vue";
+import MainListItem from "@/components/MainListItem.vue";
 import { usePlaceStore } from "@/stores/places";
 import { storeToRefs } from "pinia";
 

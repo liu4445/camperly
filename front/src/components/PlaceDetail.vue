@@ -1,17 +1,45 @@
 <script setup>
 import LikeButton from "./LikeButton.vue";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
+const { VITE_VUE_API_URL } = import.meta.env;
+import axios from "axios";
+import { useRoute } from "vue-router";
 import WeatherCharts from "./WeatherCharts.vue";
-import TempListFile from "./TempListFile.vue";
 
-const data = ref([]);
-data.value = TempListFile;
+const place = ref([]);
+const imageList = ref([]);
+const route = useRoute();
+onMounted(() => {
+  getDetail();
+});
+const contentId = ref(0);
+contentId.value = route.params.contentId;
+
+function getDetail() {
+  const params = contentId.value;
+  console.log("디테일 로드.", params);
+  axios({
+    method: "get",
+    url: VITE_VUE_API_URL + "camping/place/" + params,
+  })
+    .then((res) => {
+      place.value = res.data.campingPlaceDto;
+      imageList.value = res.data.imageUrls;
+
+      console.log(place.value);
+      console.log(imageList.value);
+      console.log("성공");
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
 </script>
 
 <template>
   <div class="main">
     <div class="title">
-      <h1>{{ data.facltNm }}</h1>
+      <h1>{{ place.campsiteName }}</h1>
 
       <div class="likebtn">
         <LikeButton />
@@ -19,27 +47,29 @@ data.value = TempListFile;
       <hr style="border-width: 2px" />
     </div>
     <div class="graphic">
-      <span class="image"><img :src="data.firstImageUrl" /></span>
+      <span class="image"
+        ><img
+          :src="place.firstImageUrl"
+          onerror="this.src='src/assets/img/no-photo.jpg'; this.style.width='80%';"
+      /></span>
       <span class="map"></span>
     </div>
     <hr />
     <div class="information-intro">
-      <div>tel {{ data.tel }}</div>
+      <div>tel {{ place.tel }}</div>
       <div>
-        <a :href="data.homepage">홈페이지로 가기</a>
-        <span style="margin-left: 10px">{{ data.resveCl }}</span>
+        <a :href="place.homepage">홈페이지로 가기</a>
       </div>
-      <div>{{ data.addr }}</div>
+      <div>{{ place.reserveType }}</div>
+      <div>{{ place.address }}</div>
       <div class="like">♥ 11</div>
     </div>
     <hr />
     <div class="information-body">
       <div class="subfacltlist">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet exercitationem sed optio cum
-        iusto dicta doloremque itaque quisquam libero voluptatum est hic iure vel ex architecto
-        beatae, error ad perspiciatis?Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-        Cumque exercitationem voluptatibus aut nesciunt ipsam, iste ad maxime ipsum! Beatae possimus
-        explicabo, soluta dicta unde eos aliquam voluptatibus quas voluptas eaque?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia aspernatur quaerat nulla
+        voluptates beatae odio consectetur alias sapiente, dicta recusandae cupiditate aut illo
+        voluptatibus suscipit fugiat! Neque esse aperiam commodi?
       </div>
       <hr />
       <div class="body-top">
@@ -47,59 +77,46 @@ data.value = TempListFile;
           <div class="data-top">
             <div class="data-top-left">
               <ul>
-                <li>{{ data.induty }}</li>
-                <li>{{ data.facltDivNm }}</li>
-                <li>{{ data.mangeDivNm }}</li>
-                <li>{{ data.lctCl }}</li>
-                <li>ㅇㅇㅇㅇㅇㅇㅇㅇ</li>
+                <li>{{ place.induty }}</li>
+                <li>{{ place.facltDivName }}</li>
+                <li>{{ place.mangeDivName }}</li>
+                <li>{{ place.locationType }}</li>
               </ul>
             </div>
             <div class="data-top-right">
               <ul>
-                <li>{{ data.operPdCl }}</li>
-                <li>{{ data.operDeCl }}</li>
-                <li>{{ data.posblFcltyCl }}</li>
-                <li>{{ data.animalCmgCl }}</li>
-                <li>ㅇㅇㅇㅇㅇㅇ</li>
+                <li>운영계절{{ place.oeprSeason }}</li>
+                <li>운영시간{{ place.operDate }}</li>
+                <li>동물{{ place.animal }}</li>
               </ul>
             </div>
           </div>
           <div class="data-bottom">
             <ul>
-              <li>카라반 몇면 뭐 몇면(vif)</li>
-              <li>기타 부대 시설 : {{ data.sbrsEtc }}</li>
-              <li>카라반 내부 시설(vif) : {{ data.caravInnerFclty }}</li>
-              <li>화로대 : {{ data.brazierCl }}</li>
+              <li>카라반({{ place.caravanSiteCnt }})</li>
+              <li>기타 부대 시설 : {{ place.etcFacilities }}</li>
+              <li>카라반 내부 시설(vif) : {{ place.etcCaravanFacilities }}</li>
+              <li>화로대 : {{ place.brazier }}</li>
               <li>안전시설현황 :</li>
+              <li>{{ place.etcGlampingFacilities }}</li>
+              <li>{{ place.experience }}</li>
               <li>이것저것추가</li>
             </ul>
           </div>
         </div>
         <div class="body-weather">
-          <WeatherCharts :content-id="data.contentId" />
+          <WeatherCharts :content-id="contentId" />
         </div>
       </div>
       <hr />
       <div class="body-text">
-        {{ data.intro }}
+        {{ place.intro }}
       </div>
     </div>
     <div class="photo-list">
-      <div class="photo"></div>
-      <div class="photo"></div>
-      <div class="photo"></div>
-      <div class="photo"></div>
-      <div class="photo"></div>
-      <div class="photo"></div>
-      <div class="photo"></div>
-      <div class="photo"></div>
-      <div class="photo"></div>
-      <div class="photo"></div>
-      <div class="photo"></div>
-      <div class="photo"></div>
-      <div class="photo"></div>
-      <div class="photo"></div>
-      <div class="photo"></div>
+      <div class="photo" v-for="image in imageList" :key="imageList.contentId">
+        <img :src="image.imgUrl" onerror="this.style.display='none';" />
+      </div>
     </div>
   </div>
 </template>
@@ -149,6 +166,7 @@ a {
   border: 1px solid black;
   border-radius: 15px;
   overflow: hidden;
+  text-align: center;
 }
 img {
   width: 100%;
@@ -197,8 +215,8 @@ img {
   height: 100%;
   border-radius: 15px;
   border: 0.1px solid;
+  padding-left: 30px;
 }
-
 .information-body .body-data {
   display: inline-block;
   width: 59.5%;
@@ -231,12 +249,13 @@ img {
   border-radius: 15px;
   margin-top: 20px;
   overflow: hidden;
+  margin-bottom: 40px;
 }
-.photo-list > * {
+.photo {
   display: inline-block;
-  border: 3px solid red;
+  border: 2px solid white;
   width: 20%;
-  height: 150px;
+  height: 180px;
 }
 
 .like {

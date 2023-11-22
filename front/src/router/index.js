@@ -16,6 +16,7 @@ const router = createRouter({
       path: "/:contentId",
       name: "detail",
       component: DetailView,
+      props: true,
     },
     {
       path: "/kakao",
