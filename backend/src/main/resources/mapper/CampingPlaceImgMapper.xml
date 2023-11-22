@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.project.backend.camping.place.dao.CampingPlaceImgDao">
+    <resultMap id="campingPlaceImgDto" type="org.project.backend.camping.place.dto.CampingPlaceImgDto">
+        <result column="CONTENT_ID" property="contentId"></result>
+        <result column="IMG_URL" property="imgUrl"></result>
+    </resultMap>
+
+    <select id="findByContentId" parameterType="map" resultMap="campingPlaceImgDto">
+        select *
+        from CAMPING_PLACE_IMG
+        where content_id = #{contentId}
+    </select>
+
+</mapper>

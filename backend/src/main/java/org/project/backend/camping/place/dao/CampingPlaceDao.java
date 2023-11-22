@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.project.backend.camping.place.dto.CampingPlaceDto;
+import org.project.backend.camping.place.dto.CampingPlaceImgDto;
 import org.project.backend.constant.LocationType;
 import org.project.backend.constant.MainFacilities;
 import org.project.backend.constant.OperationType;
