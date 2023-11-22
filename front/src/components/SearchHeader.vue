@@ -21,6 +21,12 @@ const sendData = () => {
   json.value.locationFlag = locationFlag.value;
   json.value.nameFlag = nameFlag.value;
 };
+
+const prevent = (event) => {
+  if (event.keyCode === 13) {
+    event.preventDefault();
+  };
+}
 </script>
 
 <template>
@@ -56,6 +62,7 @@ const sendData = () => {
       v-model="keyword"
       placeholder="검색어"
       @keyup="sendData"
+      @keydown="prevent"
     />
 
     <svg

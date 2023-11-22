@@ -36,13 +36,16 @@ public class CampingPlaceService {
 		List<CampingPlaceDto> campingPlaces = campingPlaceDao.findAll();
 
 		if (!searchRequest.getKeyword().isEmpty()) {
-			if ((searchRequest.isNameFlag() && searchRequest.isLocationFlag()) ||
-					(!searchRequest.isNameFlag() && !searchRequest.isLocationFlag())
-			) {
+			if (searchRequest.isNameFlag() && searchRequest.isLocationFlag()) {
 				campingPlaces = campingPlaces.stream()
 						.filter(campingPlace -> campingPlace.getCampsiteName().contains(searchRequest.getKeyword()))
 						.filter(campingPlace -> campingPlace.getAddress().contains(searchRequest.getKeyword()))
 						.collect(Collectors.toList());
+			} else if (!searchRequest.isNameFlag() && !searchRequest.isLocationFlag()) {
+				campingPlaces = campingPlaces.stream()
+						.filter(campingPlace -> campingPlace.getCampsiteName().contains(searchRequest.getKeyword()) ||
+								campingPlace.getCampsiteName().contains(searchRequest.getKeyword())
+						).collect(Collectors.toList());
 			} else if (searchRequest.isNameFlag()) {
 				campingPlaces = campingPlaces.stream()
 						.filter(campingPlace -> campingPlace.getCampsiteName().contains(searchRequest.getKeyword()))
@@ -69,7 +72,8 @@ public class CampingPlaceService {
 			campingPlaces = filterBySubFacilities(campingPlaces, searchRequest.getSubFacilities());
 		}
 
-		return new SearchResponse(paging(searchRequest.getPage(), campingPlaces));
+		List<CampingPlaceDto> paging = paging(searchRequest.getPage(), campingPlaces);
+		return new SearchResponse(paging);
 	}
 
 	private List<CampingPlaceDto> paging(int page, List<CampingPlaceDto> campingPlaces) {
@@ -173,6 +177,11 @@ public class CampingPlaceService {
 	public DetailResponse detail(long contentId) {
 		CampingPlaceDto campingPlace = campingPlaceDao.findByContentId(contentId);
 		List<CampingPlaceImgDto> imgUrls = campingPlaceImgDao.findByContentId(campingPlace.getContentId());
+		campingPlace.setLocationTypes(campingPlaceDao.findLocationTypeByContentId(campingPlace.getContentId()));
+		campingPlace.setMainFacilities(campingPlaceDao.findMainFacilitiesByContentId(campingPlace.getContentId()));
+		campingPlace.setOperationTypes(campingPlaceDao.findOperationTypeByContentId(campingPlace.getContentId()));
+		campingPlace.setSubFacilities(campingPlaceDao.findSubFacilitiesByContentId(campingPlace.getContentId()));
+		campingPlace.setThemes(campingPlaceDao.findThemeByContentId(campingPlace.getContentId()));
 		return new DetailResponse(campingPlace, imgUrls);
 	}
 }

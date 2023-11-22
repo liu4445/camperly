@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
 @Component
@@ -34,7 +35,7 @@ public class JwtUtil {
     public String generate(Long id) {
         Date now = new Date();
         return Jwts.builder()
-                .signWith(SignatureAlgorithm.HS256, secretKey)
+                .signWith(SignatureAlgorithm.HS256, secretKey.getBytes(StandardCharsets.UTF_8))
                 .setHeaderParam("typ", "ACCESS_TOKEN")
                 .setHeaderParam("alg", "HS256")
                 .setSubject(String.valueOf(id))
@@ -45,7 +46,7 @@ public class JwtUtil {
 
     public void validate(String token) {
         try {
-            Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
+            Jwts.parser().setSigningKey(secretKey.getBytes(StandardCharsets.UTF_8)).parseClaimsJws(token);
         } catch (Exception e) {
             log.error("", e);
             log.warn("잘못된 토큰으로 요청: {}", token);
@@ -55,7 +56,7 @@ public class JwtUtil {
 
     public Long getId(String token) {
         try {
-            Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
+            Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey.getBytes(StandardCharsets.UTF_8)).parseClaimsJws(token);
             return Long.valueOf(claims.getBody().getSubject());
         } catch (Exception e) {
             log.warn("잘못된 토큰으로 요청: {}", token);

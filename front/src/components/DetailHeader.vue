@@ -2,9 +2,11 @@
 import { ref ,onMounted } from "vue";
 import LoginModal from "./LoginModal.vue";
 import SearchHeader from "@/components/SearchHeader.vue";
-
+import axios from "axios"
+import { useRouter } from "vue-router"
+const { VITE_VUE_API_URL } = import.meta.env;
 const loginStatus = ref(false);
-
+const router = useRouter();
 const loginOpen = ref(false);
 const changeloginOpen = () => {
   if (loginOpen.value == true) loginOpen.value = false;
@@ -21,20 +23,6 @@ const changesignupOpen = () => {
     signupOpen.value = true;
   }
 };
-
-const logout = () => {
-  localStorage.removeItem("token");
-  loginStatus.value = false;
-}
-const popUpAlert = () => {
-  alert("로그인이 필요합니다.");
-};
-
-onMounted(() => {
-  if (localStorage.getItem("token") != null) {
-    loginStatus.value = true;
-  }
-});
 </script>
 
 <template>
@@ -88,7 +76,7 @@ onMounted(() => {
           </li>
           <li v-if="loginStatus == true">
             <li><hr class="dropdown-divider" /></li>
-            <a class="dropdown-item">찜목록</a>
+            <a class="dropdown-item" @click="clickLikeList">찜목록</a>
           </li>
         </ul>
       </div>

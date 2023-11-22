@@ -1,6 +1,15 @@
 package org.project.backend.camping.place.dto;
 
+import java.util.List;
+
+import org.project.backend.constant.LocationType;
+import org.project.backend.constant.MainFacilities;
+import org.project.backend.constant.OperationType;
+import org.project.backend.constant.SubFacilities;
+import org.project.backend.constant.Theme;
+
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 @Getter
@@ -53,4 +62,15 @@ public class CampingPlaceDto {
 	private String etcCaravanFacilities;
 	private String etcGlampingFacilities;
 	private String experience;
+
+	@Setter
+	private List<LocationType> locationTypes;
+	@Setter
+	private List<MainFacilities> mainFacilities;
+	@Setter
+	private List<OperationType> operationTypes;
+	@Setter
+	private List<SubFacilities> subFacilities;
+	@Setter
+	private List<Theme> themes;
 }

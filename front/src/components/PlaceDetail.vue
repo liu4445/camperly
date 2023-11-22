@@ -42,7 +42,7 @@ function getDetail() {
       <h1>{{ place.campsiteName }}</h1>
 
       <div class="likebtn">
-        <LikeButton />
+        <LikeButton :content-id="contentId" />
       </div>
       <hr style="border-width: 2px" />
     </div>

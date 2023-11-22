@@ -63,6 +63,41 @@
         where CONTENT_ID = #{contentId}
     </select>
 
+    <select id="findLocationTypeByContentId">
+        select l.NAME
+        from LOCATION_TYPE l
+                 inner join CAMPING_PLACE_LOCATION_TYPE CPLT on l.LOCATION_TYPE_ID = CPLT.LOCATION_TYPE_ID
+        where CPLT.CONTENT_ID = #{contentId}
+    </select>
+
+    <select id="findMainFacilitiesByContentId">
+        select m.NAME
+        from MAIN_FACILITIES m
+                 inner join CAMPING_PLACE_MAIN_FACILITIES CPMF on m.MAIN_FACILITIES_ID = CPMF.MAIN_FACILITIES_ID
+        where CPMF.CONTENT_ID = #{contentId}
+    </select>
+
+    <select id="findOperationTypeByContentId">
+        select o.NAME
+        from OPERATION_TYPE o
+                 inner join CAMPING_PLACE_OPERATION_TYPE CPOT on o.OPERATION_TYPE_ID = CPOT.OPERATION_TYPE_ID
+        where CPOT.CONTENT_ID = #{contentId}
+    </select>
+
+    <select id="findSubFacilitiesByContentId">
+        select s.NAME
+        from SUB_FACILITIES s
+                 inner join CAMPING_PLACE_SUB_FACILITIES CPSF on s.SUB_FACILITIES_ID = CPSF.SUB_FACILITIES_ID
+        where CPSF.CONTENT_ID = #{contentId}
+    </select>
+
+    <select id="findThemeByContentId">
+        select t.NAME
+        from THEME t
+                 inner join CAMPING_PLACE_THEME CPT on t.THEME_ID = CPT.THEME_ID
+        where CPT.CONTENT_ID = #{contentId}
+    </select>
+
     <select id="existsByCampingPlaceAndLocationType" parameterType="map" resultType="boolean">
         select exists(
                        select 1
@@ -80,8 +115,8 @@
                        from CAMPING_PLACE_OPERATION_TYPE c
                        where c.CONTENT_ID = #{campingPlace.contentId}
                          and c.OPERATION_TYPE_ID = (select o.OPERATION_TYPE_ID
-                                                   from OPERATION_TYPE o
-                                                   where o.NAME = #{operationType})
+                                                    from OPERATION_TYPE o
+                                                    where o.NAME = #{operationType})
                    )
     </select>
 
@@ -91,8 +126,8 @@
                        from CAMPING_PLACE_MAIN_FACILITIES c
                        where c.CONTENT_ID = #{campingPlace.contentId}
                          and c.MAIN_FACILITIES_ID = (select m.MAIN_FACILITIES_ID
-                                                   from MAIN_FACILITIES m
-                                                   where m.NAME = #{mainFacilities})
+                                                     from MAIN_FACILITIES m
+                                                     where m.NAME = #{mainFacilities})
                    )
     </select>
 
@@ -102,8 +137,8 @@
                        from CAMPING_PLACE_THEME c
                        where c.CONTENT_ID = #{campingPlace.contentId}
                          and c.THEME_ID = (select t.THEME_ID
-                                                   from THEME t
-                                                   where t.NAME = #{theme})
+                                           from THEME t
+                                           where t.NAME = #{theme})
                    )
     </select>
 
@@ -113,8 +148,8 @@
                        from CAMPING_PLACE_SUB_FACILITIES c
                        where c.CONTENT_ID = #{campingPlace.contentId}
                          and c.SUB_FACILITIES_ID = (select s.SUB_FACILITIES_ID
-                                                   from SUB_FACILITIES s
-                                                   where s.NAME = #{subFacilities})
+                                                    from SUB_FACILITIES s
+                                                    where s.NAME = #{subFacilities})
                    )
     </select>
 </mapper>
