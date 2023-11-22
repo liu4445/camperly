@@ -2,7 +2,7 @@
 import { defineProps, ref, onMounted } from "vue";
 
 const props = defineProps({
-  contentId: String,
+  contentId: Number,
 });
 const contentId = ref(0);
 
