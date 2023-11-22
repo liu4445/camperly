@@ -2,7 +2,7 @@
 import axios from "axios";
 import "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js";
 import { ref, defineProps, defineEmits, onUpdated, onMounted } from "vue";
-const { VITE_VUE_API_URL } = import.meta.env;
+const { VITE_VUE_API_URL, VITE_GOOGLE_LOGIN_URL, VITE_KAKAO_LOGIN_URL } = import.meta.env;
 
 // const onClickOutSide = () => {
 //   console.log("밖클릭");
@@ -56,6 +56,13 @@ const loginForm = () => {
       console.log(error);
     });
 };
+
+const kakaoLogin = () => {
+  location.href = VITE_KAKAO_LOGIN_URL;
+}
+const googleLogin = () => {
+  location.href = VITE_GOOGLE_LOGIN_URL;
+}
 </script>
 
 <template>
@@ -70,6 +77,7 @@ const loginForm = () => {
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
+          <h4>로그인</h4>
           <button
             type="button"
             class="btn-close"
@@ -79,6 +87,15 @@ const loginForm = () => {
           ></button>
         </div>
         <div class="modal-body">
+          <button type="button" class="login-button">
+            <img id="kakao-button-img" src="@/assets/img/login/kakao_login_medium_narrow.png" alt="카카오 로그인" @click="kakaoLogin" >
+          </button>
+<!--          <Google/>-->
+          <button type="button" class="login-button">
+            <img id="google-button-img" src="@/assets/img/login/web_light_sq_SI@4x.png" alt="구글 로그인" @click="googleLogin" >
+          </button>
+
+
           <!-- <form class="form-box py-2" @submit.prevent="loginForm">
             <h1 class="h3 mb-3 fw-normal">로그인</h1>
             <div class="form-floating">
@@ -130,8 +147,32 @@ const loginForm = () => {
   top: 0;
   left: 0;
 }
+
+.modal-header > h4 {
+  height: 20px;
+}
+
 .modal-body {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-button {
+  border: 0px;
+  background-color: white;
+  padding: 0px;
+  margin: 6px;
+}
+
+#kakao-button-img {
+  width: 200px;
+  height: 50px;
+}
+
+#google-button-img {
+  width: 200px;
+  height: 50px;
 }
 
 .form-check {
