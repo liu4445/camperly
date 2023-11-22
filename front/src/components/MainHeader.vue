@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref , onMounted} from "vue";
 import LoginModal from "./LoginModal.vue";
 import SignupModal from "./SignupModal.vue";
 import SearchHeader from "@/components/SearchHeader.vue";
@@ -22,6 +22,37 @@ const changesignupOpen = () => {
     signupOpen.value = true;
   }
 };
+const popUpAlert = () => {
+  alert("로그인이 필요합니다.");
+};
+const clickLike = () => {
+  const token = localStorage.getItem(token);
+  console.log("로그인체크  로드.", token);
+  axios({
+    method: "post",
+    url: VITE_VUE_API_URL + "/member/auth",
+    header: { Authorization: `Bearer ${token}` },
+  })
+    .then((res) => {
+      console.log("logincheck", res);
+      popUpAlert();
+    })
+
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
+const logout = () => {
+  localStorage.removeItem("token");
+  loginStatus.value = false;
+}
+
+onMounted(() => {
+  if (localStorage.getItem("token") != null) {
+  loginStatus.value = true;
+}
+})
 </script>
 
 <template>
@@ -66,17 +97,16 @@ const changesignupOpen = () => {
         <ul class="dropdown-menu dropdown-menu-lg-end">
           <li v-if="loginStatus == true">
             <li><hr class="dropdown-divider" /></li>
-            <a class="dropdown-item">마이페이지</a>
           </li>
           <li v-if="loginStatus == false">
             <a class="dropdown-item" @click="changeloginOpen">로그인</a>
           </li>
           <li v-else>
-            <a class="dropdown-item">로그아웃</a>
+            <a class="dropdown-item" @click="logout" >로그아웃 </a>
           </li>
           <li v-if="loginStatus == true">
             <li><hr class="dropdown-divider" /></li>
-            <a class="dropdown-item">찜목록</a>
+            <a class="dropdown-item" @click="clickLike">찜목록</a>
           </li>
         </ul>
       </div>
