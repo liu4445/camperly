@@ -8,6 +8,7 @@ spring:
 mybatis:
   mapper-locations:
     classpath:mapper/*.xml
+  type-handlers-package: org.project.backend.config
 jwt:
   secretKey: ${SECRET_KEY:camperly}
   accessTokenTimeOut: ${ACCESS_TOKEN_TIME_OUT:60}
