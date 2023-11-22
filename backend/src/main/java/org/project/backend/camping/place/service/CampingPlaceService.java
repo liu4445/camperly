@@ -35,6 +35,24 @@ public class CampingPlaceService {
 	public SearchResponse search(SearchRequest searchRequest) {
 		List<CampingPlaceDto> campingPlaces = campingPlaceDao.findAll();
 
+		if (!searchRequest.getKeyword().isEmpty()) {
+			if ((searchRequest.isNameFlag() && searchRequest.isLocationFlag()) ||
+					(!searchRequest.isNameFlag() && !searchRequest.isLocationFlag())
+			) {
+				campingPlaces = campingPlaces.stream()
+						.filter(campingPlace -> campingPlace.getCampsiteName().contains(searchRequest.getKeyword()))
+						.filter(campingPlace -> campingPlace.getAddress().contains(searchRequest.getKeyword()))
+						.collect(Collectors.toList());
+			} else if (searchRequest.isNameFlag()) {
+				campingPlaces = campingPlaces.stream()
+						.filter(campingPlace -> campingPlace.getCampsiteName().contains(searchRequest.getKeyword()))
+						.collect(Collectors.toList());
+			} else {
+				campingPlaces = campingPlaces.stream()
+						.filter(campingPlace -> campingPlace.getAddress().contains(searchRequest.getKeyword()))
+						.collect(Collectors.toList());
+			}
+		}
 		if (searchRequest.getOperationType() != null) {
 			campingPlaces = filterByOperationType(campingPlaces, searchRequest.getOperationType());
 		}

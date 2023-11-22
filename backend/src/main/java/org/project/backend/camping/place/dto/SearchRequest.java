@@ -16,6 +16,9 @@ import lombok.ToString;
 @ToString
 @RequiredArgsConstructor
 public class SearchRequest {
+	private final boolean nameFlag;
+	private final boolean locationFlag;
+	private final String keyword;
 	private final List<LocationType> locationTypes;
 	private final OperationType operationType;
 	private final List<MainFacilities> mainFacilities;

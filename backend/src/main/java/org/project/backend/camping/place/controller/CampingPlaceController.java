@@ -4,6 +4,7 @@ import org.project.backend.camping.place.dto.SearchRequest;
 import org.project.backend.camping.place.service.CampingPlaceService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +21,7 @@ public class CampingPlaceController {
 	private final CampingPlaceService campingPlaceService;
 
 	@GetMapping
-	public ResponseEntity search(SearchRequest searchRequest) {
+	public ResponseEntity search(@ModelAttribute SearchRequest searchRequest) {
 		log.info("캠핑장 검색 요청: {}", searchRequest);
 		return ResponseEntity.ok(campingPlaceService.search(searchRequest));
 	}
