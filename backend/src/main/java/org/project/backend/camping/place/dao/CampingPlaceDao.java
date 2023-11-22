@@ -18,6 +18,13 @@ public interface CampingPlaceDao {
 
 	CampingPlaceDto findByContentId(@Param("contentId") Long contentId);
 
+	List<LocationType> findLocationTypeByContentId(@Param("contentId") long contentId);
+	List<MainFacilities> findMainFacilitiesByContentId(@Param("contentId") long contentId);
+	List<OperationType> findOperationTypeByContentId(@Param("contentId") long contentId);
+	List<SubFacilities> findSubFacilitiesByContentId(@Param("contentId") long contentId);
+	List<Theme> findThemeByContentId(@Param("contentId") long contentId);
+
+
 	boolean existsByCampingPlaceAndLocationType(
 			@Param("campingPlace") CampingPlaceDto campingPlace,
 			@Param("locationType") LocationType locationType
