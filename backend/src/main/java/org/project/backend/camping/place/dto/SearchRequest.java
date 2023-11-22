@@ -21,8 +21,5 @@ public class SearchRequest {
 	private final List<MainFacilities> mainFacilities;
 	private final List<Theme> themes;
 	private final List<SubFacilities> subFacilities;
-
-	private boolean isLike = false;
-
-	private final int page = 1;
+	private final int page;
 }

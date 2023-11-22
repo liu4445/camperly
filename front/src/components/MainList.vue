@@ -1,74 +1,49 @@
 <script setup>
-import axios from "axios";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, onUpdated, watch } from "vue";
 import MainListItem from "./MainListItem.vue";
 import { usePlaceStore } from "@/stores/places";
 import { storeToRefs } from "pinia";
 
 // import TempListFile from "./TempListFile.vue";
 const store = usePlaceStore();
-const { getList } = store;
-const { placeList } = storeToRefs(store);
+const { getList, putList } = store;
+const { placeList, isLocationSelect, isMoreSelect } = storeToRefs(store);
+const places = ref([]);
 
-const visiblePlaces = ref([]);
-const limit = 20;
-const offset = ref(0);
-const curNum = ref(0);
 const readMore = () => {
-  const startIdx = visiblePlaces.value.length;
-  const endIdx = startIdx + limit;
-  visiblePlaces.value = visiblePlaces.value.concat(placeList.value.slice(startIdx, endIdx));
-  offset.value = endIdx;
+  putList();
 };
 
 const getPlaceList = async () => {
   await getList();
   console.log("getPlaceList");
   console.log("result");
-  visiblePlaces.value = placeList.value.campingPlaceDtos.slice(0, limit);
-  offset.value = limit;
+  places.value = placeList.value;
 };
-onMounted(() => {
-  console.log("mounted");
-  getPlaceList();
-});
-// const getPlaceList = () => {
-//   console.log("캠핑장리스트 얻기");
+getPlaceList();
 
-//   axios({
-//     method: "get",
-//     url: "http://localhost:8080/" + "trip/place/list",
-//   })
-//     .then((res) => {
-//       console.log(res.data);
-//       console.log("받아오기성공");
-//       places.value = res.data;
-//       console.log(places.value);
-//
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//     });
-// };
-// onMounted(() => {
-//   getPlaceList();
-// });
+watch(isLocationSelect, (newisLocationSelect, oldisLocationSelect) => {
+  if (newisLocationSelect != oldisLocationSelect) {
+    getPlaceList();
+  }
+});
+
+watch(isMoreSelect, (newisMoreSelect, oldisMoreSelect) => {
+  if (newisMoreSelect != oldisMoreSelect) {
+    getPlaceList();
+  }
+});
 </script>
 
 <template>
   <div class="mainList">
     <ul>
-      <MainListItem
-        v-for="place in visiblePlaces"
-        :data="{ place }"
-        v-model="curNum"
-        :key="place.contentId"
-      >
+      <MainListItem v-for="place in places" :data="{ place }" :key="place.contentId">
       </MainListItem>
     </ul>
   </div>
   <div class="more">
-    <button class="btn mb-3" v-if="offset < placeList.length" @click="readMore()">더 보기</button>
+    <button class="btn mb-3" v-if="places.length >= 20" @click="readMore()">더 보기</button>
   </div>
 </template>
 

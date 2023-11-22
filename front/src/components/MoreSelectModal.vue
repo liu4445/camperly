@@ -3,7 +3,7 @@ import { ref, defineProps, onUpdated, onMounted } from "vue";
 import { usePlaceStore } from "@/stores/places.js";
 import { storeToRefs } from "pinia";
 const store = usePlaceStore();
-const { json } = storeToRefs(store);
+const { json, isMoreSelect } = storeToRefs(store);
 
 const emit = defineEmits(["moreSelect"]);
 const props = defineProps({
@@ -16,8 +16,9 @@ const mainFacilities = ref([]);
 const themes = ref([]);
 const subFacilities = ref([]);
 const locationTypes = ref([]);
-locationTypes.value = props.locationTypes;
+
 onMounted(() => {
+  locationTypes.value = props.locationTypes;
   $("#moreSelect").on("hidden.bs.modal", () => {
     $("#moreSelect").modal("hide");
     emit("moreSelect");
@@ -30,6 +31,10 @@ onUpdated(() => {
   else $("#moreSelect").modal("hide");
 });
 const sendData = () => {
+  if (isMoreSelect.value == true) isMoreSelect.value = false;
+  else {
+    isMoreSelect.value = true;
+  }
   json.value.operationType = operationType.value;
   json.value.mainFacilities = mainFacilities.value;
   json.value.themes = themes.value;

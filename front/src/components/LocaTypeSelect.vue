@@ -1,12 +1,12 @@
 <script setup>
 import "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js";
-import { ref, onUpdated } from "vue";
+import { ref, onUpdated, watch } from "vue";
 
 import MoreSelectModal from "@/components/MoreSelectModal.vue";
 import { usePlaceStore } from "@/stores/places.js";
 import { storeToRefs } from "pinia";
 const store = usePlaceStore();
-const { json } = storeToRefs(store);
+const { json, isLocationSelect } = storeToRefs(store);
 
 const MoreSelectOpen = ref(false);
 const LocationData = ref([]);
@@ -16,8 +16,14 @@ const changeMoreSelect = () => {
   else MoreSelectOpen.value = true;
 };
 
-onUpdated(() => {
-  json.value.locationTypes = LocationData.value;
+watch(LocationData, (newLocationData, oldLocationData) => {
+  if (newLocationData != oldLocationData) {
+    json.value.locationTypes = LocationData.value;
+  }
+  if (isLocationSelect.value == true) isLocationSelect.value = false;
+  else {
+    isLocationSelect.value = true;
+  }
 });
 </script>
 
@@ -199,7 +205,7 @@ onUpdated(() => {
   </div>
   <MoreSelectModal
     :data="MoreSelectOpen"
-    :location-type="LocationData"
+    :location-types="LocationData"
     @more-select="changeMoreSelect"
   />
 </template>
