@@ -3,9 +3,11 @@ import { ref , onMounted} from "vue";
 import LoginModal from "./LoginModal.vue";
 import SignupModal from "./SignupModal.vue";
 import SearchHeader from "@/components/SearchHeader.vue";
-
+import {useRouter } from "vue-router"
+import axios from "axios"
+const { VITE_VUE_API_URL } = import.meta.env;
 const loginStatus = ref(false);
-
+const router = useRouter();
 const loginOpen = ref(false);
 const changeloginOpen = () => {
   if (loginOpen.value == true) loginOpen.value = false;
@@ -25,20 +27,23 @@ const changesignupOpen = () => {
 const popUpAlert = () => {
   alert("로그인이 필요합니다.");
 };
-const clickLike = () => {
-  const token = localStorage.getItem(token);
-  console.log("로그인체크  로드.", token);
+const clickLikeList = () => {
+  const token = localStorage.getItem("token");
   axios({
     method: "post",
-    url: VITE_VUE_API_URL + "/member/auth",
-    header: { Authorization: `Bearer ${token}` },
+    url: VITE_VUE_API_URL + "member/auth",
+    headers: { Authorization: `Bearer ${token}` },
   })
     .then((res) => {
       console.log("logincheck", res);
-      popUpAlert();
+      loginStatus.value = true;
+      router.push("/likelist")
     })
 
     .catch((error) => {
+      popUpAlert();
+      loginStatus.value = false;
+      localStorage.removeItem("token");
       console.log(error);
     });
 }
@@ -106,7 +111,7 @@ onMounted(() => {
           </li>
           <li v-if="loginStatus == true">
             <li><hr class="dropdown-divider" /></li>
-            <a class="dropdown-item" @click="clickLike">찜목록</a>
+            <a class="dropdown-item" @click="clickLikeList">찜목록</a>
           </li>
         </ul>
       </div>
