@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, ref, onMounted } from "vue";
+import { defineProps, ref, onMounted, watch } from "vue";
 
 const props = defineProps({
   contentId: Number,
@@ -9,6 +9,36 @@ const contentId = ref(0);
 onMounted(() => {
   contentId.value = props.contentId;
 });
+const clickCheck = ref(false);
+const loginStatus = ref(false);
+
+watch(clickCheck, (newclickCheck, oldclickCheck) => {
+  if (newclickCheck && !oldclickCheck) {
+    if (localStorage.getItem("token") != null) {
+    } else {
+      popUpAlert();
+    }
+  }
+});
+const popUpAlert = () => {
+  alert("로그인이 필요합니다.");
+};
+const loginCheck = () => {
+  const token = localStorage.getItem(token);
+  console.log("로그인체크  로드.", token);
+  axios({
+    method: "post",
+    url: VITE_VUE_API_URL + "/member/auth",
+    header: { Authorization: `Bearer ${token}` },
+  })
+    .then((res) => {
+      console.log("logincheck", res);
+    })
+
+    .catch((error) => {
+      console.log(error);
+    });
+};
 </script>
 
 <template>
