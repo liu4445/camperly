@@ -4,12 +4,16 @@ import java.sql.SQLException;
 
 import javax.validation.Valid;
 
+import org.project.backend.constant.OauthLoginType;
 import org.project.backend.member.dto.OauthLoginRequest;
 import org.project.backend.member.service.MemberService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
@@ -23,16 +27,19 @@ public class MemberController {
 
     private final MemberService memberService;
 
-    @PostMapping("/oauth/login")
-    public ResponseEntity oauthLogin(@RequestBody @Valid OauthLoginRequest oauthLoginRequest) {
+    @GetMapping("/{oauthLoginType}/login")
+    public ResponseEntity oauthLogin(
+            @PathVariable("oauthLoginType") OauthLoginType oauthLoginType,
+            @RequestParam String code
+    ) {
         try {
-            log.info("OAuth 요청: {}", oauthLoginRequest);
-            return ResponseEntity.ok().body(memberService.oauthLogin(oauthLoginRequest));
+            log.info("OAuth 요청: 소셜 타입 = {}, 요청 토큰 = {}", oauthLoginType, code);
+            return ResponseEntity.ok().body(memberService.oauthLogin(oauthLoginType, code));
         } catch (SQLException e) {
             log.warn(
                     "Oauth 로그인 중 에러 발생: 소셜 타입 = {}, 요청 토큰 = {}",
-                    oauthLoginRequest.getOauthLoginType(),
-                    oauthLoginRequest.getCode()
+                    oauthLoginType,
+                    code
             );
         }
         return ResponseEntity.badRequest().build();

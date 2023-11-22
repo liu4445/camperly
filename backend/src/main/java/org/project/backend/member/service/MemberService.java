@@ -3,6 +3,7 @@ package org.project.backend.member.service;
 import java.sql.SQLException;
 import java.util.UUID;
 
+import org.project.backend.constant.OauthLoginType;
 import org.project.backend.member.dao.MemberDao;
 import org.project.backend.member.dto.MemberDto;
 import org.project.backend.member.dto.OauthLoginRequest;
@@ -22,10 +23,10 @@ public class MemberService {
 	private final MemberDao memberDao;
 
 	@Transactional
-	public OauthLoginResponse oauthLogin(OauthLoginRequest oauthLoginRequest) throws SQLException {
+	public OauthLoginResponse oauthLogin(OauthLoginType oauthLoginType, String code) throws SQLException {
 		// 로그인 요청
-		String loginId = oauthServiceContext.getUserInfoByOauthToken(oauthLoginRequest);
-		MemberDto memberDto = memberDao.findByLoginIdAndOauthLoginType(loginId, oauthLoginRequest.getOauthLoginType());
+		String loginId = oauthServiceContext.getUserInfoByOauthToken(oauthLoginType, code);
+		MemberDto memberDto = memberDao.findByLoginIdAndOauthLoginType(loginId, oauthLoginType);
 		long userId;
 
 		// 회원가입 되어 있지 않으면 회원가입
@@ -33,7 +34,7 @@ public class MemberService {
 			userId = register(
 					MemberDto.builder()
 							.loginId(loginId)
-							.oauthLoginType(oauthLoginRequest.getOauthLoginType())
+							.oauthLoginType(oauthLoginType)
 							.name(UUID.randomUUID().toString())
 							.build()
 
