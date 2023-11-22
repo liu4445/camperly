@@ -1,10 +1,12 @@
 <script setup>
-import { ref } from "vue";
+import { ref ,onMounted } from "vue";
 import LoginModal from "./LoginModal.vue";
 import SearchHeader from "@/components/SearchHeader.vue";
-
+import axios from "axios"
+import { useRouter } from "vue-router"
+const { VITE_VUE_API_URL } = import.meta.env;
 const loginStatus = ref(false);
-
+const router = useRouter();
 const loginOpen = ref(false);
 const changeloginOpen = () => {
   if (loginOpen.value == true) loginOpen.value = false;
@@ -65,17 +67,16 @@ const changesignupOpen = () => {
         <ul class="dropdown-menu dropdown-menu-lg-end">
           <li v-if="loginStatus == true">
             <li><hr class="dropdown-divider" /></li>
-            <a class="dropdown-item">마이페이지</a>
           </li>
           <li v-if="loginStatus == false">
             <a class="dropdown-item" @click="changeloginOpen">로그인</a>
           </li>
           <li v-else>
-            <a class="dropdown-item">로그아웃</a>
+            <a class="dropdown-item" @click="logout">로그아웃</a>
           </li>
           <li v-if="loginStatus == true">
             <li><hr class="dropdown-divider" /></li>
-            <a class="dropdown-item">찜목록</a>
+            <a class="dropdown-item" @click="clickLikeList">찜목록</a>
           </li>
         </ul>
       </div>

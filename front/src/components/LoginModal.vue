@@ -4,11 +4,6 @@ import "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js";
 import { ref, defineProps, defineEmits, onUpdated, onMounted } from "vue";
 const { VITE_VUE_API_URL, VITE_GOOGLE_LOGIN_URL, VITE_KAKAO_LOGIN_URL } = import.meta.env;
 
-// const onClickOutSide = () => {
-//   console.log("밖클릭");
-//   $("#login").modal("hide");
-//   emit("loginClose");
-// };
 const props = defineProps({
   data: Boolean,
 });
@@ -59,10 +54,10 @@ const loginForm = () => {
 
 const kakaoLogin = () => {
   location.href = VITE_KAKAO_LOGIN_URL;
-}
+};
 const googleLogin = () => {
   location.href = VITE_GOOGLE_LOGIN_URL;
-}
+};
 </script>
 
 <template>
@@ -88,13 +83,22 @@ const googleLogin = () => {
         </div>
         <div class="modal-body">
           <button type="button" class="login-button">
-            <img id="kakao-button-img" src="@/assets/img/login/kakao_login_medium_narrow.png" alt="카카오 로그인" @click="kakaoLogin" >
+            <img
+              id="kakao-button-img"
+              src="@/assets/img/login/kakao_login_medium_narrow.png"
+              alt="카카오 로그인"
+              @click="kakaoLogin"
+            />
           </button>
-<!--          <Google/>-->
+          <!--          <Google/>-->
           <button type="button" class="login-button">
-            <img id="google-button-img" src="@/assets/img/login/web_light_sq_SI@4x.png" alt="구글 로그인" @click="googleLogin" >
+            <img
+              id="google-button-img"
+              src="@/assets/img/login/web_light_sq_SI@4x.png"
+              alt="구글 로그인"
+              @click="googleLogin"
+            />
           </button>
-
 
           <!-- <form class="form-box py-2" @submit.prevent="loginForm">
             <h1 class="h3 mb-3 fw-normal">로그인</h1>
