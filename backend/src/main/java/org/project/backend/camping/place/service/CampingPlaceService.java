@@ -69,7 +69,8 @@ public class CampingPlaceService {
 			campingPlaces = filterBySubFacilities(campingPlaces, searchRequest.getSubFacilities());
 		}
 
-		return new SearchResponse(paging(searchRequest.getPage(), campingPlaces));
+		List<CampingPlaceDto> paging = paging(searchRequest.getPage(), campingPlaces);
+		return new SearchResponse(paging);
 	}
 
 	private List<CampingPlaceDto> paging(int page, List<CampingPlaceDto> campingPlaces) {
@@ -173,6 +174,11 @@ public class CampingPlaceService {
 	public DetailResponse detail(long contentId) {
 		CampingPlaceDto campingPlace = campingPlaceDao.findByContentId(contentId);
 		List<CampingPlaceImgDto> imgUrls = campingPlaceImgDao.findByContentId(campingPlace.getContentId());
+		campingPlace.setLocationTypes(campingPlaceDao.findLocationTypeByContentId(campingPlace.getContentId()));
+		campingPlace.setMainFacilities(campingPlaceDao.findMainFacilitiesByContentId(campingPlace.getContentId()));
+		campingPlace.setOperationTypes(campingPlaceDao.findOperationTypeByContentId(campingPlace.getContentId()));
+		campingPlace.setSubFacilities(campingPlaceDao.findSubFacilitiesByContentId(campingPlace.getContentId()));
+		campingPlace.setThemes(campingPlaceDao.findThemeByContentId(campingPlace.getContentId()));
 		return new DetailResponse(campingPlace, imgUrls);
 	}
 }
