@@ -58,20 +58,25 @@ function getDetail() {
     </div>
     <hr />
     <div class="information-intro">
-      <div>tel {{ place.tel }}</div>
-      <div>
-        <a :href="place.homepage">홈페이지로 가기</a>
+      <div class="left">
+        <div>전화번호 | {{ place.tel }}</div>
+        <div class="text">
+          <a :href="place.homepage">홈페이지로 가기</a>
+        </div>
+        <div class="text">예약방법 | {{ place.reserveType }}</div>
+        <div class="text">주　　소 | {{ place.address }}</div>
+        <div class="like">♥11</div>
       </div>
-      <div>{{ place.reserveType }}</div>
-      <div>{{ place.address }}</div>
-      <div class="like">♥ 11</div>
+      <div class="right">
+        <div class="body-weather">
+          <WeatherCharts :content-id="contentId" />
+        </div>
+      </div>
     </div>
     <hr />
     <div class="information-body">
       <div class="subfacltlist">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia aspernatur quaerat nulla
-        voluptates beatae odio consectetur alias sapiente, dicta recusandae cupiditate aut illo
-        voluptatibus suscipit fugiat! Neque esse aperiam commodi?
+        {{ place.subFacilities }}
       </div>
       <hr />
       <div class="body-top">
@@ -79,35 +84,53 @@ function getDetail() {
           <div class="data-top">
             <div class="data-top-left">
               <ul>
-                <li>{{ place.induty }}</li>
-                <li>{{ place.facltDivName }}</li>
-                <li>{{ place.mangeDivName }}</li>
-                <li>{{ place.locationType }}</li>
+                <li>운영계절 : {{ place.oeprSeason }}</li>
+                <li>운영시간 : {{ place.operDate }}</li>
+                <li>반려동물 : {{ place.animal }}</li>
+                <li v-if="place.canTrailer == 'Y'">개인 트레일러 가능</li>
+                <li v-else>개인 트레일러 불가능</li>
               </ul>
             </div>
-            <div class="data-top-right">
-              <ul>
-                <li>운영계절{{ place.oeprSeason }}</li>
-                <li>운영시간{{ place.operDate }}</li>
-                <li>동물{{ place.animal }}</li>
-              </ul>
-            </div>
+            <!-- <div class="data-top-right"></div> -->
           </div>
           <div class="data-bottom">
             <ul>
-              <li>카라반({{ place.caravanSiteCnt }})</li>
+              <li>
+                <p v-if="place.generalSiteCnt != 0">일반야영장({{ place.generalSiteCnt }})</p>
+                <p v-if="place.autoSiteCnt != 0">자동차야영장({{ place.autoSiteCnt }})</p>
+                <p v-if="place.caravanSiteCnt != 0">카라반({{ place.caravanSiteCnt }})</p>
+                <p v-if="place.userCaravanSiteCnt != 0">
+                  개인카라반({{ place.userCaravanSiteCnt }})
+                </p>
+                <p v-if="place.glampSiteCnt != 0">글램핑({{ place.glampSiteCnt }})</p>
+              </li>
               <li>기타 부대 시설 : {{ place.etcFacilities }}</li>
-              <li>카라반 내부 시설(vif) : {{ place.etcCaravanFacilities }}</li>
+              <li>
+                <p v-if="place.etcCaravanFacilities != ''">
+                  카라반 내부 시설 : {{ place.etcCaravanFacilities }}
+                </p>
+              </li>
               <li>화로대 : {{ place.brazier }}</li>
-              <li>안전시설현황 :</li>
-              <li>{{ place.etcGlampingFacilities }}</li>
-              <li>{{ place.experience }}</li>
-              <li>이것저것추가</li>
+              <li>
+                <p v-if="place.etcGlampingFacilities != ''">
+                  글램핑 내부 시설 : {{ place.etcGlampingFacilities }}
+                </p>
+              </li>
+              <li>
+                <p v-if="place.equipLend != ''">캠핑 장비 대여 : {{ place.equipLend }}</p>
+              </li>
+              <li>
+                <p v-if="place.experience != ''">체험 가능 : {{ place.experience }}</p>
+              </li>
             </ul>
           </div>
         </div>
-        <div class="body-weather">
-          <WeatherCharts :content-id="contentId" />
+        <div class="body-right">
+          {{ place.locationTypes }}
+          {{ place.operationTypes }}
+
+          {{ place.mainFacilities }}
+          {{ place.themes }}
         </div>
       </div>
       <hr />
@@ -127,11 +150,18 @@ function getDetail() {
 * {
   /* border: 0.1px solid; */
 }
+li {
+  margin-bottom: 2px;
+}
 ul {
   list-style: none;
   padding: 10px;
+  margin: 0;
 }
-
+p {
+  display: inline;
+  margin-right: 10px;
+}
 a {
   text-decoration: none;
   color: black;
@@ -165,6 +195,7 @@ a {
   display: inline-block;
   width: 59.5%;
   height: 400px;
+  border: 0.1px solid lightgray;
   border-radius: 15px;
   overflow: hidden;
   text-align: center;
@@ -182,16 +213,32 @@ img {
 }
 .information-intro {
   margin-top: 20px;
-  display: inline-block;
+  display: flex;
+  justify-content: space-around;
   position: relative;
   width: 100%;
   line-height: 70px;
+  height: 160px;
 }
-.information-intro > * {
+.information-intro > .left > * {
   height: 35px;
   line-height: 30px;
   padding-left: 10px;
 }
+.information-intro > .left {
+  padding-top: 8px;
+  width: 49.5%;
+  position: relative;
+  display: inline-block;
+  border-radius: 15px;
+  border: 1px solid lightgray;
+}
+.information-intro > .right {
+  width: 49.5%;
+  height: 100%;
+  display: inline-block;
+}
+
 .likebtn {
   display: inline-block;
   position: absolute;
@@ -202,6 +249,13 @@ img {
   margin-top: 20px;
   width: 100%;
 }
+.information-body .body-right {
+  display: inline-block;
+  border-radius: 15px;
+  border: 1px solid lightgray;
+  width: 39.5%;
+  height: 100%;
+}
 .information-body .body-top {
   height: 350px;
   width: 100%;
@@ -210,19 +264,20 @@ img {
   margin-bottom: 10px;
   margin-top: 10px;
 }
-.information-body .body-weather {
+.body-weather {
   display: inline-block;
-  width: 39.5%;
+  width: 100%;
   height: 100%;
   border-radius: 15px;
   border: 0.1px solid;
-  padding-left: 30px;
+  overflow: hidden;
 }
 .information-body .body-data {
   display: inline-block;
   width: 59.5%;
   height: 100%;
   border-radius: 15px;
+  border: 1px solid lightgray;
 }
 .data-top {
   display: flex;
@@ -238,8 +293,9 @@ img {
 }
 .information-body .body-text {
   padding: 10px;
-  width: 99%;
+  width: 100%;
   border-radius: 15px;
+  border: 1px solid lightgray;
 }
 .photo-list {
   position: relative;
@@ -254,7 +310,7 @@ img {
 }
 .photo {
   display: inline-block;
-  border: 2px solid white;
+  border: 1.5px solid white;
   width: 20%;
   height: 180px;
 }
