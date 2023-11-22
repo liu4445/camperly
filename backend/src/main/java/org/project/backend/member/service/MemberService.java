@@ -3,6 +3,8 @@ package org.project.backend.member.service;
 import java.sql.SQLException;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.project.backend.constant.OauthLoginType;
 import org.project.backend.member.dao.MemberDao;
 import org.project.backend.member.dto.MemberDto;
@@ -50,5 +52,14 @@ public class MemberService {
 	@Transactional
 	public long register(MemberDto memberDto) throws SQLException {
 		return memberDao.save(memberDto);
+	}
+
+	public void validateToken(HttpServletRequest request) {
+		String authenticationHeader = request.getHeader("Authorization");
+		if (authenticationHeader == null || !authenticationHeader.startsWith("Bearer ")) {
+			throw new IllegalStateException("토큰이 존재하지 않습니다");
+		}
+		String token = authenticationHeader.split(" ")[1];
+		jwtUtil.validate(token);
 	}
 }

@@ -2,6 +2,7 @@ package org.project.backend.member.controller;
 
 import java.sql.SQLException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.project.backend.constant.OauthLoginType;
@@ -43,5 +44,15 @@ public class MemberController {
             );
         }
         return ResponseEntity.badRequest().build();
+    }
+
+    @PostMapping("/auth")
+    public ResponseEntity auth(HttpServletRequest httpServletRequest) {
+        try {
+            memberService.validateToken(httpServletRequest);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 }

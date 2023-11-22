@@ -47,6 +47,7 @@ public class JwtUtil {
         try {
             Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
         } catch (Exception e) {
+            log.error("", e);
             log.warn("잘못된 토큰으로 요청: {}", token);
             throw e;
         }
