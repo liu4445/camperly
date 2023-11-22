@@ -7,7 +7,7 @@ import { storeToRefs } from "pinia";
 // import TempListFile from "./TempListFile.vue";
 const store = usePlaceStore();
 const { getList, putList } = store;
-const { placeList, isLocationSelect, isMoreSelect } = storeToRefs(store);
+const { placeList, isLocationSelect, isMoreSelect, isSearch } = storeToRefs(store);
 const places = ref([]);
 
 const readMore = () => {
@@ -30,6 +30,11 @@ watch(isLocationSelect, (newisLocationSelect, oldisLocationSelect) => {
 
 watch(isMoreSelect, (newisMoreSelect, oldisMoreSelect) => {
   if (newisMoreSelect != oldisMoreSelect) {
+    getPlaceList();
+  }
+});
+watch(isSearch, (newisSearch, oldisSearch) => {
+  if (newisSearch != oldisSearch) {
     getPlaceList();
   }
 });

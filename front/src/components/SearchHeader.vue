@@ -1,20 +1,65 @@
-<script setup></script>
+<script setup>
+import { usePlaceStore } from "@/stores/places.js";
+import { storeToRefs } from "pinia";
+import { ref } from "vue";
+
+const store = usePlaceStore();
+const { json, isSearch } = storeToRefs(store);
+
+const keyword = ref("");
+const locationFlag = ref(false);
+const nameFlag = ref(false);
+
+const sendData = () => {
+  if (isSearch.value == true) isSearch.value = false;
+  else {
+    isSearch.value = true;
+  }
+
+  console.log("sendData");
+  json.value.keyword = keyword.value;
+  json.value.locationFlag = locationFlag.value;
+  json.value.nameFlag = nameFlag.value;
+};
+</script>
 
 <template>
   <form>
-    <input type="checkbox" class="btn-check" id="camp-name" autocomplete="off" />
+    <input
+      type="checkbox"
+      class="btn-check"
+      id="camp-name"
+      v-model="nameFlag"
+      autocomplete="off"
+      @keyup="sendData"
+    />
     <label class="btn" for="camp-name">이름</label>
 
     <div class="vertical-line"></div>
 
-    <input type="checkbox" class="btn-check" id="camp-location" autocomplete="off" />
+    <input
+      type="checkbox"
+      class="btn-check"
+      id="camp-location"
+      v-model="locationFlag"
+      autocomplete="off"
+      @keyup="sendData"
+    />
     <label class="btn" for="camp-location">지역</label>
 
     <div class="vertical-line"></div>
 
-    <input type="text" class="form-control" id="keyword" placeholder="검색어" />
+    <input
+      type="text"
+      class="form-control"
+      id="keyword"
+      v-model="keyword"
+      placeholder="검색어"
+      @keyup="sendData"
+    />
 
     <svg
+      @click="sendData"
       id="search-btn"
       xmlns="http://www.w3.org/2000/svg"
       width="16"

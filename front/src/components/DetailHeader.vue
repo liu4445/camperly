@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from "vue";
 import LoginModal from "./LoginModal.vue";
-import SignupModal from "./SignupModal.vue";
 import SearchHeader from "@/components/SearchHeader.vue";
 
 const loginStatus = ref(false);

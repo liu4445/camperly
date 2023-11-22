@@ -2,7 +2,10 @@
 import { ref, defineProps } from "vue";
 import { RouterLink } from "vue-router";
 import LikeButton from "./LikeButton.vue";
+
 const props = defineProps({ data: Object });
+const contentId = ref(0);
+contentId.value = props.data.contentId;
 </script>
 
 <template>

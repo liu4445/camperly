@@ -7,8 +7,13 @@ export const usePlaceStore = defineStore("place", () => {
   const placeList = ref([]);
   const isLocationSelect = ref(false);
   const isMoreSelect = ref(false);
+  const isSearch = ref(false);
   let pageNum = 1;
+
   const json = ref({
+    locationFlag: false,
+    nameFlag: false,
+    keyword: "",
     locationTypes: [],
     operationType: "",
     mainFacilities: [],
@@ -42,6 +47,7 @@ export const usePlaceStore = defineStore("place", () => {
     })
       .then((res) => {
         placeList.value = res.data.campingPlaceDtos;
+        console.log(placeList.value);
         console.log("성공");
       })
       .catch((error) => {
@@ -68,5 +74,5 @@ export const usePlaceStore = defineStore("place", () => {
       });
   }
 
-  return { placeList, json, getList, load, isLocationSelect, isMoreSelect, putList };
+  return { placeList, json, getList, load, isLocationSelect, isMoreSelect, putList, isSearch };
 });
