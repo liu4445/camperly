@@ -6,7 +6,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.project.backend.camping.place.dao.CampingPlaceDao;
+import org.project.backend.camping.place.dao.CampingPlaceImgDao;
 import org.project.backend.camping.place.dto.CampingPlaceDto;
+import org.project.backend.camping.place.dto.CampingPlaceImgDto;
+import org.project.backend.camping.place.dto.DetailResponse;
 import org.project.backend.camping.place.dto.SearchRequest;
 import org.project.backend.camping.place.dto.SearchResponse;
 import org.project.backend.constant.LocationType;
@@ -15,6 +18,7 @@ import org.project.backend.constant.OperationType;
 import org.project.backend.constant.SubFacilities;
 import org.project.backend.constant.Theme;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,7 +29,9 @@ public class CampingPlaceService {
 	private final static int pageSize = 20;
 
 	private final CampingPlaceDao campingPlaceDao;
+	private final CampingPlaceImgDao campingPlaceImgDao;
 
+	@Transactional(readOnly = true)
 	public SearchResponse search(SearchRequest searchRequest) {
 		List<CampingPlaceDto> campingPlaces = campingPlaceDao.findAll();
 
@@ -143,5 +149,12 @@ public class CampingPlaceService {
 			}
 		}
 		return filteredCampingPlace;
+	}
+
+	@Transactional(readOnly = true)
+	public DetailResponse detail(long contentId) {
+		CampingPlaceDto campingPlace = campingPlaceDao.findByContentId(contentId);
+		List<CampingPlaceImgDto> imgUrls = campingPlaceImgDao.findByContentId(campingPlace.getContentId());
+		return new DetailResponse(campingPlace, imgUrls);
 	}
 }
