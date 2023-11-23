@@ -4,6 +4,13 @@ spring:
     url: jdbc:mysql://${DATASOURCE_HOST:localhost}:${DATASOURCE_PORT:3306}/trip?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
     username: ${DATASOURCE_USERNAME:root}
     password: ${DATASOURCE_PASSWORD:}
+  data:
+    mongodb:
+      authentication-database: admin
+      username: root
+      password: 1234
+      database: trip
+      uri: mongodb://localhost:27017
 
 mybatis:
   mapper-locations:
