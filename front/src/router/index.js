@@ -13,10 +13,13 @@ const router = createRouter({
       component: MainView,
     },
     {
-      path: "/:contentId",
+      path: "/camping/place/:contentId",
       name: "detail",
       component: DetailView,
       props: true,
+      scrollBehavior() {
+        return { top: 0 };
+      },
     },
     {
       path: "/kakao",

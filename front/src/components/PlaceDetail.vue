@@ -1,18 +1,18 @@
 <script setup>
 import LikeButton from "./LikeButton.vue";
-import { onMounted, ref } from "vue";
+import { onBeforeMount, onMounted, ref } from "vue";
 const { VITE_VUE_API_URL } = import.meta.env;
 import "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js";
 
 import axios from "axios";
-import { useRoute } from "vue-router";
+import { onBeforeRouteUpdate, useRoute } from "vue-router";
 import WeatherCharts from "./WeatherCharts.vue";
 import MapVue from "./Map.vue";
 import mediumZoom from "medium-zoom";
 const place = ref([]);
 const imageList = ref([]);
 const route = useRoute();
-const imagePath = "src/assets/img/pictogram/";
+const imagePath = "/src/assets/img/pictogram/";
 const subFacilities = new Map([
   ["전기", `${imagePath}subfaclt/light.png`],
   ["무선인터넷", `${imagePath}subfaclt/wifi.png`],
@@ -65,6 +65,10 @@ const pressMore = () => {
 };
 onMounted(() => {
   getDetail();
+});
+
+onBeforeMount(() => {
+  window.scrollTo(0, 0);
 });
 const contentId = ref(0);
 contentId.value = route.params.contentId;
@@ -135,7 +139,7 @@ mediumZoom("[data-zoomable]");
         <div class="text" id="test">
           <br />
           <a :href="place.homepage"
-            ><img class="home-img" src="src/assets/img/pictogram/home.png" />
+            ><img class="home-img" src="@/assets/img/pictogram/home.png" />
             <p style="text-decoration: underline">홈페이지로 가기</p></a
           >
         </div>
@@ -157,44 +161,43 @@ mediumZoom("[data-zoomable]");
         </div>
       </div>
       <hr />
-      <div
-        class="body-type-list"
-        v-if="place.mainFacilities != '' || place.locationTypes != '' || place.themes != ''"
-      >
-        <div v-if="place.mainFacilities != ''">
-          <div class="body-type-name">
-            <p>주요시설</p>
+      <div v-if="place.mainFacilities != '' || place.locationTypes != '' || place.themes != ''">
+        <div class="body-type-list">
+          <div v-if="place.mainFacilities != ''">
+            <div class="body-type-name">
+              <p>주요시설</p>
+            </div>
+            <div class="body-type">
+              <div v-for="item in place.mainFacilities" :key="mainFacilities.keys">
+                <img :src="mainFacilities.get(item)" />
+                <p>{{ item }}</p>
+              </div>
+            </div>
           </div>
-          <div class="body-type">
-            <div v-for="item in place.mainFacilities" :key="mainFacilities.keys">
-              <img :src="mainFacilities.get(item)" />
-              <p>{{ item }}</p>
+          <div v-if="place.locationTypes != ''">
+            <div class="body-type-name">
+              <p>주변풍경</p>
+            </div>
+            <div class="body-type" v-if="place.locationTypes != ''">
+              <div v-for="item in place.locationTypes" :key="locationTypes.keys">
+                <img :src="locationTypes.get(item)" />
+                <p style="margin-right: 10px">{{ item }}</p>
+              </div>
+            </div>
+          </div>
+          <div v-if="place.themes != ''">
+            <div class="body-type-name">
+              <p>테마</p>
+            </div>
+            <div class="body-type" v-if="place.themes != ''">
+              <div v-for="item in place.themes" :key="themes.keys">
+                <img :src="themes.get(item)" />
+                <p>{{ item }}</p>
+              </div>
             </div>
           </div>
         </div>
-        <div v-if="place.locationTypes != ''">
-          <div class="body-type-name">
-            <p>주변풍경</p>
-          </div>
-          <div class="body-type" v-if="place.locationTypes != ''">
-            <div v-for="item in place.locationTypes" :key="locationTypes.keys">
-              <img :src="locationTypes.get(item)" />
-              <p style="margin-right: 10px">{{ item }}</p>
-            </div>
-          </div>
-        </div>
-        <div v-if="place.themes != ''">
-          <div class="body-type-name">
-            <p>테마</p>
-          </div>
-          <div class="body-type" v-if="place.themes != ''">
-            <div v-for="item in place.themes" :key="themes.keys">
-              <img :src="themes.get(item)" />
-              <p>{{ item }}</p>
-            </div>
-          </div>
-        </div>
-        <hr />
+        <div><hr /></div>
       </div>
       <button class="btn-moreInfo" @click="pressMore">상세 정보</button>
       <div class="body-top" v-if="isMore == true">
@@ -229,7 +232,7 @@ mediumZoom("[data-zoomable]");
 
     <div class="photo-list">
       <div class="photo" v-for="image in imageList" :key="imageList.contentId">
-        <img :src="image.imgUrl" data-zoomable onerror="this.style.display='none';" />
+        <img data-zoomable :src="image.imgUrl" onerror="this.style.display='none';" />
       </div>
     </div>
   </div>

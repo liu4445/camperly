@@ -11,7 +11,7 @@ contentId.value = props.data.contentId;
 <template>
   <li>
     <div class="place-card">
-      <router-link class="link" :to="`/${data.place.contentId}`">
+      <router-link class="link" :to="`/camping/place/${data.place.contentId}`">
         <div class="place-img" style="width: 310px">
           <img
             :src="data.place.firstImageUrl"

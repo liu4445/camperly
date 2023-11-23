@@ -5,17 +5,13 @@ const props = defineProps({ x: Number, y: Number });
 var map;
 
 onMounted(() => {
-  if (window.kakao && window.kakao.maps) {
-    initMap();
-  } else {
-    const script = document.createElement("script");
-    script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${
-      import.meta.env.VITE_MAP_KEY
-    }&libraries=services,clusterer`;
-    /* global kakao */
-    script.onload = () => kakao.maps.load(() => initMap());
-    document.head.appendChild(script);
-  }
+  const script = document.createElement("script");
+  script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${
+    import.meta.env.VITE_MAP_KEY
+  }`;
+  /* global kakao */
+  script.onload = () => kakao.maps.load(() => initMap());
+  document.head.appendChild(script);
 });
 
 const initMap = () => {
