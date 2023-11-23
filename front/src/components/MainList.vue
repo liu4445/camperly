@@ -3,17 +3,18 @@ import { ref, onMounted, onUpdated, watch } from "vue";
 import MainListItem from "@/components/MainListItem.vue";
 import { usePlaceStore } from "@/stores/places";
 import { storeToRefs } from "pinia";
+import SkeletonItem from "@/components/skeleton/SkeletonItem.vue";
 
 // import TempListFile from "./TempListFile.vue";
 const store = usePlaceStore();
 const { getList, putList } = store;
 const { placeList, isLocationSelect, isMoreSelect, isSearch } = storeToRefs(store);
 const places = ref([]);
+const index = ref(10);
 
 const readMore = () => {
   putList();
 };
-
 const getPlaceList = async () => {
   await getList();
   console.log("getPlaceList");
@@ -22,29 +23,48 @@ const getPlaceList = async () => {
 };
 getPlaceList();
 
+const validateZero = async () => {
+  await getPlaceList();
+  if (places.value.length === 0) {
+    index.value = 0;
+  }
+}
+
 watch(isLocationSelect, (newisLocationSelect, oldisLocationSelect) => {
   if (newisLocationSelect != oldisLocationSelect) {
-    getPlaceList();
+    index.value = Math.min(places.value.length, 10);
+    places.value.length = 0;
+    validateZero();
   }
 });
 
 watch(isMoreSelect, (newisMoreSelect, oldisMoreSelect) => {
   if (newisMoreSelect != oldisMoreSelect) {
-    getPlaceList();
+    index.value = Math.min(places.value.length, 10);
+    places.value.length = 0;
+    validateZero();
   }
 });
 watch(isSearch, (newisSearch, oldisSearch) => {
   if (newisSearch != oldisSearch) {
-    getPlaceList();
+    index.value = Math.min(places.value.length, 10);
+    places.value.length = 0;
+    validateZero();
   }
 });
+
 </script>
 
 <template>
   <div class="mainList">
     <ul>
-      <MainListItem v-for="place in places" :data="{ place }" :key="place.contentId">
-      </MainListItem>
+      <template v-if="places.length === 0">
+        <SkeletonItem v-for="i in index" />
+      </template>
+      <template v-else>
+        <MainListItem v-for="place in places" :data="{ place }" :key="place.contentId">
+        </MainListItem>
+      </template>
     </ul>
   </div>
   <div class="more">

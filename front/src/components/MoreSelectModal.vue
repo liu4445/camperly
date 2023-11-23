@@ -37,7 +37,6 @@ const sendData = () => {
   json.value.mainFacilities = mainFacilities.value;
   json.value.themes = themes.value;
   json.value.subFacilities = subFacilities.value;
-  json.value.locationTypes = locationTypes.value;
 };
 </script>
 
