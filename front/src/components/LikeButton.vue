@@ -1,6 +1,8 @@
 <script setup>
 import { defineProps, ref, onMounted } from "vue";
-
+import "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js";
+import axios from "axios";
+const { VITE_VUE_API_URL } = import.meta.env;
 const props = defineProps({
   contentId: Number,
 });
@@ -9,10 +11,43 @@ const contentId = ref(0);
 onMounted(() => {
   contentId.value = props.contentId;
 });
+const loginStatus = ref(false);
+
+const popUpAlert = () => {
+  alert("로그인이 필요합니다.");
+};
+const okClickLike = () => {};
+const rejectClickLike = () => {
+  popUpAlert();
+  loginStatus.value = false;
+  localStorage.removeItem("token");
+  const id = "#checkbox" + contentId.value;
+  $(id).prop("checked", false);
+  console.log(id);
+};
+
+const loginCheck = () => {
+  const token = localStorage.getItem("token");
+  console.log("로그인체크  로드.", token);
+  axios({
+    method: "post",
+    url: VITE_VUE_API_URL + "member/auth",
+    headers: { Authorization: `Bearer ${token}` },
+  })
+    .then((res) => {
+      console.log("logincheck", res);
+      okClickLike();
+    })
+
+    .catch((error) => {
+      console.log(error);
+      rejectClickLike();
+    });
+};
 </script>
 
 <template>
-  <input type="checkbox" :id="`checkbox${contentId}`" />
+  <input type="checkbox" :id="`checkbox${contentId}`" @click="loginCheck" />
   <label :for="`checkbox${contentId}`">
     <svg id="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
       <g id="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">

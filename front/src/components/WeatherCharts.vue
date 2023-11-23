@@ -124,6 +124,6 @@ const dd = () => {
 };
 </script>
 
-<template><canvas id="line-chart" width="300" height="250"></canvas></template>
+<template><canvas id="line-chart" width="100%" height="100%"></canvas></template>
 
 <style scoped></style>
