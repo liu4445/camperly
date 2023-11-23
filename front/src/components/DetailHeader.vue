@@ -32,9 +32,8 @@ const changesignupOpen = () => {
       <a class="navbar-brand fs-2" href="/"><img src="@/assets/img/logo.png"></a>
     </div>
       <!-- 가운데 검색 헤더     -->
-      <div class="searchHeader">
-      <SearchHeader />
-    </div>
+      
+    
       <!-- 여기부터 로그인/회원가입 드롭다운  -->
       <div class="btn-group">
         <button

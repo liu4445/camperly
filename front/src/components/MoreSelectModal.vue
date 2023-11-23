@@ -15,10 +15,8 @@ const operationType = ref("");
 const mainFacilities = ref([]);
 const themes = ref([]);
 const subFacilities = ref([]);
-const locationTypes = ref([]);
 
 onMounted(() => {
-  locationTypes.value = props.locationTypes;
   $("#moreSelect").on("hidden.bs.modal", () => {
     $("#moreSelect").modal("hide");
     emit("moreSelect");
@@ -51,10 +49,10 @@ const sendData = () => {
     aria-labelledby="exampleModalLabel"
     aria-hidden="true"
   >
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
       <div class="modal-content">
         <div class="modal-header">
-          <h3 class="modal-title">상세검색</h3>
+          <h2 class="modal-title" style="margin-top: 10px; margin-bottom: 10px">상세검색</h2>
           <button
             type="button"
             class="btn-close"
@@ -62,6 +60,7 @@ const sendData = () => {
             aria-label="Close"
           ></button>
         </div>
+
         <form class="form-box py-2" @submit.prevent="moreSelectForm">
           <div class="modal-body">
             <h5>운영형태</h5>
@@ -440,19 +439,40 @@ const sendData = () => {
 </template>
 
 <style scoped>
+.form_toggle {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding-left: 20px;
+}
 .form_radio_btn {
-  width: 70px;
-  height: 25px;
+  width: 150px;
+  height: 55px;
   margin-top: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
   border-radius: 10px;
   display: inline-block;
   text-align: center;
-  font-size: 7pt;
-  margin-right: 10px;
+  font-size: 14pt;
+  margin-right: 30px;
   cursor: pointer;
 }
-
+.btn-close {
+  width: 50px;
+  height: 50px;
+}
+h5 {
+  font-size: 20pt;
+  font-weight: bold;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding-left: 10px;
+}
+h2 {
+  padding-left: 10px;
+  font-size: 27pt;
+  font-weight: bold;
+}
 .form_radio_btn input[type="radio"] {
   display: none;
 }
@@ -460,12 +480,12 @@ const sendData = () => {
   display: none;
 }
 .form_radio_btn label {
-  line-height: 30px;
+  line-height: 50px;
   display: block;
   border-radius: 10px;
   border: 1px solid black;
   text-align: center;
-  height: 30px;
+  height: 50px;
   justify-content: flex-start;
   cursor: pointer;
 }

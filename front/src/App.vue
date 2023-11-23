@@ -4,8 +4,4 @@
   <RouterView />
 </template>
 
-<style scoped>
-body {
-  width: 90%;
-}
-</style>
+<style scoped></style>
