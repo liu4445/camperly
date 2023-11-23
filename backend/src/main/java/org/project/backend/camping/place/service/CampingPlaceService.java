@@ -2,9 +2,11 @@ package org.project.backend.camping.place.service;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.project.backend.camping.favorite.repository.FavoriteRepository;
 import org.project.backend.camping.place.dao.CampingPlaceDao;
 import org.project.backend.camping.place.dao.CampingPlaceImgDao;
 import org.project.backend.camping.place.dto.CampingPlaceDto;
@@ -30,6 +32,7 @@ public class CampingPlaceService {
 
 	private final CampingPlaceDao campingPlaceDao;
 	private final CampingPlaceImgDao campingPlaceImgDao;
+	private final FavoriteRepository favoriteRepository;
 
 	@Transactional(readOnly = true)
 	public SearchResponse search(SearchRequest searchRequest) {
@@ -72,6 +75,7 @@ public class CampingPlaceService {
 			campingPlaces = filterBySubFacilities(campingPlaces, searchRequest.getSubFacilities());
 		}
 
+		campingPlaces.sort(Comparator.comparing((CampingPlaceDto campingPlace) -> favoriteRepository.countByContentId(campingPlace.getContentId())).reversed());
 		List<CampingPlaceDto> paging = paging(searchRequest.getPage(), campingPlaces);
 		return new SearchResponse(paging);
 	}

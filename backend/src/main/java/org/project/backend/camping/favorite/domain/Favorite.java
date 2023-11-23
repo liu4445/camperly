@@ -9,10 +9,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "favorite")
 @Getter
-@AllArgsConstructor
+
 public class Favorite {
     @Id
     private String id;
-    private String name;
-    private Integer age;
+    private long userId;
+    private long contentId;
+
+    public Favorite(long userId, long contentId) {
+        this.userId = userId;
+        this.contentId = contentId;
+    }
 }

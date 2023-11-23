@@ -3,7 +3,7 @@ import KakaoComponent from "@/components/KakaoComponent.vue";
 import GoogleComponent from "@/components/GoogleComponent.vue";
 import DetailView from "@/views/DetailView.vue";
 import MainView from "@/views/MainView.vue";
-
+import FavoriteView from "@/views/FavoriteView.vue";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -30,6 +30,11 @@ const router = createRouter({
       path: "/google",
       name: "google",
       component: GoogleComponent,
+    },
+    {
+      path: "/camping/favorite",
+      name: "favorite",
+      component: FavoriteView,
     },
   ],
 });

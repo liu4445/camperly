@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletRequest;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
@@ -48,10 +49,14 @@ public class JwtUtil {
         try {
             Jwts.parser().setSigningKey(secretKey.getBytes(StandardCharsets.UTF_8)).parseClaimsJws(token);
         } catch (Exception e) {
-            log.error("", e);
             log.warn("잘못된 토큰으로 요청: {}", token);
             throw e;
         }
+    }
+
+    public void validate(HttpServletRequest request) {
+        String token = extractToken(request);
+        validate(token);
     }
 
     public Long getId(String token) {
@@ -62,6 +67,15 @@ public class JwtUtil {
             log.warn("잘못된 토큰으로 요청: {}", token);
             throw e;
         }
+    }
+
+    public String extractToken(HttpServletRequest request) {
+        String authenticationHeader = request.getHeader("Authorization");
+        if (authenticationHeader == null || !authenticationHeader.startsWith("Bearer ")) {
+            throw new IllegalStateException("토큰이 존재하지 않습니다");
+        }
+        String token = authenticationHeader.split(" ")[1];
+        return token;
     }
 }
 

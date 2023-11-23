@@ -3,8 +3,12 @@ import { ref, defineProps } from "vue";
 import { RouterLink } from "vue-router";
 import LikeButton from "./LikeButton.vue";
 
+const cnt = ref(0);
 const props = defineProps({ data: Object });
 const contentId = ref(0);
+const getLikeCnt = (likeCnt) => {
+  cnt.value = likeCnt;
+};
 contentId.value = props.data.contentId;
 </script>
 
@@ -15,7 +19,7 @@ contentId.value = props.data.contentId;
         <div class="place-img" style="width: 310px">
           <img
             :src="data.place.firstImageUrl"
-            onerror="this.src='src/assets/img/fail.png';"
+            onerror="this.src='/src/assets/img/fail.png';"
             class="card-img-top"
             style="height: 285px"
           />
@@ -24,14 +28,16 @@ contentId.value = props.data.contentId;
           <h5 class="place-title">
             {{ data.place.campsiteName }}
           </h5>
-          <div class="like">♥ {{ data.place.like }}</div>
+          <div class="like">♥ {{ cnt }}</div>
           <div>
             <p class="place-text">{{ data.place.lineIntro }}</p>
             <p class="place-address">{{ data.place.doName }} {{ data.place.sigunguName }}</p>
           </div>
         </div>
       </router-link>
-      <div class="likebtn"><LikeButton :contentId="data.place.contentId" /></div>
+      <div class="likebtn">
+        <LikeButton :contentId="data.place.contentId" @like-cnt="getLikeCnt" />
+      </div>
     </div>
   </li>
 </template>

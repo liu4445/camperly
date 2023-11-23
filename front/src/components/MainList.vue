@@ -28,7 +28,7 @@ const validateZero = async () => {
   if (places.value.length === 0) {
     index.value = 0;
   }
-}
+};
 
 watch(isLocationSelect, (newisLocationSelect, oldisLocationSelect) => {
   if (newisLocationSelect != oldisLocationSelect) {
@@ -52,7 +52,6 @@ watch(isSearch, (newisSearch, oldisSearch) => {
     validateZero();
   }
 });
-
 </script>
 
 <template>

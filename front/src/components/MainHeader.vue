@@ -3,9 +3,9 @@ import { ref , onMounted} from "vue";
 import LoginModal from "./LoginModal.vue";
 import SignupModal from "./SignupModal.vue";
 import SearchHeader from "@/components/SearchHeader.vue";
-import {useRouter } from "vue-router"
+import { useRouter } from "vue-router"
 import axios from "axios"
-const { VITE_VUE_API_URL } = import.meta.env;
+const { VITE_VUE_API_URL, VITE_VUE_INDEX_URL } = import.meta.env;
 const loginStatus = ref(false);
 const router = useRouter();
 const loginOpen = ref(false);
@@ -37,7 +37,7 @@ const clickLikeList = () => {
     .then((res) => {
       console.log("logincheck", res);
       loginStatus.value = true;
-      router.push("/likelist")
+      router.push("camping/favorite")
     })
 
     .catch((error) => {
@@ -51,6 +51,10 @@ const clickLikeList = () => {
 const logout = () => {
   localStorage.removeItem("token");
   loginStatus.value = false;
+  console.log("로그아웃함")
+  alert("로그아웃 되었습니다.");
+  router.replace("/");
+  location.href = VITE_VUE_INDEX_URL;
 }
 
 onMounted(() => {
@@ -58,6 +62,24 @@ onMounted(() => {
   loginStatus.value = true;
 }
 })
+const logincheck = () => {
+  const token = localStorage.getItem("token");
+  axios({
+    method: "post",
+    url: VITE_VUE_API_URL + "member/auth",
+    headers: { Authorization: `Bearer ${token}` },
+  })
+    .then((res) => {
+      console.log("logincheck", res);
+      loginStatus.value = true;
+    
+    })
+
+    .catch((error) => {
+      loginStatus.value = false;
+      localStorage.removeItem("token");
+    });
+}
 </script>
 
 <template>
@@ -78,6 +100,7 @@ onMounted(() => {
           data-bs-toggle="dropdown"
           data-bs-display="static"
           aria-expanded="false"
+          @click="logincheck"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -111,7 +134,7 @@ onMounted(() => {
           </li>
           <li v-if="loginStatus == true">
             <li><hr class="dropdown-divider" /></li>
-            <a class="dropdown-item" @click="clickLikeList">찜목록</a>
+            <a class="dropdown-item" @click="clickLikeList" >찜목록</a>
           </li>
         </ul>
       </div>

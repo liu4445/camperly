@@ -7,5 +7,12 @@ import java.util.List;
 
 public interface FavoriteRepository extends MongoRepository<Favorite, String> {
 
-    List<Favorite> findByName(String name);
+    void deleteByUserIdAndContentId(long userId, long contentId);
+
+
+    boolean existsByUserIdAndContentId(long userId, long contentId);
+
+    int countByContentId(long contentId);
+
+    List<Favorite> findAllByUserId(long userId);
 }

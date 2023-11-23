@@ -55,11 +55,6 @@ public class MemberService {
 	}
 
 	public void validateToken(HttpServletRequest request) {
-		String authenticationHeader = request.getHeader("Authorization");
-		if (authenticationHeader == null || !authenticationHeader.startsWith("Bearer ")) {
-			throw new IllegalStateException("토큰이 존재하지 않습니다");
-		}
-		String token = authenticationHeader.split(" ")[1];
-		jwtUtil.validate(token);
+		jwtUtil.validate(request);
 	}
 }

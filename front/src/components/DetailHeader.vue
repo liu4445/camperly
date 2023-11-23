@@ -1,10 +1,9 @@
 <script setup>
 import { ref ,onMounted } from "vue";
 import LoginModal from "./LoginModal.vue";
-import SearchHeader from "@/components/SearchHeader.vue";
 import axios from "axios"
 import { useRouter } from "vue-router"
-const { VITE_VUE_API_URL } = import.meta.env;
+const { VITE_VUE_API_URL, VITE_VUE_INDEX_URL } = import.meta.env;
 const loginStatus = ref(false);
 const router = useRouter();
 const loginOpen = ref(false);
@@ -20,9 +19,56 @@ const signupOpen = ref(false);
 const changesignupOpen = () => {
   if (signupOpen.value == true) signupOpen.value = false;
   else {
-    signupOpen.value = true;
+    signupOpen.value = true; 
   }
 };
+
+const logout = () => {
+  localStorage.removeItem("token");
+  loginStatus.value = false;
+  router.replace("/");
+  location.href= VITE_VUE_INDEX_URL
+}
+const popUpAlert = () => {
+  alert("로그인이 필요합니다.");
+};
+const clickLikeList = () => {
+  const token = localStorage.getItem("token");
+  axios({
+    method: "post",
+    url: VITE_VUE_API_URL + "member/auth",
+    headers: { Authorization: `Bearer ${token}` },
+  })
+    .then((res) => {
+      loginStatus.value = true;
+      router.push("camping/favorite")
+    })
+
+    .catch((error) => {
+      popUpAlert();
+      loginStatus.value = false;
+      localStorage.removeItem("token");
+      console.log(error);
+    });
+}
+const logincheck = () => {
+  const token = localStorage.getItem("token");
+  axios({
+    method: "post",
+    url: VITE_VUE_API_URL + "member/auth",
+    headers: { Authorization: `Bearer ${token}` },
+  })
+    .then((res) => {
+      console.log("logincheck", res);
+      loginStatus.value = true;
+    
+    })
+
+    .catch((error) => {
+      loginStatus.value = false;
+      localStorage.removeItem("token");
+    });
+}
 </script>
 
 <template>
@@ -42,6 +88,7 @@ const changesignupOpen = () => {
           data-bs-toggle="dropdown"
           data-bs-display="static"
           aria-expanded="false"
+          @click="logincheck"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -75,7 +122,7 @@ const changesignupOpen = () => {
           </li>
           <li v-if="loginStatus == true">
             <li><hr class="dropdown-divider" /></li>
-            <a class="dropdown-item" @click="clickLikeList">찜목록</a>
+            <a class="dropdown-item" @click="clickLikeList" >찜목록</a>
           </li>
         </ul>
       </div>

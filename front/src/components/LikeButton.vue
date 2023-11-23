@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, ref, onMounted } from "vue";
+import { defineProps, ref, onMounted, defineEmits } from "vue";
 import "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js";
 import axios from "axios";
 const { VITE_VUE_API_URL } = import.meta.env;
@@ -7,16 +7,27 @@ const props = defineProps({
   contentId: Number,
 });
 const contentId = ref(0);
+const ischecked = ref(false);
+const likeCnt = ref(0);
+const emit = defineEmits(["likeCnt"]);
+emit("likeCnt", likeCnt);
 
 onMounted(() => {
   contentId.value = props.contentId;
+  getLike();
+  howManyLike();
 });
 const loginStatus = ref(false);
-
+const okLogin = () => {
+  if (ischecked.value) checkLike();
+  else {
+    uncheckLike();
+  }
+};
 const popUpAlert = () => {
   alert("로그인이 필요합니다.");
 };
-const okClickLike = () => {};
+
 const rejectClickLike = () => {
   popUpAlert();
   loginStatus.value = false;
@@ -27,27 +38,117 @@ const rejectClickLike = () => {
 };
 
 const loginCheck = () => {
+  console.log(ischecked.value);
   const token = localStorage.getItem("token");
   console.log("로그인체크  로드.", token);
   axios({
     method: "post",
     url: VITE_VUE_API_URL + "member/auth",
+    data: { contentId: contentId.value },
     headers: { Authorization: `Bearer ${token}` },
   })
     .then((res) => {
       console.log("logincheck", res);
-      okClickLike();
+      okLogin();
     })
-
     .catch((error) => {
       console.log(error);
       rejectClickLike();
     });
 };
+
+const checkLike = () => {
+  const token = localStorage.getItem("token");
+  const param = { contentId: contentId.value };
+  console.log("라이크체크  로드.", token);
+  axios({
+    method: "post",
+    url: VITE_VUE_API_URL + "favorite",
+    data: param,
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": `application/json`,
+    },
+  })
+    .then((res) => {
+      console.log("checkLike", res);
+      howManyLike();
+    })
+
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+const uncheckLike = () => {
+  const token = localStorage.getItem("token");
+  const param = { contentId: contentId.value };
+  console.log("라이크언체크  로드.", token);
+  axios({
+    method: "delete",
+    url: VITE_VUE_API_URL + "favorite",
+    data: param,
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": `application/json`,
+    },
+  })
+    .then((res) => {
+      console.log("uncheckLike", res);
+      howManyLike();
+    })
+
+    .catch((error) => {
+      console.log(error);
+    });
+};
+const favoriteList = ref([]);
+const getLike = () => {
+  const token = localStorage.getItem("token");
+  const param = { contentId: contentId.value };
+  console.log("라이크체크  로드.", token);
+  axios({
+    method: "get",
+    url: VITE_VUE_API_URL + "favorite/" + param.contentId,
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((res) => {
+      console.log("checkLike", res.data);
+      favoriteList.value = res.data;
+      console.log(res.data);
+      if (res.data) ischecked.value = true;
+      else {
+        ischecked.value = false;
+      }
+    })
+
+    .catch((error) => {
+      console.log(error);
+    });
+};
+const howManyLike = () => {
+  const param = { contentId: contentId.value };
+  axios({
+    method: "get",
+    url: VITE_VUE_API_URL + "favorite/count/" + param.contentId,
+  })
+    .then((res) => {
+      console.log("checkLike", res.data);
+      favoriteList.value = res.data;
+      console.log(res.data);
+      likeCnt.value = res.data;
+    })
+
+    .catch((error) => {
+      console.log(error);
+    });
+};
 </script>
 
 <template>
-  <input type="checkbox" :id="`checkbox${contentId}`" @click="loginCheck" />
+  <input type="checkbox" :id="`checkbox${contentId}`" @click="loginCheck" v-model="ischecked" />
   <label :for="`checkbox${contentId}`">
     <svg id="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
       <g id="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">
@@ -99,7 +200,12 @@ const loginCheck = () => {
 
 <style scoped>
 /* 좋아요 버튼 */
-
+p {
+  color: red;
+  font-weight: bold;
+  font-size: 12px;
+  display: inline;
+}
 svg {
   cursor: pointer;
   overflow: visible;

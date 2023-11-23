@@ -72,7 +72,7 @@ onBeforeMount(() => {
 });
 const contentId = ref(0);
 contentId.value = route.params.contentId;
-
+const cnt = ref(0);
 function getDetail() {
   const params = contentId.value;
   console.log("디테일 로드.", params);
@@ -93,8 +93,9 @@ function getDetail() {
     });
 }
 
-//이미지 확대
-mediumZoom("[data-zoomable]");
+const getLikeCnt = (likeCnt) => {
+  cnt.value = likeCnt;
+};
 </script>
 
 <template>
@@ -103,7 +104,8 @@ mediumZoom("[data-zoomable]");
       <h1>{{ place.campsiteName }}</h1>
 
       <div class="likebtn">
-        <LikeButton :content-id="contentId" />
+        <p>{{ cnt }}</p>
+        <LikeButton :content-id="contentId" @like-cnt="getLikeCnt" />
       </div>
       <hr style="border-width: 2px" />
     </div>
@@ -111,7 +113,7 @@ mediumZoom("[data-zoomable]");
       <span class="image"
         ><img
           :src="place.firstImageUrl"
-          onerror="this.src='src/assets/img/fail.png'; this.style.width='70%'; this.style.height='100%'; "
+          onerror="this.src='/src/assets/img/fail.png'; this.style.width='70%'; this.style.height='100%'; "
       /></span>
       <span class="map">
         <MapVue :x="place.mapX" :y="place.mapY"></MapVue>
@@ -338,6 +340,14 @@ img {
   position: absolute;
   top: 0px;
   right: 0px;
+  color: red;
+  font-weight: bold;
+  font-size: 16px;
+}
+.likebtn p {
+  display: inline-block;
+  margin: 0px;
+  top: 30px;
 }
 .information-body {
   margin-top: 20px;

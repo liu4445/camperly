@@ -445,14 +445,14 @@ const sendData = () => {
   padding-left: 20px;
 }
 .form_radio_btn {
-  width: 150px;
-  height: 55px;
+  width: 100px;
+  height: 45px;
   margin-top: 5px;
   margin-bottom: 15px;
   border-radius: 10px;
   display: inline-block;
   text-align: center;
-  font-size: 14pt;
+  font-size: 12pt;
   margin-right: 30px;
   cursor: pointer;
 }
@@ -461,15 +461,15 @@ const sendData = () => {
   height: 50px;
 }
 h5 {
-  font-size: 20pt;
+  font-size: 15pt;
   font-weight: bold;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   padding-left: 10px;
 }
 h2 {
   padding-left: 10px;
-  font-size: 27pt;
+  font-size: 20pt;
   font-weight: bold;
 }
 .form_radio_btn input[type="radio"] {
