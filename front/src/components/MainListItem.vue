@@ -15,7 +15,7 @@ contentId.value = props.data.contentId;
         <div class="place-img" style="width: 310px">
           <img
             :src="data.place.firstImageUrl"
-            onerror="this.src='src/assets/img/no-photo.jpg';"
+            onerror="this.src='src/assets/img/fail.png';"
             class="card-img-top"
             style="height: 285px"
           />

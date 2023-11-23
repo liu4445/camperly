@@ -43,7 +43,20 @@ const dd = () => {
   new Chart(ctx, {
     type: "line",
     data: {
-      labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      labels: [
+        "1월",
+        "2월",
+        "3월",
+        "4월",
+        "5월",
+        "6월",
+        "7월",
+        "8월",
+        "9월",
+        "10월",
+        "11월",
+        "12월",
+      ],
       datasets: [
         {
           data: [
@@ -61,7 +74,7 @@ const dd = () => {
             weather.value[12].minTemperature,
           ],
           label: "최저기온",
-          borderColor: "#3e95cd",
+          borderColor: "#0066FF",
           fill: false,
         },
         {
@@ -80,7 +93,7 @@ const dd = () => {
             weather.value[12].maxTemperature,
           ],
           label: "최고기온",
-          borderColor: "#8e5ea2",
+          borderColor: "#FF0000",
           fill: false,
         },
         {
@@ -99,7 +112,7 @@ const dd = () => {
             weather.value[12].avgTemperature,
           ],
           label: "평균기온",
-          borderColor: "#3cba9f",
+          borderColor: "#00FF33",
           fill: false,
         },
       ],
@@ -113,9 +126,7 @@ const dd = () => {
         y: {
           beginAtZero: false, // 음수 값 표시를 위해 false로 설정
           ticks: {
-            max: 40,
-            min: -40,
-            stepSize: 0.5,
+            stepSize: 5,
           },
         },
       },

@@ -59,54 +59,6 @@ const themes = new Map([
   ["걷기길", `${imagePath}themes/walk.png`],
 ]);
 
-const html = ref(`<div class="body-top">
-        <div class="body-data">
-          <div class="data-left">
-            <ul>
-              <li>
-                <p v-if="place.generalSiteCnt != 0">일반야영장( {{ place.generalSiteCnt }} 면)</p>
-                <p v-if="place.autoSiteCnt != 0">자동차야영장( {{ place.autoSiteCnt }} 면)</p>
-                <p v-if="place.caravanSiteCnt != 0">카라반( {{ place.caravanSiteCnt }} 면)</p>
-                <p v-if="place.userCaravanSiteCnt != 0">
-                  개인카라반({{ place.userCaravanSiteCnt }})
-                </p>
-                <p v-if="place.glampSiteCnt != 0">글램핑( {{ place.glampSiteCnt }} 면)</p>
-              </li>
-              <li v-if="place.etcFacilities != ''">기타 부대 시설 : {{ place.etcFacilities }}</li>
-              <li v-if="place.etcCaravanFacilities != ''">
-                <p>카라반 내부 시설 : {{ place.etcCaravanFacilities }}</p>
-              </li>
-              <li>화로대 : {{ place.brazier }}</li>
-              <li v-if="place.etcGlampingFacilities != ''">
-                <p>글램핑 내부 시설 : {{ place.etcGlampingFacilities }}</p>
-              </li>
-              <li v-if="place.equipLend != ''">
-                <p>캠핑 장비 대여 : {{ place.equipLend }}</p>
-              </li>
-              <li v-if="place.experience != ''">
-                <p>체험 가능 : {{ place.experience }}</p>
-              </li>
-            </ul>
-          </div>
-          <div class="data-right">
-            <ul>
-              <li>운영계절 : {{ place.oeprSeason }}</li>
-              <li>운영시간 : {{ place.operDate }}</li>
-              <li v-if="place.canTrailer == '가능'">반려동물 가능</li>
-              <li v-else>반려동물 불가능</li>
-              <li v-if="place.canTrailer == 'Y'">개인 트레일러 가능</li>
-              <li v-else>개인 트레일러 불가능</li>
-              <li v-if="place.canCaravan == 'Y'">개인 카라반 가능</li>
-              <li v-else>개인 카라반 불가능</li>
-            </ul>
-          </div>
-        </div>
-        <hr />
-        <div class="body-text">
-          {{ place.intro }}
-        </div>
-      </div>`);
-
 const isMore = ref(false);
 const pressMore = () => {
   isMore.value == false ? (isMore.value = true) : (isMore.value = false);
@@ -155,7 +107,7 @@ mediumZoom("[data-zoomable]");
       <span class="image"
         ><img
           :src="place.firstImageUrl"
-          onerror="this.src='src/assets/img/no-photo.jpg'; this.style.width='80%';"
+          onerror="this.src='src/assets/img/fail.png'; this.style.width='70%'; this.style.height='100%'; "
       /></span>
       <span class="map">
         <MapVue :x="place.mapX" :y="place.mapY"></MapVue>
@@ -164,13 +116,31 @@ mediumZoom("[data-zoomable]");
     <hr />
     <div class="information-intro">
       <div class="left">
-        <div>전화번호 | {{ place.tel }}</div>
+        <div><span style="font-weight: bold">운영계절 </span> | {{ place.oeprSeason }}</div>
+        <div><span style="font-weight: bold">운영시간 </span> | {{ place.operDate }}</div>
+
+        <div><span style="font-weight: bold">전화번호 </span>| {{ place.tel }}</div>
         <div class="text">
-          <a :href="place.homepage">홈페이지로 가기</a>
+          <span style="font-weight: bold">예약방법 </span>| {{ place.reserveType }}
         </div>
-        <div class="text">예약방법 | {{ place.reserveType }}</div>
-        <div class="text">주　　소 | {{ place.address }}</div>
-        <div class="like">♥11</div>
+        <div class="text">
+          <span style="font-weight: bold">주　　소 </span>| {{ place.address }}
+        </div>
+        <div v-if="place.canTrailer == '가능'">※ 반려동물 가능</div>
+        <div v-else>※ 반려동물 불가능</div>
+        <div v-if="place.canTrailer == 'Y'">※ 개인 트레일러 가능</div>
+        <div v-else>※ 개인 트레일러 불가능</div>
+        <div v-if="place.canCaravan == 'Y'">※ 개인 카라반 가능</div>
+        <div v-else>※ 개인 카라반 불가능</div>
+        <div class="text" id="test">
+          <br />
+          <a :href="place.homepage"
+            ><img class="home-img" src="src/assets/img/pictogram/home.png" />
+            <p style="text-decoration: underline">홈페이지로 가기</p></a
+          >
+        </div>
+
+        <!-- <div class="like">♥11</div> -->
       </div>
       <div class="right">
         <div class="body-weather">
@@ -187,74 +157,71 @@ mediumZoom("[data-zoomable]");
         </div>
       </div>
       <hr />
-      <div class="body-type-list">
-        <div class="body-type" v-if="place.mainFacilities != ''">
-          <div v-for="item in place.mainFacilities" :key="mainFacilities.keys">
-            <img :src="mainFacilities.get(item)" />
-            <p>{{ item }}</p>
+      <div
+        class="body-type-list"
+        v-if="place.mainFacilities != '' || place.locationTypes != '' || place.themes != ''"
+      >
+        <div v-if="place.mainFacilities != ''">
+          <div class="body-type-name">
+            <p>주요시설</p>
+          </div>
+          <div class="body-type">
+            <div v-for="item in place.mainFacilities" :key="mainFacilities.keys">
+              <img :src="mainFacilities.get(item)" />
+              <p>{{ item }}</p>
+            </div>
           </div>
         </div>
-
-        <div class="body-type" v-if="place.locationTypes != ''">
-          <div v-for="item in place.locationTypes" :key="locationTypes.keys">
-            <img :src="locationTypes.get(item)" />
-            <p style="margin-right: 10px">{{ item }}</p>
+        <div v-if="place.locationTypes != ''">
+          <div class="body-type-name">
+            <p>주변풍경</p>
+          </div>
+          <div class="body-type" v-if="place.locationTypes != ''">
+            <div v-for="item in place.locationTypes" :key="locationTypes.keys">
+              <img :src="locationTypes.get(item)" />
+              <p style="margin-right: 10px">{{ item }}</p>
+            </div>
           </div>
         </div>
-
-        <div class="body-type" v-if="place.themes != ''">
-          <div v-for="item in place.themes" :key="themes.keys">
-            <img :src="themes.get(item)" />
-            <p>{{ item }}</p>
+        <div v-if="place.themes != ''">
+          <div class="body-type-name">
+            <p>테마</p>
           </div>
-        </div>
-      </div>
-      <hr />
-      <button class="btn-moreInfo" @click="pressMore">상세 정보</button>
-      <div class="body-top" v-if="isMore == true">
-        <div class="body-data">
-          <div class="data-left">
-            <ul>
-              <li>
-                <p v-if="place.generalSiteCnt != 0">일반야영장( {{ place.generalSiteCnt }} 면)</p>
-                <p v-if="place.autoSiteCnt != 0">자동차야영장( {{ place.autoSiteCnt }} 면)</p>
-                <p v-if="place.caravanSiteCnt != 0">카라반( {{ place.caravanSiteCnt }} 면)</p>
-                <p v-if="place.userCaravanSiteCnt != 0">
-                  개인카라반({{ place.userCaravanSiteCnt }})
-                </p>
-                <p v-if="place.glampSiteCnt != 0">글램핑( {{ place.glampSiteCnt }} 면)</p>
-              </li>
-              <li v-if="place.etcFacilities != ''">기타 부대 시설 : {{ place.etcFacilities }}</li>
-              <li v-if="place.etcCaravanFacilities != ''">
-                <p>카라반 내부 시설 : {{ place.etcCaravanFacilities }}</p>
-              </li>
-              <li>화로대 : {{ place.brazier }}</li>
-              <li v-if="place.etcGlampingFacilities != ''">
-                <p>글램핑 내부 시설 : {{ place.etcGlampingFacilities }}</p>
-              </li>
-              <li v-if="place.equipLend != ''">
-                <p>캠핑 장비 대여 : {{ place.equipLend }}</p>
-              </li>
-              <li v-if="place.experience != ''">
-                <p>체험 가능 : {{ place.experience }}</p>
-              </li>
-            </ul>
-          </div>
-          <div class="data-right">
-            <ul>
-              <li>운영계절 : {{ place.oeprSeason }}</li>
-              <li>운영시간 : {{ place.operDate }}</li>
-              <li v-if="place.canTrailer == '가능'">반려동물 가능</li>
-              <li v-else>반려동물 불가능</li>
-              <li v-if="place.canTrailer == 'Y'">개인 트레일러 가능</li>
-              <li v-else>개인 트레일러 불가능</li>
-              <li v-if="place.canCaravan == 'Y'">개인 카라반 가능</li>
-              <li v-else>개인 카라반 불가능</li>
-            </ul>
+          <div class="body-type" v-if="place.themes != ''">
+            <div v-for="item in place.themes" :key="themes.keys">
+              <img :src="themes.get(item)" />
+              <p>{{ item }}</p>
+            </div>
           </div>
         </div>
         <hr />
+      </div>
+      <button class="btn-moreInfo" @click="pressMore">상세 정보</button>
+      <div class="body-top" v-if="isMore == true">
+        <div class="body-data"></div>
         <div class="body-text">
+          <div>
+            <p v-if="place.generalSiteCnt != 0">일반야영장( {{ place.generalSiteCnt }} 면)</p>
+            <p v-if="place.autoSiteCnt != 0">자동차야영장( {{ place.autoSiteCnt }} 면)</p>
+            <p v-if="place.caravanSiteCnt != 0">카라반( {{ place.caravanSiteCnt }} 면)</p>
+            <p v-if="place.userCaravanSiteCnt != 0">개인카라반({{ place.userCaravanSiteCnt }})</p>
+            <p v-if="place.glampSiteCnt != 0">글램핑( {{ place.glampSiteCnt }} 면)</p>
+          </div>
+          <div v-if="place.etcFacilities != ''">기타 부대 시설 : {{ place.etcFacilities }}</div>
+          <div v-if="place.etcCaravanFacilities != ''">
+            <p>카라반 내부 시설 : {{ place.etcCaravanFacilities }}</p>
+          </div>
+          <div>화로대 : {{ place.brazier }}</div>
+          <div v-if="place.etcGlampingFacilities != ''">
+            <p>글램핑 내부 시설 : {{ place.etcGlampingFacilities }}</p>
+          </div>
+          <div v-if="place.equipLend != ''">
+            <p>캠핑 장비 대여 : {{ place.equipLend }}</p>
+          </div>
+          <div v-if="place.experience != ''">
+            <p>체험 가능 : {{ place.experience }}</p>
+          </div>
+          <br />
           {{ place.intro }}
         </div>
       </div>
@@ -308,7 +275,8 @@ a {
   height: 58.95px;
 }
 .graphic {
-  margin-top: 40px;
+  margin-top: 50px;
+  margin-bottom: 30px;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -334,13 +302,14 @@ img {
   overflow: hidden;
 }
 .information-intro {
-  margin-top: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   display: flex;
   justify-content: space-around;
   position: relative;
   width: 100%;
   line-height: 70px;
-  height: 160px;
+  height: 350px;
 }
 
 .information-intro > .left > * {
@@ -349,12 +318,11 @@ img {
   padding-left: 10px;
 }
 .information-intro > .left {
-  padding-top: 8px;
   width: 49.5%;
   position: relative;
   display: inline-block;
   border-radius: 15px;
-  border: 1px solid lightgray;
+  /* border: 1px solid lightgray; */
 }
 .information-intro > .right {
   width: 49.5%;
@@ -397,6 +365,20 @@ img {
   padding-left: 90px;
   padding-right: 90px;
 }
+.information-body .body-type-name {
+  display: inline-block;
+  margin-right: 5px;
+  top: 0;
+  position: relative;
+  vertical-align: top;
+}
+.information-body .body-type-name p {
+  display: inline-block;
+  margin-right: 10px;
+  top: 0;
+  position: relative;
+  font-size: 20pt;
+}
 .information-body .body-type {
   display: inline-block;
   width: 220px;
@@ -406,7 +388,6 @@ img {
   text-align: left;
   padding: 10px;
   padding-left: 20px;
-  background-color: ghostwhite;
 }
 
 .information-body img {
@@ -415,13 +396,13 @@ img {
   margin: 10px;
 }
 
-.information-body .body-type > p {
+.information-body .body-type p {
   display: inline-block;
   height: 40px;
   line-height: 40px;
-  margin-left: 30px;
+  margin-left: 10px;
 }
-.information-body .body-type > div {
+.information-body .body-type div {
   display: inline-block;
   margin-left: auto;
   margin-right: auto;
@@ -440,7 +421,7 @@ img {
   width: 100%;
   height: 100%;
   border-radius: 15px;
-  border: 0.1px solid;
+  /* border: 1px solid black; */
   overflow: hidden;
 }
 .information-body .body-data {
@@ -471,19 +452,22 @@ img {
   text-align: left;
 }
 .information-body .body-text {
-  padding: 10px;
-  padding-top: 30px;
+  padding: 20px;
   padding-bottom: 30px;
   padding-right: 20px;
-  width: 100%;
+  width: 80%;
   border-radius: 15px;
   text-align: left;
   border: 1px solid lightgray;
+  margin-left: auto;
+  margin-right: auto;
 }
 .btn-moreInfo {
   border-radius: 15px;
   width: 120px;
   height: 50px;
+  margin-bottom: 15px;
+  background-color: white;
 }
 .photo-list {
   position: relative;
@@ -511,5 +495,12 @@ img {
   margin-bottom: 5px;
   right: 0;
   top: 0;
+}
+
+.home-img {
+  width: 17px;
+  height: 17px;
+  padding-bottom: 3px;
+  margin-right: 5px;
 }
 </style>
