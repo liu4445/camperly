@@ -15,10 +15,8 @@ const operationType = ref("");
 const mainFacilities = ref([]);
 const themes = ref([]);
 const subFacilities = ref([]);
-const locationTypes = ref([]);
 
 onMounted(() => {
-  locationTypes.value = props.locationTypes;
   $("#moreSelect").on("hidden.bs.modal", () => {
     $("#moreSelect").modal("hide");
     emit("moreSelect");
@@ -39,7 +37,6 @@ const sendData = () => {
   json.value.mainFacilities = mainFacilities.value;
   json.value.themes = themes.value;
   json.value.subFacilities = subFacilities.value;
-  json.value.locationTypes = locationTypes.value;
 };
 </script>
 
