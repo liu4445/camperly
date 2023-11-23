@@ -1,92 +1,104 @@
-# Project_final
+# README.md
 
+# 요구사항 정의서
 
+![Untitled](README%20md%20eeb48a218cb842a6b267adc1cf3472dc/Untitled.png)
 
-## Getting started
+---
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+# ERD
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+![Untitled](README%20md%20eeb48a218cb842a6b267adc1cf3472dc/Untitled%201.png)
 
-## Add your files
+---
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+# 클래스 다이어그램
 
-```
-cd existing_repo
-git remote add origin https://lab.ssafy.com/3to/project_final.git
-git branch -M master
-git push -uf origin master
-```
+![Untitled](README%20md%20eeb48a218cb842a6b267adc1cf3472dc/Untitled%202.png)
 
-## Integrate with your tools
+![Untitled](README%20md%20eeb48a218cb842a6b267adc1cf3472dc/Untitled%203.png)
 
-- [ ] [Set up project integrations](https://lab.ssafy.com/3to/project_final/-/settings/integrations)
+![Untitled](README%20md%20eeb48a218cb842a6b267adc1cf3472dc/Untitled%204.png)
 
-## Collaborate with your team
+---
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+# 화면 설계서
 
-## Test and Deploy
+---
 
-Use the built-in continuous integration in GitLab.
+## <첨부1> 메인 페이지
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+![Untitled](README%20md%20eeb48a218cb842a6b267adc1cf3472dc/Untitled%205.png)
 
-***
+## <첨부2> 로그인 모달
 
-# Editing this README
+![Untitled](README%20md%20eeb48a218cb842a6b267adc1cf3472dc/Untitled%206.png)
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
+## <첨부3> 캠핑장 상세 조회 모달
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+![Untitled](README%20md%20eeb48a218cb842a6b267adc1cf3472dc/Untitled%207.png)
 
-## Name
-Choose a self-explaining name for your project.
+![Untitled](README%20md%20eeb48a218cb842a6b267adc1cf3472dc/Untitled%208.png)
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+## <첨부4> 캠핑장 상세 조회 페이지
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+![Untitled](README%20md%20eeb48a218cb842a6b267adc1cf3472dc/Untitled%209.png)
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+---
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+# 기획 배경 및 목표
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+기획 배경
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+- 최근 차박 및 글램핑의 인기가 증가함에 따라 캠핑장의 정보를 쉽고 빠르게 찾을 수 있도록 안내가 필요했음
+- 기존의 ‘고캠핑’ 서비스가 있었지만, 필터를 통한 검색의 용이성이 떨어짐
+- ‘고캠핑’이 ‘찜하기’, ‘예상 날씨 조회’ 등의 기능을 제공하지 않음
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+목표
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+- ‘고캠핑’과 차별화된 사용자 친화적인 UI와 검색 필터링 기능을 제공
+- 캠핑장 상세 정보 조회에서 시설에 대한 픽토그램을 활용해 사용자 친화적인 UI 제공
+- 카카오맵을 활용해 캠핑장의 위치 정보를 제공
+- ‘고캠핑’이 제공하지 않는 소셜 로그인 기능 제공
+- ‘찜하기’를 통해 인기 캠핑장을 확인할 수 있고, 사용자가 찜한 캠핑장 모아보기 기능을 제공
+- 캠핑장의 위치를 통해 해당 지역의 10년간 월별 날씨 데이터를 제공
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+---
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+# 일정
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+---
 
-## License
-For open source projects, say how it is licensed.
+# 개발 결과
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+## 시스템 구조도
+
+![Untitled](README%20md%20eeb48a218cb842a6b267adc1cf3472dc/Untitled%2010.png)
+
+## 적용한 패턴과 알고리즘
+
+- MVC
+
+![Untitled](README%20md%20eeb48a218cb842a6b267adc1cf3472dc/Untitled%2011.png)
+
+- 전략 패턴
+    - OauthService 인터페이스를 생성하고, 이를 구현하는 구현체들을 통해 여러개의 소셜 로그인 기능을 확장할 수 있도록 적용함.
+    
+    ![Untitled](README%20md%20eeb48a218cb842a6b267adc1cf3472dc/Untitled%2012.png)
+    
+
+---
+
+# 기대 효과
+
+- 사용자가 보다 편하게 캠핑장의 정보를 조회할 수 있도록 함
+- 캠핑장의 다양한 시설 및 테마 정보를 조회할 수 있도록 함
+- 10년 간의 날씨 데이터를 통해 캠핑장 예약에 참고할 수 있도록 함
+
+---
+
+# 개발 후기
+
+정재엽: 한 학기 동안 배웠던 Vue, Spring, Mybatis를 활용해 실제 프로젝트에 적용하며 개발을 진행했던게 흥미로웠고, 2학기 시작 전 좋은 경험이라고 생각합니다.
+
+김가빈: 직접 Vue를 통해 UI를 그리며 프로젝트를 진행하는 것이 흥미로웠고, Vue의 컴포넌트 특성을 통해 코드를 더욱 간편하게 짤 수 있었던 것이 흥미로웠습니다. 앞으로 2학기에도 이와 같은 프로젝트들을 통해 더욱 성장할 수 있을 것이라고 생각합니다.
