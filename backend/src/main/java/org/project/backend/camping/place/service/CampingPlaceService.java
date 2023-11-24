@@ -47,7 +47,7 @@ public class CampingPlaceService {
 			} else if (!searchRequest.isNameFlag() && !searchRequest.isLocationFlag()) {
 				campingPlaces = campingPlaces.stream()
 						.filter(campingPlace -> campingPlace.getCampsiteName().contains(searchRequest.getKeyword()) ||
-								campingPlace.getCampsiteName().contains(searchRequest.getKeyword())
+								campingPlace.getAddress().contains(searchRequest.getKeyword())
 						).collect(Collectors.toList());
 			} else if (searchRequest.isNameFlag()) {
 				campingPlaces = campingPlaces.stream()

@@ -48,9 +48,6 @@ onMounted(() => {
       </template>
     </ul>
   </div>
-  <div class="more">
-    <button class="btn mb-3" v-if="places.length >= 20" @click="readMore()">더 보기</button>
-  </div>
 </template>
 
 <style scoped>

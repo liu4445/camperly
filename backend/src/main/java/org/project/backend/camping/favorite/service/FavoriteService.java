@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -44,11 +45,13 @@ public class FavoriteService {
     public int count (long contentId) {
         return favoriteRepository.countByContentId(contentId);
     }
+
     public List<CampingPlaceDto> getList (HttpServletRequest httpServletRequest) {
         long userId = jwtUtil.getId(jwtUtil.extractToken(httpServletRequest));
         List<Favorite> findFavorites = favoriteRepository.findAllByUserId(userId);
         return findFavorites.stream()
                 .map(favorite -> campingPlaceDao.findByContentId(favorite.getContentId()))
+                .sorted(Comparator.comparing((CampingPlaceDto campingPlace) -> favoriteRepository.countByContentId(campingPlace.getContentId())).reversed())
                 .collect(Collectors.toList());
     }
 }
