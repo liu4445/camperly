@@ -37,6 +37,7 @@ public class FavoriteController {
     @GetMapping("/{contentId}")
     public ResponseEntity find(@PathVariable("contentId") long contentId, HttpServletRequest httpServletRequest) {
 
+
         return ResponseEntity.ok(favoriteService.getLike(contentId,httpServletRequest));
     }
 

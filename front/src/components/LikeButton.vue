@@ -14,7 +14,9 @@ emit("likeCnt", likeCnt);
 
 onMounted(() => {
   contentId.value = props.contentId;
-  getLike();
+  if (localStorage.getItem("token") != null) {
+    getLike();
+  }
   howManyLike();
 });
 const loginStatus = ref(false);
@@ -34,13 +36,10 @@ const rejectClickLike = () => {
   localStorage.removeItem("token");
   const id = "#checkbox" + contentId.value;
   $(id).prop("checked", false);
-  console.log(id);
 };
 
 const loginCheck = () => {
-  console.log(ischecked.value);
   const token = localStorage.getItem("token");
-  console.log("로그인체크  로드.", token);
   axios({
     method: "post",
     url: VITE_VUE_API_URL + "member/auth",
@@ -48,11 +47,10 @@ const loginCheck = () => {
     headers: { Authorization: `Bearer ${token}` },
   })
     .then((res) => {
-      console.log("logincheck", res);
+      loginStatus.value = true;
       okLogin();
     })
     .catch((error) => {
-      console.log(error);
       rejectClickLike();
     });
 };
@@ -60,7 +58,6 @@ const loginCheck = () => {
 const checkLike = () => {
   const token = localStorage.getItem("token");
   const param = { contentId: contentId.value };
-  console.log("라이크체크  로드.", token);
   axios({
     method: "post",
     url: VITE_VUE_API_URL + "favorite",
@@ -71,19 +68,15 @@ const checkLike = () => {
     },
   })
     .then((res) => {
-      console.log("checkLike", res);
       howManyLike();
     })
 
-    .catch((error) => {
-      console.log(error);
-    });
+    .catch((error) => {});
 };
 
 const uncheckLike = () => {
   const token = localStorage.getItem("token");
   const param = { contentId: contentId.value };
-  console.log("라이크언체크  로드.", token);
   axios({
     method: "delete",
     url: VITE_VUE_API_URL + "favorite",
@@ -94,19 +87,15 @@ const uncheckLike = () => {
     },
   })
     .then((res) => {
-      console.log("uncheckLike", res);
       howManyLike();
     })
 
-    .catch((error) => {
-      console.log(error);
-    });
+    .catch((error) => {});
 };
 const favoriteList = ref([]);
 const getLike = () => {
   const token = localStorage.getItem("token");
   const param = { contentId: contentId.value };
-  console.log("라이크체크  로드.", token);
   axios({
     method: "get",
     url: VITE_VUE_API_URL + "favorite/" + param.contentId,
@@ -115,18 +104,14 @@ const getLike = () => {
     },
   })
     .then((res) => {
-      console.log("checkLike", res.data);
       favoriteList.value = res.data;
-      console.log(res.data);
       if (res.data) ischecked.value = true;
       else {
         ischecked.value = false;
       }
     })
 
-    .catch((error) => {
-      console.log(error);
-    });
+    .catch((error) => {});
 };
 const howManyLike = () => {
   const param = { contentId: contentId.value };
@@ -135,15 +120,11 @@ const howManyLike = () => {
     url: VITE_VUE_API_URL + "favorite/count/" + param.contentId,
   })
     .then((res) => {
-      console.log("checkLike", res.data);
       favoriteList.value = res.data;
-      console.log(res.data);
       likeCnt.value = res.data;
     })
 
-    .catch((error) => {
-      console.log(error);
-    });
+    .catch((error) => {});
 };
 </script>
 

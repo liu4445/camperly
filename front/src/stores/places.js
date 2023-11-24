@@ -9,7 +9,6 @@ export const usePlaceStore = defineStore("place", () => {
   const isMoreSelect = ref(false);
   const isSearch = ref(false);
   let pageNum = 1;
-
   const json = ref({
     locationFlag: false,
     nameFlag: false,
@@ -74,5 +73,14 @@ export const usePlaceStore = defineStore("place", () => {
       });
   }
 
-  return { placeList, json, getList, load, isLocationSelect, isMoreSelect, putList, isSearch };
+  return {
+    placeList,
+    json,
+    getList,
+    load,
+    isLocationSelect,
+    isMoreSelect,
+    putList,
+    isSearch,
+  };
 });
